@@ -27,11 +27,23 @@
         animation: typewriter 2s steps(14) 1s normal both, cursor 500ms steps(14) infinite normal;
     }
     &__register {
+        width: 100px;
+        height: 100px;
         text-decoration: none;
         color: white;
-        border-color: white;
+    }
+    &__buttons {
+        width: 100px;
+        height: 100px;
         background: green;
         border-radius: 10px;
+        
+        &:hover {
+            cursor: pointer;    
+        }
+        &:active {
+            background: red;
+        }
     }
 }
 
