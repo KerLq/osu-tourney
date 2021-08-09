@@ -1,0 +1,7 @@
+{
+    "editor.codeActionsOnSave": null,
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "emmet.triggerExpansionOnTab": true
+}
