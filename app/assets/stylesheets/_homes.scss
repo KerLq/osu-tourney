@@ -24,11 +24,9 @@
         border-right: solid 2px rgba(255,255,255,0.7);
         overflow: hidden;
         white-space: nowrap;
-        animation: typewriter 2s steps(14) 1s normal both, cursor 500ms steps(14) infinite normal;
+        animation: typewriter 2s steps(14) 1s normal both, cursor 500ms steps(14) infinite normal, 2s moving 4s forwards;
     }
     &__register {
-        width: 100px;
-        height: 100px;
         text-decoration: none;
         color: white;
     }
@@ -54,4 +52,8 @@
 @keyframes cursor {
     0%{border-right-color:rgba(255,255,255,0.7);}
     100%{border-right-color: transparent;}
+}
+@keyframes moving {
+    from {transform: translate(0px, 0px);}
+    to {transform: translate(-500px,-200px); font-size: 48px}
 }
