@@ -69,7 +69,7 @@ body {
 }
 
 div {
-    border: 2px solid white;
+    //border: 2px solid white;
 
 }
 
@@ -100,7 +100,11 @@ div {
        
     }
     &__header {
-        font-size: 60px;
+        font-size: 70px;
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: solid 2px rgba(255,255,255,0.7);
+        animation: typewriter 3s 1s normal both, cursor 750ms infinite normal;    
     }
 
     &__logo {
@@ -167,7 +171,7 @@ div {
 .navbar {
     margin-top: 25px;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     list-style-type: none;
     &__items {
         font-size: 18px;
@@ -178,4 +182,13 @@ div {
             margin-right: 40px;
         }
     }
+}
+
+@keyframes typewriter {
+    0%{width: 0;}
+    100%{width: 100%;}
+}
+@keyframes cursor {
+    0%{border-right-color:rgba(255,255,255,0.7);}
+    100%{border-right-color: transparent;}
 }
