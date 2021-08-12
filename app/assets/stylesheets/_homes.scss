@@ -90,7 +90,7 @@ div {
         opacity: 0;
         animation: fadeIn 1s forwards 3.5s ease-in-out;
         font-size: 20px;
-        margin-bottom: 125px;
+        margin-bottom: 100px;
         width: 75%;
         line-height: 28px;
     }
@@ -136,8 +136,8 @@ div {
     background-color: #444444EB;
     cursor: pointer;
     transition: border 100ms ease-out;
-    
-    &:hover {
+
+    &:hover {    
         border: 2px solid white;
     }
 }
@@ -170,7 +170,15 @@ div {
 .highlight {
     color: cyan;
 }
-
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__logo {
+        margin-left: 35px;
+        font-size: 18px;
+    }
+}
 .navbar {
     margin-top: 25px;
     display: flex;
@@ -183,6 +191,9 @@ div {
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         cursor: pointer;
         margin-left: 40px;
+        &:first-child {
+            justify-content: flex-start;
+        }
         &:last-child {
             margin-right: 40px;
         }
@@ -200,5 +211,5 @@ div {
 
 @keyframes fadeIn {
     0%{transform: translateY(10px); color: transparent; opacity: 0;}
-    100%{transform: translateY(-5px); color: white; opacity: 1;}
+    100%{transform: translateY(-10px); color: white; opacity: 1;}
 }
