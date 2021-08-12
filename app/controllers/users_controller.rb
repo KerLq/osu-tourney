@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized, only: [:index, :show]
+    before_action :authorized, only: [:index, :show] # :edit, :destroy, :delete etc
 
     def index
 

@@ -194,8 +194,8 @@ div {
     justify-content: flex-end;
     list-style-type: none;
     &__items {
-        opacity: 0;
-        animation: fadeIn 1s forwards 3s ease-in-out;
+        //opacity: 0;
+        //animation: fadeIn 1s forwards 3s ease-in-out;
         font-size: 18px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         cursor: pointer;
