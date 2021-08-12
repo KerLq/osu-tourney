@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     def register
-
+        @user = User.new
     end
     def create
         @user = User.find_by(username: params[:username])
@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
         if !!@user && @user.authenticate(params[:username])
 
             session[:user_id] = @user.id
-            #redirect_to {homescreen or latest page}
+            redirect_to root_path
 
         else
             message = "Login is invalid!"
-            #redirect_to {login page}, notice: message
+            redirect_to root_path, notice: message
             
         end
     end

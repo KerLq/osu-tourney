@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'homes#index'
 
   get '/register', to: 'sessions#register'
-  post '/register', to: 'sessions#create'
+  post '/register', to: 'users#create'
 
 
 end

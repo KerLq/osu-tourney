@@ -1,1 +1,15 @@
-<div>Register Page!</div>
+<div class="register">
+    <%=form_for @user, url: register_path(@user) do |f| %>
+        <%= f.label :username, 'Username:' %>
+        <%= f.text_field :username%>
+        <%= f.label :email, 'Email:' %>
+        <%= f.email_field :email%>
+        <%= f.label :password, 'Password:' %>
+        <%= f.password_field :password%>
+        <%= f.submit 'Deez' %>
+    <% end %>
+
+
+
+
+</div>
