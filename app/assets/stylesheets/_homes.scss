@@ -97,13 +97,13 @@ div {
     &__text {
         display: flex;
         justify-content: center;
+        margin-bottom: 35px;
     }
     
     &__description {
         opacity: 0;
         animation: fadeIn 1s forwards 3.5s ease-in-out;
         font-size: 20px;
-        margin-bottom: 100px;
         width: 75%;
         line-height: 28px;
     }
