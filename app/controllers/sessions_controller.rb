@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
     def register
         @user = User.new
     end
+    def login
+        @user = User.new
+    end
     def create
         @user = User.find_by(username: params[:username])
 
