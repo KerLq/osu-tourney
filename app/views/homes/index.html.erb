@@ -1,8 +1,16 @@
-<div class="welcome">
-    <div class="welcome__header">
-        <h1 class="welcome__text">{osu! tourney}</h1>
+<%= render partial: "shared/navbar"%>
+<div class="header">
+    <div class="header__content">
+        <h1 class="header__header">What is osu!tourney?</h1>
+        <div class="header__text">
+            <p class="header__description"> osu!tourney Allows You To <span class="highlight">Save</span> Your Tournament Matches And <span class="highlight">Create</span> A History Of The Tournament You've Played</p>
+        </div>
+        <div class="buttons">
+            <%= button_to 'Sign Up!', register_path, method: :get, class: 'button buttons__signup'%>
+            <%= button_to 'Login!', register_path, method: :get, class: 'button buttons__login buttons__login--dark'%>    
+        </div>
     </div>
-    <div class="welcome__buttons">
-        <%= link_to 'Register', register_path, class: 'welcome__register' %>
-    </div>
+    <!-- <div class="header__logo">
+         <img src="assets/test.jpeg" class="header__img">
+    </div> !-->
 </div>
