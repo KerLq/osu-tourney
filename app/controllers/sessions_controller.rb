@@ -6,16 +6,17 @@ class SessionsController < ApplicationController
         @user = User.new
     end
     def create
-        @user = User.find_by(username: params[:username])
+        @user = User.find_by(username: params[:user][:username])
 
-        if !!@user && @user.authenticate(params[:username])
+        if !!@user && @user.authenticate(params[:user][:username])
 
             session[:user_id] = @user.id
             redirect_to root_path
 
         else
+            debugger
             message = "Login is invalid!"
-            redirect_to root_path, notice: message
+            #redirect_to root_path, notice: message
             
         end
     end
