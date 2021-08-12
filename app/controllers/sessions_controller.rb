@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
     def register
         @user = User.new
     end
@@ -14,7 +15,6 @@ class SessionsController < ApplicationController
             redirect_to root_path
 
         else
-            debugger
             message = "Login is invalid!"
             #redirect_to root_path, notice: message
             
@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete(:user_id)
+        redirect_to root_path
     end
 
 end

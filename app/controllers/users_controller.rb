@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+    before_action :authorized, only: [:index, :show]
+
     def index
 
+    end
+    def show
+        @user = current_user
     end
 
     def create 
