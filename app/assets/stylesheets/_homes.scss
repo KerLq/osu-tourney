@@ -103,8 +103,8 @@ div {
         font-size: 70px;
         overflow: hidden;
         white-space: nowrap;
-        border-right: solid 2px rgba(255,255,255,0.7);
-        animation: typewriter 3s 1s normal both, cursor 750ms infinite normal;    
+        animation: typewriter 3s 1s normal both, cursor 600ms ease-out 5;    
+        border-right: solid 2px transparent;
     }
 
     &__logo {
