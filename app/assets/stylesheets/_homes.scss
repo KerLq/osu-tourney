@@ -59,11 +59,6 @@
 // }
 
 
-* {
-    color: white;
-    font-family: monospace;
-}
-
 body {
     overflow-x: hidden;
     background: #242323;
@@ -88,13 +83,14 @@ div {
 }
 
 .header {
+    color: white;
     display: flex;
     width: 100%;
     height: 800px;
     //border: 2px solid white;
     align-items: center;
     justify-content: center;
-
+    
     &__text {
         display: flex;
         justify-content: center;
@@ -102,6 +98,7 @@ div {
     }
     
     &__description {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         opacity: 0;
         animation: fadeIn 1s forwards 3.5s ease-in-out;
         font-size: 20px;
@@ -116,6 +113,7 @@ div {
         
     }
     &__header {
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
         z-index: 2;
         font-size: 70px;
         overflow: hidden;
@@ -180,10 +178,14 @@ div {
 .highlight {
     color: cyan;
 }
+
 .nav {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     &__logo {
         margin-left: 35px;
         font-size: 18px;
@@ -194,11 +196,11 @@ div {
     display: flex;
     justify-content: flex-end;
     list-style-type: none;
+
     &__items {
         //opacity: 0;
         //animation: fadeIn 1s forwards 3s ease-in-out;
         font-size: 18px;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
         cursor: pointer;
         margin-left: 40px;
         &:first-child {
@@ -206,6 +208,10 @@ div {
         }
         &:last-child {
             margin-right: 40px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
         }
     }
 }
@@ -223,3 +229,5 @@ div {
     0%{transform: translateY(10px); color: transparent; opacity: 0;}
     100%{transform: translateY(-10px); color: white; opacity: 1;}
 }
+
+// Add media-queries (responsive design)

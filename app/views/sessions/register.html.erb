@@ -1,15 +1,11 @@
 <div class="register">
     <%=form_for @user, url: register_path(@user) do |f| %>
-        <%= f.label :username, 'Username:' %>
-        <%= f.text_field :username%>
-        <%= f.label :email, 'Email:' %>
-        <%= f.email_field :email%>
-        <%= f.label :password, 'Password:' %>
-        <%= f.password_field :password%>
-        <%= f.submit 'Deez' %>
+        <%= f.label :username, 'Username:', class: 'register__label' %>
+        <%= f.text_field :username, class: 'register__textfield' %>
+        <%= f.label :email, 'Email:', class: 'register__label' %>
+        <%= f.email_field :email, class: 'register__textfield' %>
+        <%= f.label :password, 'Password:', class: 'register__label' %>
+        <%= f.password_field :password, class: 'register__textfield'%>
+        <%= f.submit 'Deez', class: 'register__submit'%>
     <% end %>
-
-
-
-
 </div>

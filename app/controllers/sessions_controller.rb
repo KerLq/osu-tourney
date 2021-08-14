@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
         @user = User.new
     end
     def create
-        @user = User.find_by(username: params[:user][:username])
+        #Hash Password to BCrypt (hash_secure_password) - Watch Wiki or YT
+        @user = User.find_by(username: params[:user][:username], email: params[:user][:email], password_digest: params[:user][:password_digest])
 
         if !!@user && @user.authenticate(params[:user][:username])
 
