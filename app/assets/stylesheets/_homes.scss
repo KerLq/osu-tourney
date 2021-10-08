@@ -65,11 +65,18 @@ body {
     background-image: url('https://nextv.one/assets/images/bg.svg');
     background-size: 100%;
 }
-
-div {
-    //border: 2px solid white;
-
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #080808;
 }
+
+::-webkit-scrollbar-thumb {
+    background: #252525;
+}
+// div {
+//     //border: 2px solid white;
+// }
 .background-image{
     opacity: 0;
     z-index: -1;
@@ -80,7 +87,7 @@ div {
     background-position: center;
     background-repeat: no-repeat;
     filter: blur(8px);
-    //transition: background-image 4s ease-in-out
+    transition: background-image 4s ease-in-out;
     animation: fadeIn 1s forwards 4s ease-in-out;
 }
 
