@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
             redirect_to root_path
 
         else
+            debugger
             message = "Login is invalid!"
             #redirect_to root_path, notice: message
             
