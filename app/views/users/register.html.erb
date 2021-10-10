@@ -1,11 +1,11 @@
-<div class="register">
+<div class="form">
     <%=form_with(url: register_path, scope: :user, local: true) do |f| %>
-        <%= f.label :username, 'Username:', class: 'register__label' %> 
-        <%= f.text_field :username, class: 'register__textfield' %> <br>
-        <%= f.label :email, 'Email:', class: 'register__label' %>
-        <%= f.email_field :email, class: 'register__textfield' %> <br>
-        <%= f.label :password, 'Password:', class: 'register__label' %>
-        <%= f.password_field :password, class: 'register__textfield'%> <br>
-        <%= f.submit 'Deez', class: 'button register__submit'%>
+        <%= f.label :username, 'Username:', class: 'form__label' %> 
+        <%= f.text_field :username, class: 'form__textfield' %> <br>
+        <%= f.label :email, 'Email:', class: 'form__label' %>
+        <%= f.email_field :email, class: 'form__textfield' %> <br>
+        <%= f.label :password, 'Password:', class: 'form__label' %>
+        <%= f.password_field :password, class: 'form__textfield'%> <br>
+        <%= f.submit 'Register', class: 'button form__submit'%>
     <% end %>
 </div>
