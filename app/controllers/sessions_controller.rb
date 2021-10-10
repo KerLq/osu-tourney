@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
     include SessionsHelper
-    def register
-        @user = User.new
-    end
     def login
     end
     def create

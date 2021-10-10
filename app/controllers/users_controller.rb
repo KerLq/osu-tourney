@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
     before_action :authorized, only: [:index, :show] # :edit, :destroy, :delete etc
-
-    def index
-
+    def register
+        @user = User.new
     end
     def show
         @user = current_user
@@ -11,7 +10,7 @@ class UsersController < ApplicationController
     def create 
         @user = User.new(user_params)
         if @user.save
-            redirect_to root_path
+            redirect_to login_path
         else
 
         end
