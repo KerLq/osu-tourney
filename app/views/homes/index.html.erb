@@ -1,4 +1,4 @@
-<!--<div class="background-image"></div> WAS ANDERES HIN-->
+<!--<div class="background-image"></div> -->
 <%= render partial: "shared/navbar"%>
 <div class="header">
     <div class="header__content">
@@ -8,8 +8,8 @@
         </div>
         <% if current_user.nil? %>
             <div class="buttons">
-                <%= button_to 'Sign Up!', register_path, method: :get, class: 'button buttons__signup'%>
-                <%= button_to 'Login!', login_path, method: :get, class: 'button buttons__login buttons__login--dark'%>    
+                <%= button_to 'Sign Up!', register_path, method: :get, class: 'button buttons--animation buttons__signup'%>
+                <%= button_to 'Login!', login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark'%>
             </div>
         <% end %>
     </div>

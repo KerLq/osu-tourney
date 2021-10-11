@@ -1,0 +1,19 @@
+.form {
+    display: flex;
+    justify-content: center;
+    &__label {
+        font-size: 20px;
+
+    }
+
+    &__textfield {
+        font-size: 20px;
+        background-color: #383838;
+        border-radius: 5px;
+        border: 1px solid black;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
