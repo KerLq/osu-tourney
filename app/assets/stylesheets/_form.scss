@@ -1,19 +1,32 @@
 .form {
     display: flex;
+    align-items: center;
     justify-content: center;
-    &__label {
-        font-size: 20px;
+    height: 800px;
+    &__register {
+        padding: 72px;
+        background-color: #101010;
 
+    }
+    &__label {
+        //position: absolute;
+        font-size: 20px;
+        //>transition: .3s ease-out;
     }
 
     &__textfield {
+        display: flex;
         font-size: 20px;
-        background-color: #383838;
-        border-radius: 5px;
-        border: 1px solid black;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid cyan;
 
         &:focus {
             outline: none;
         }
+    }
+    &__submit-wrapper {
+        text-align: center;
+        padding: 20px 0px 0px 0px;
     }
 }
