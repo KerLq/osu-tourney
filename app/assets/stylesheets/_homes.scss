@@ -65,9 +65,12 @@
 
 body {
     overflow-x: hidden;
-    background: #141414;
-    background-image: url('https://nextv.one/assets/images/bg.svg');
-    background-size: 100%;
+    //background: #141414;
+    //background-image: url('https://nextv.one/assets/images/bg.svg');
+    //background: linear-gradient(-45deg, #101010, #1d1d1d, black, #222227, #242424, #282828);
+    //background: linear-gradient(-45deg, #221e20 20%, #6e3610 70%);
+    background: linear-gradient(-45deg, #221e20 53%, #6a1c1c 97%);
+	//animation: gradient 15s ease infinite;
 }
 ::-webkit-scrollbar {
     height: 12px;
@@ -249,6 +252,17 @@ body {
 @keyframes fadeIn {
     0%{transform: translateY(10px); color: transparent; opacity: 0;}
     100%{transform: translateY(-10px); color: white; opacity: 1;}
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 label {
