@@ -66,8 +66,6 @@
 body {
     overflow-x: hidden;
     background: #141414;
-    background-image: url('https://nextv.one/assets/images/bg.svg');
-    background-size: 100%;
 }
 ::-webkit-scrollbar {
     height: 12px;
@@ -76,7 +74,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #252525;
+    background: #292929;
 }
 // div {
 //     //border: 2px solid white;
