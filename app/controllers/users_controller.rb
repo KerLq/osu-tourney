@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            redirect_to login_path
+            redirect_to login_path, info: "Registration successfull! You can login now"
         else
-
+            redirect_to register_path, error: "Registration Failed!"
         end
     end
 

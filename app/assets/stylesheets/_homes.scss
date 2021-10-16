@@ -200,6 +200,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 25px;
 
     &__logo {
         margin-left: 35px;
@@ -207,7 +208,6 @@ body {
     }
 }
 .navbar {
-    margin-top: 35px;
     display: flex;
     justify-content: flex-end;
     list-style-type: none;

@@ -1,0 +1,14 @@
+.alert {
+    margin: 0 auto;
+    width: 50%;
+    height: 30px;
+    background: #720c0c;
+    border: 1px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__error {
+        color: black;
+        font-size: 18px;
+    }
+}
