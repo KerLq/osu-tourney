@@ -1,5 +1,5 @@
 <nav class="nav">
-    <span class="nav__logo"> INSERT LOGO LMAO </span>
+    <span class="nav__logo"> <%= link_to 'INSERT LOGO LMAO', root_path %> </span>
     <ul class="navbar">
         <li class="navbar__items"> Home </li>
         <li class="navbar__items"> About Us </li>
@@ -8,7 +8,8 @@
             <li class="navbar__items"> <%= link_to 'Register', register_path %> </li>
             <li class="navbar__items"> <%= link_to 'Login', login_path %> </li>
         <% else %>
-            <li class="navbar__items">  <%= link_to 'Logout', logout_path %> </li>
+            <li class="navbar__items"> <%= link_to "#{current_user.username}", user_path(current_user) %> </li>
+            <li class="navbar__items"> <%= link_to 'Logout', logout_path %> </li>
         <% end %>
     </ul>
 </nav>

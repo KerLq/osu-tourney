@@ -2,12 +2,15 @@
     <div class="user-profile">
         <div class="user-profile__avatar">
              <% #@user.avatar%>
-             
+             <img src="https://a.ppy.sh/9146098?1625091817.jpeg" alt="" class="src">
         </div>
-        <div class="user-profile__username">
+        <span class="user-profile__username">
             <%= @user.username %>
+        </span>
+        <div class="user-profile__info">
+            <span class="user-profile__country"> FLAG - COUNTRY</span>
+            <span class="user-profile__description">
         </div>
-        <span class="user-profile__description">
             <% #@user.description%>
         </span>
     </div>

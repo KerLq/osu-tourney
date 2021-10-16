@@ -1,10 +1,24 @@
 
 .user {
-    width: 70%;
-    height: 100%;
+    width: 60%;
+    height: 1000px;
     margin: 0 auto;
-    &__avatar {
+}
 
+.user-profile {
+    display: flex;
+    height: 30%;
+    &__avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        img {
+            height: 200px;
+            border-radius: 200px;
+            border: 5px solid #107070;
+            overflow: hidden;
+        }
     }
     &__username {
 
