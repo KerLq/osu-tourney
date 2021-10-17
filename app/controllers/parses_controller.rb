@@ -15,11 +15,25 @@ class ParsesController < ApplicationController
         # end
 
         x = 0
-        scores = {}
+        y = 0
+        z = 0
+        games = []
+        scores = []
         for h in @json['events'] do
             if h.has_key? 'game'
                 x += 1
+                games.append(h)
+                for i in h['game']['scores']
+                    y += 1
+                    if i.values.include? 15173952
+                        z += 1
+                        scores.append(i)
+                    end
+                end
             end
+        end
+        for j in scores
+            j.slice!("user_id", "accuracy", "mods", "score", "max_combo")
         end
         # score = @json['events'][i]
                                                             #@json['events'][42]['game']['scores'][0]['score']
