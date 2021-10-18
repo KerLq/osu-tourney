@@ -1,13 +1,17 @@
 class ParsesController < ApplicationController 
-    def parse 
-        url = "https://osu.ppy.sh/community/matches/92550524"
+
+    def index
+
+    end
+    def parse
+        url = "https://osu.ppy.sh/community/matches/#{params[:parse][:id]}"
         unparsed_page = HTTParty.get(url)
         parsed_page = Nokogiri::HTML(unparsed_page)
         parsed_page = parsed_page.css('script')[11]
         #@parsed_json = ActiveSupport::JSON.decode(@parsed_page)
         #parsed_page.gsub!(/\"/, '\'')
         @json = JSON.parse(parsed_page)
-        # i = 0
+        # i = 0 
         # loop do 
         #     i+=1
         #     break if @json['events'][i].keys.include?('game')
@@ -25,7 +29,7 @@ class ParsesController < ApplicationController
                 total_games_played.append(h)
                 for i in h['game']['scores']
                     y += 1
-                    if i.values.include? 15173952 # USER SCORE
+                    if i.values.include? 9146098 # USER SCORE
                         z += 1
                         @scores.append(i)
                     end

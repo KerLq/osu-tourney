@@ -1,0 +1,9 @@
+<div class="form">
+    <%=form_with(url: parse_path, scope: :parse, local: true, class: 'form__register') do |f| %>
+        <%= f.label :id, 'Match Link:', class: 'form__label' %> 
+        <%= f.text_field :id, class: 'form__textfield' %> <br>
+        <div class="form__submit-wrapper">
+            <%= f.submit 'Send', class: 'button form__submit'%>
+        </div>
+    <% end %>
+</div>
