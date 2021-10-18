@@ -7,7 +7,6 @@ class ParsesController < ApplicationController
         #@parsed_json = ActiveSupport::JSON.decode(@parsed_page)
         #parsed_page.gsub!(/\"/, '\'')
         @json = JSON.parse(parsed_page)
-        
         # i = 0
         # loop do 
         #     i+=1
@@ -17,15 +16,16 @@ class ParsesController < ApplicationController
         x = 0
         y = 0
         z = 0
-        games = []
+        total_games_played = []
         @scores = []
+        @average_score = 0
         for h in @json['events'] do
             if h.has_key? 'game'
                 x += 1
-                games.append(h)
+                total_games_played.append(h)
                 for i in h['game']['scores']
                     y += 1
-                    if i.values.include? 15173952
+                    if i.values.include? 15173952 # USER SCORE
                         z += 1
                         @scores.append(i)
                     end
@@ -33,9 +33,10 @@ class ParsesController < ApplicationController
             end
         end
         for j in @scores
-            #j.slice!("user_id", "accuracy", "mods", "score", "max_combo")
-            j.slice!("score")
+            j.slice!("user_id", "accuracy", "mods", "score", "max_combo")
+            @average_score += j['score']
         end
+        @average_score = @average_score / @scores.count
         # score = @json['events'][i]
                                                             #@json['events'][42]['game']['scores'][0]['score']
         #debugger
