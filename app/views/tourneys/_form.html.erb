@@ -1,15 +1,4 @@
-<%= form_with(model: tourney) do |form| %>
-  <% if tourney.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tourney.errors.count, "error") %> prohibited this tourney from being saved:</h2>
-
-      <ul>
-        <% tourney.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for [@user, @tourney] do |form| %>
 
   <div class="field">
     <%= form.label :title %>

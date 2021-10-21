@@ -12,7 +12,8 @@ class TourneysController < ApplicationController
 
   # GET /tourneys/new
   def new
-    @tourney = Tourney.new
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.new
   end
 
   # GET /tourneys/1/edit
@@ -21,17 +22,15 @@ class TourneysController < ApplicationController
 
   # POST /tourneys or /tourneys.json
   def create
-    @tourney = Tourney.new(tourney_params)
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.create(tourney_params)
 
-    respond_to do |format|
       if @tourney.save
-        format.html { redirect_to @tourney, notice: "Tourney was successfully created." }
-        format.json { render :show, status: :created, location: @tourney }
+        flash[:success] = "Tournament was successfully created."
+        redirect_to user_tourney_path(@user, @tourney)
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @tourney.errors, status: :unprocessable_entity }
+        
       end
-    end
   end
 
   # PATCH/PUT /tourneys/1 or /tourneys/1.json

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/parse', to: 'parses#index'
   post '/parse', to: 'parses#parse'
 
-  resources :users, :except => [:new] do
+  resources :users, :only => [:show] do
     resources :tourneys do
       resources :matches
     end

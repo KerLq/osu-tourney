@@ -72,8 +72,8 @@ class UsersController < ApplicationController
     end
     def require_permission
       if current_user != User.find(params[:id])
-        redirect_to root_path
-        #Or do something else here
+        flash[:error] = "Permission Denied!"
+        redirect_to session[:my_previous_url]
       end
     end
     def save_my_previous_url
