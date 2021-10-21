@@ -29,10 +29,10 @@ class ParsesController < ApplicationController
                 total_games_played.append(h)
                 for i in h['game']['scores']
                     y += 1
-                    if i.values.include? 9146098 # USER SCORE
-                        z += 1
-                        @scores.append(i)
-                    end
+                    #if i.values.include? 9146098 # USER SCORE
+                       # z += 1
+                       # @scores.append(i)
+                    #end
                 end
             end
         end
@@ -40,7 +40,7 @@ class ParsesController < ApplicationController
             j.slice!("user_id", "accuracy", "mods", "score", "max_combo")
             @average_score += j['score']
         end
-        @average_score = @average_score / @scores.count
+        #@average_score = @average_score / @scores.count
         # score = @json['events'][i]
                                                             #@json['events'][42]['game']['scores'][0]['score']
         #debugger

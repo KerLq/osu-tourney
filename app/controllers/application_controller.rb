@@ -1,20 +1,19 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery
 
-    #before_action :authorized
     helper_method :current_user
     helper_method :logged_in?
-    add_flash_types :error, :info, :warning, :success
-    
+  
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+        if session[:user_jwt]
+            token = session[:user_jwt][:value]
+            debugger
+            @username = token['username']
+            @avatar_url = token['avatar_url']
+        end
     end
-
-    def logged_in?
-        !current_user.nil?
-    end
-
-    def authorized
-        redirect_to root_path unless logged_in?
+  
+    def logged_in?    
+      session[:user_jwt] != nil
     end
 end

@@ -1,9 +1,10 @@
-<pre><% @scores.each do |attribute| %> 
-        
-        <%= attribute['score'] %>
-        <%= attribute['max_combo'] %>
-
-     <% end %>
+<pre>
+        <% @scores.each do |attribute| %> 
+        <%# <%= attribute['score'] %>
+        <%# <%= attribute['max_combo'] %> %>
+        <% end %>
 </pre>
 
-<pre> Average Score: <%= @average_score %></pre>
+<!-- <pre> Average Score: <%# <%= @average_score %></pre> !--> 
+
+<pre> <%= JSON.pretty_generate(@json)%> </pre>
