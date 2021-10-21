@@ -73,9 +73,4 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  config.x.oauth.client_id = "10407"
-  config.x.oauth.client_secret = "aqspn9mgA9LH8TFpGeQhQz9YfR9PsiKuuhY9LWMQ"
-  config.x.oauth.idp_url = "https://osu.ppy.sh/"
-  config.x.oauth.redirect_uri = "http://localhost:3000/oauth2-callback"
-  config.x.oauth.hmac = "ENV['HMAC_SECRET']"
 end
