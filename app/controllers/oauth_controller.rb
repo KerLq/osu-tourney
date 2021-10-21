@@ -18,10 +18,15 @@ class OauthController < ApplicationController
     player = @@callout.get('api/v2/me/osu', :params => { 'Authorization' => 'Bearer ' + @token })
     player = player.parsed
     
+    if player['id'].nil?
+      flash[:error] = "Login failed!"
+      redirect_to root_path
+    end
     # Set the token on the user session
-    session[:user_jwt] = {value: player, httponly: true}
-
-    redirect_to root_path
+    #session[:user_jwt] = {value: player, httponly: true}
+    user = User.create_from_oauth(player)
+    session[:user_id] = user.id
+    redirect_to user_path(user)
   end
 
   def logout
@@ -31,7 +36,7 @@ class OauthController < ApplicationController
     # # Reset Rails session
         
     #@oauth_client.request(:delete, 'api/v2/oauth/tokens/current')
-    session.destroy(:user_jwt)
+    reset_session
 
     redirect_to root_path
   end

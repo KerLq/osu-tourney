@@ -5,15 +5,12 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in?
   
     def current_user
-        if session[:user_jwt]
-            token = session[:user_jwt][:value]
-            debugger
-            @username = token['username']
-            @avatar_url = token['avatar_url']
+        if session[:user_id]
+            User.find(session[:user_id])
         end
     end
   
     def logged_in?    
-      session[:user_jwt] != nil
+      session[:user_id] != nil
     end
 end

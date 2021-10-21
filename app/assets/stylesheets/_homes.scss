@@ -166,7 +166,8 @@ body {
 .buttons {
     display: -webkit-inline-box;
     margin: 0 auto;
-    
+    display: flex;
+    justify-content: center;
     &__signup {
         margin-right: 15px;
     }

@@ -1,10 +1,5 @@
 <!--<div class="background-image"></div> -->
-<div class="header">
-<% if logged_in? %>
-    <p> Hello <%= @username %> </p>
-<% else%>
-    <p>Welcome! Please <%= link_to 'sign in', controller: 'oauth', action: :login %> </p>
-<% end%>
+<div class ="header">
     <div class="header__content">
         <h1 class="header__header">What is osu!tourney?</h1>
         <div class="header__text">
@@ -12,11 +7,10 @@
         </div>
         <% if current_user.nil? %>
             <div class="buttons">
-                <%# <%= button_to 'Sign Up!', register_path, method: :get, class: 'button buttons--animation buttons__signup'%>
-                <%# <%= button_to 'Login!', login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark' %>
+                <%= button_to 'Login via osu!', login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark' %>
             </div>
         <% else %>
-            <%= current_user %>
+            <%= current_user.username %>
         <% end %>
     </div>
     <!-- <div class="header__logo">

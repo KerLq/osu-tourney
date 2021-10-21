@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  resources :matches
-  resources :tourneys
-  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'homes#index'
 
@@ -14,7 +11,7 @@ Rails.application.routes.draw do
   get '/parse', to: 'parses#index'
   post '/parse', to: 'parses#parse'
 
-  resources :users do
+  resources :users, :except => [:new] do
     resources :tourneys do
       resources :matches
     end

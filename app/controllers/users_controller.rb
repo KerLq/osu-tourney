@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  after_action :save_my_previous_url
+  before_action :check_if_user_exist, only: [:show]
+  before_action :require_permission, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users or /users.json
   def index
@@ -8,12 +11,10 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
-  def new
-    @user = User.new
-  end
 
   # GET /users/1/edit
   def edit
@@ -60,8 +61,25 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      if @user.nil?
+        redirect_to @last_page
+      end
     end
-
+    def check_if_user_exist
+      if !User.exists?(params[:id])
+        redirect_to session[:my_previous_url]
+      end
+    end
+    def require_permission
+      if current_user != User.find(params[:id])
+        redirect_to root_path
+        #Or do something else here
+      end
+    end
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = request.fullpath
+    end
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :avatar_url, :user_id)
