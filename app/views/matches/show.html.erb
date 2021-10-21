@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mp link:</strong>
+  <%= @match.mp_link %>
+</p>
+
+<p>
+  <strong>Warmup:</strong>
+  <%= @match.warmup %>
+</p>
+
+<p>
+  <strong>Matchcost:</strong>
+  <%= @match.matchcost %>
+</p>
+
+<p>
+  <strong>Average score:</strong>
+  <%= @match.average_score %>
+</p>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>
