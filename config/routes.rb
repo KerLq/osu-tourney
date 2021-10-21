@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   get '/parse', to: 'parses#index'
   post '/parse', to: 'parses#parse'
 
+  resources :users do
+    resources :tourneys do
+      resources :matches
+    end
+  end
   # resources :users
 
   get '/oauth2-callback', to: 'oauth#oauth_callback'
