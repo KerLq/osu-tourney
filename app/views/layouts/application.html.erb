@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render partial: "shared/beta_alert"%>
     <% if logged_in? %>
         <p> Hello <%= @username %> </p>
     <% else%>
