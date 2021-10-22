@@ -161,6 +161,13 @@ body {
     &:hover {    
         border: 2px solid white;
     }
+    &__user-page {
+        box-shadow: 0px 1px 5px 1px black;
+        text-decoration: none;
+        border-radius: 5px;
+        background: #42044B;
+        padding: 10px 28px 10px 28px;      
+    }
 }
 
 .buttons {
@@ -198,7 +205,7 @@ body {
 
 .nav {
     margin: 0 auto;
-    width: 80%;
+    width: 70%;
     height: 90px;
     margin-bottom: 2.5em;
     font-family: 'Roboto', sans-serif;
@@ -238,10 +245,10 @@ body {
 }
 .avatar {
     &__img {
-        border-radius: 50px;
-        border: 3px solid rgb(34, 181, 200);
+        border-radius: 20px;
+        border: 3px solid transparent;
         overflow: hidden;
-        height: 60px;
+        height: 90px;
     }
 }
 @keyframes typewriter {
