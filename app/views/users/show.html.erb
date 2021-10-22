@@ -1,16 +1,19 @@
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<div class="user-page">
+  <div class="user-page__info">
+    <div class="user-data">
+      <div class="user-data__avatar avatar">
+        <img src="<%= @user.avatar_url %>" class="avatar__img">
+        <span class="user-data__username"> <%= @user.username %> </span>
+      </div>
+      <div class="user-data__buttons">
+        <%= link_to 'osu! Profile', "https://osu.ppy.sh/users/#{@user.user_id}", target: '_blank'%>
+      </div>
+    </div>
+  </div>
+  <div class="user-page__stats">
 
-<p>
-  <strong>Avatar url:</strong>
-  <%= @user.avatar_url %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @user.user_id %>
-</p>
-
-<%= link_to 'Add Tourney', new_user_tourney_path(@user)%>
+  </div>
+  <div class="user-page__tourneys">
+    <!-- Add ForEach to get all tourneys listed -->
+  </div>
+</div>

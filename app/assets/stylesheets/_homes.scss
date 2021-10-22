@@ -197,12 +197,15 @@ body {
 }
 
 .nav {
+    margin: 0 auto;
+    width: 80%;
+    height: 90px;
+    margin-bottom: 2.5em;
     font-family: 'Roboto', sans-serif;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 90px;
     &__logo {
         margin-left: 35px;
         font-size: 18px;
@@ -213,7 +216,7 @@ body {
     justify-content: flex-end;
     list-style-type: none;
     align-items: center;
-    
+
     &__items {
         //opacity: 0;
         //animation: fadeIn 1s forwards 3s ease-in-out;
@@ -223,9 +226,6 @@ body {
         transition: color 150ms ease-in-out;
         &:first-child {
             justify-content: flex-start;
-        }
-        &:last-child {
-            margin-right: 40px;
         }
         &:hover {
             color: cyan;
@@ -241,7 +241,7 @@ body {
         border-radius: 50px;
         border: 3px solid rgb(34, 181, 200);
         overflow: hidden;
-        height: 75px;
+        height: 60px;
     }
 }
 @keyframes typewriter {

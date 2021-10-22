@@ -12,13 +12,9 @@
 
   <body>
     <%= render partial: "shared/beta_alert"%>
-    <% if logged_in? %>
-        <p> Hello <%= @username %> </p>
-    <% else%>
-        <p>Welcome! Please <%= link_to 'sign in', controller: 'oauth', action: :login %> </p>
-    <% end%>
     <%= render partial: "shared/alert"%>
     <%= render partial: "shared/navbar"%>
     <%= yield %>
+    <%= render partial: "shared/footer"%>
   </body>
 </html>
