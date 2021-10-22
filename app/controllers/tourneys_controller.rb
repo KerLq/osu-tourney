@@ -1,5 +1,7 @@
 class TourneysController < ApplicationController
   before_action :set_tourney, only: %i[ show edit update destroy ]
+  before_action :require_permission, only: [:new, :edit, :update, :destroy]
+  after_action :save_my_previous_url
 
   # GET /tourneys or /tourneys.json
   def index
@@ -61,6 +63,16 @@ class TourneysController < ApplicationController
       @tourney = Tourney.find(params[:id])
     end
 
+    def require_permission
+      if current_user != User.find(params[:user_id])
+        flash[:error] = "Permission Denied!"
+        redirect_to session[:my_previous_url]
+      end
+    end
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = request.fullpath
+    end
     # Only allow a list of trusted parameters through.
     def tourney_params
       params.require(:tourney).permit(:title, :spreadsheet)
