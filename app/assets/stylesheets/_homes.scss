@@ -212,7 +212,8 @@ body {
     display: flex;
     justify-content: flex-end;
     list-style-type: none;
-
+    align-items: center;
+    
     &__items {
         //opacity: 0;
         //animation: fadeIn 1s forwards 3s ease-in-out;
@@ -235,7 +236,14 @@ body {
         }
     }
 }
-
+.avatar {
+    &__img {
+        border-radius: 50px;
+        border: 3px solid rgb(34, 181, 200);
+        overflow: hidden;
+        height: 75px;
+    }
+}
 @keyframes typewriter {
     0%{width: 0;}
     100%{width: 100%;}
