@@ -12,7 +12,9 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @match = Match.new
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:tourney_id])
+    @match = @tourney.matches.new
   end
 
   # GET /matches/1/edit

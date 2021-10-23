@@ -13,6 +13,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
+  config.hosts.clear # REMOVE AFTER DONE WITH NGROK
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -76,6 +77,8 @@ Rails.application.configure do
   config.x.oauth.client_id = "10407"
   config.x.oauth.client_secret = "aqspn9mgA9LH8TFpGeQhQz9YfR9PsiKuuhY9LWMQ"
   config.x.oauth.idp_url = "https://osu.ppy.sh/"
-  config.x.oauth.redirect_uri = "http://localhost:3000/oauth2-callback"
+  
+  #config.x.oauth.redirect_uri = "http://localhost:3000/oauth2-callback"
+  config.x.oauth.redirect_uri = "http://7910-2-202-199-45.ngrok.io/oauth2-callback"
   config.x.oauth.hmac = "ENV['HMAC_SECRET']"
 end

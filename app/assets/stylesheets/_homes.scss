@@ -226,8 +226,8 @@ body {
 
     &__items {
         //opacity: 0;
-        //animation: fadeIn 1s forwards 3s ease-in-out;
         font-size: 22px;
+        //animation: fadeIn 1s forwards 3s ease-in-out;
         cursor: pointer;
         margin-left: 40px;
         transition: color 150ms ease-in-out;
@@ -247,8 +247,10 @@ body {
     &__img {
         border-radius: 20px;
         border: 3px solid transparent;
+        max-height: 80px;
+        height: 80px;
+        max-width: 100px;
         overflow: hidden;
-        height: 90px;
     }
 }
 @keyframes typewriter {

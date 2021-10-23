@@ -6,7 +6,8 @@
         <span class="user-data__username"> <%= @user.username + "'s Tournament Profile" %> </span>
       </div>
       <div class="user-data__buttons">
-        <%= link_to 'osu! Profile', "https://osu.ppy.sh/users/#{@user.user_id}", class: 'button__user-page',target: '_blank'%>
+        <%= link_to 'osu! Profile', "https://osu.ppy.sh/users/#{@user.user_id}", class: 'button__user-page', target: '_blank'%>
+        <%= link_to 'Twitch Channel', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', class: 'button__user-page', taget: '_blank'%>
       </div>
     </div>
   </div>
@@ -14,13 +15,15 @@
 
   </div>
   <div class="user-page__tourneys">
-    <!-- Add ForEach to get all tourneys listed -->
     <% @tourneys.each do |t|%>
       <div class="tourney-card">
+        <div class="tourney-card__color"></div>
         <ul class="tourney-stats">
-          <li class="tourney-stats__fc"> 3x </li>
-          <li class="tourney-stats__max-combo"> 950x</li>
-          <li class="tourney-stats__matchcost"> 3.3</li>
+          <li class="tourney-stats__item"> <%= t.title %></li>
+          <li class="tourney-stats__item"> 3x </li>
+          <li class="tourney-stats__item"> 950x</li>
+          <li class="tourney-stats__item"> 3.3</li>
+          <li class="tourney-stats__item"> <%= link_to 'Upload Match', new_user_tourney_match_path(@user, t) %></li>
         </ul>
       </div>
     <% end %>
