@@ -79,6 +79,6 @@ Rails.application.configure do
   config.x.oauth.idp_url = "https://osu.ppy.sh/"
   
   #config.x.oauth.redirect_uri = "http://localhost:3000/oauth2-callback"
-  config.x.oauth.redirect_uri = "http://7910-2-202-199-45.ngrok.io/oauth2-callback"
+  config.x.oauth.redirect_uri = "http://85a5-2-202-199-45.ngrok.io/oauth2-callback"
   config.x.oauth.hmac = "ENV['HMAC_SECRET']"
 end
