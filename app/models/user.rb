@@ -8,7 +8,8 @@ class User < ApplicationRecord
             u.avatar_url = params['avatar_url']
             u.user_id = params['id']
           end
-        
-        user.update(avatar_url: params['avatar_url']) if user.avatar_url != params['avatar_url'] 
-        user.update(username: params['username']) if user.username != params['username']
+          user.update(avatar_url: params['avatar_url']) if user.avatar_url != params['avatar_url']
+          user.update(username: params['username']) if user.username != params['username']
+          user
+    end
 end

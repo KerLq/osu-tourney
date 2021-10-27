@@ -20,26 +20,23 @@ class ParsesController < ApplicationController
         x = 0
         y = 0
         z = 0
-        total_games_played = []
+        total_maps_played = []
         @scores = []
         @average_score = 0
         for h in @json['events'] do
             if h.has_key? 'game'
                 x += 1
-                total_games_played.append(h)
+                total_maps_played.append(h)
                 for i in h['game']['scores']
                     y += 1
-                    #if i.values.include? 9146098 # USER SCORE
+                    # if i.values.include? params[:user_id] --> z.B. 9146098
                        # z += 1
-                       # @scores.append(i)
+                       # @scores.append(i) # Scores werden hinzugefügt
                     #end
                 end
             end
         end
-        for j in @scores
-            j.slice!("user_id", "accuracy", "mods", "score", "max_combo")
-            @average_score += j['score']
-        end
+        Match.calculate_average_score(Match.find(params[:id], @scores)
         #@average_score = @average_score / @scores.count
         # score = @json['events'][i]
                                                             #@json['events'][42]['game']['scores'][0]['score']

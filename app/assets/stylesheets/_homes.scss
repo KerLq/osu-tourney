@@ -285,3 +285,15 @@ label {
 }
 
 // Add media-queries (responsive design)
+
+
+.homes {
+    margin: 0 auto;
+    width: 70%;
+    height: 80em;
+    background: #121212;
+    box-shadow: 0px 0px 10px 5px black;
+    &__welcome {
+        padding: 30px;
+    }
+}
