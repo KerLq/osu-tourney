@@ -12,4 +12,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+import "packs/form"
+
 // LINK ::    https://osu.ppy.sh/community/matches/89309929

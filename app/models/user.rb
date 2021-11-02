@@ -2,6 +2,11 @@ class User < ApplicationRecord
     #attr_accessible :username, :avatar_url, :user_id
     has_many :tourneys
 
+    enum role: [
+        :member,
+        :admin
+    ]
+
     def self.create_from_oauth(params)
         user = User.find_or_create_by(user_id: params['id']) do |u|
             u.username = params['username']
