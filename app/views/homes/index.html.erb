@@ -17,7 +17,43 @@
 <!-- </div> -->
 
 <div class="homes">
-    <div class="homes__welcome">
-        <span class="welcome__text">Welcome <%= current_user.username if !current_user.nil? %></span>
+    <div class="homes-tourney">
+        <div class="homes-toureny__introduction">
+            <img src="" class="homes-tourney__header"/>
+            <pre class="homes-tourney__description"> 
+                You always wanted to have a fancy overview of
+                the tournament matches you've played?
+                You don't want to go through your google docs and find Match X?
+                osu!tourney allows you to <span class="highlight">save</span> your matches
+                you've played in a tournament
+                and make it even easier to have an overview of all tournaments
+            </pre>
+            <div class="buttons">
+                <%= link_to 'Save A Tourney', new_user_tourney_path(@user, @tourney) %>
+                <%= link_to 'View Profile', user_path(current_user) %>
+            </div>
+        </div>
+        <div class="homes-tourney__image">
+            <img src="https://cdn.discordapp.com/attachments/849604504613945364/904385120251809802/XOhIzgk.png" class="homes-tourney__logo"/> <!-- Image_tag -->
+        </div>
+    </div>
+    <div class="homes-info">
+        <div class="homes-info__kp"></div>
+        <div class="homes-info__news">
+            <img src="" class="homes-info__cover-image"/> <!-- Image_tag -->
+            <img src="" class="homes-info__bracket homes-info__bracket--right"/>
+            <img src="" class="homes-info__bracket--right">
+        </div>
+        <div class="homes-info__stats">
+            <div class="homes-info__total-matches">
+                <h3 class="homes-info__title"> </h3>
+            </div>
+            <div class="homes-info__registered-user">
+                <h3 class="homes-info__title"> </h3>
+            </div>
+            <div class="homes-info__total-tournaments">
+                <h3 class="homes-info__title"> </h3>
+            </div>
+        </div>
     </div>
 </div>
