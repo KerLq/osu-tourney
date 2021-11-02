@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_112312) do
+ActiveRecord::Schema.define(version: 2021_11_02_114108) do
 
   create_table "matches", force: :cascade do |t|
     t.string "mp_link"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 2021_11_02_112312) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "tourney_id"
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "sessions", force: :cascade do |t|
