@@ -1,7 +1,9 @@
 class HomesController < ApplicationController
     def index
         @news = News.all
-        @user = current_user
-        @tourney = @user.tourneys.new
+        if logged_in?
+            @user = current_user
+            @tourney = @user.tourneys.new
+        end
     end
 end

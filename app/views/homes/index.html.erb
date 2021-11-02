@@ -18,23 +18,31 @@
 
 <div class="homes">
     <div class="homes-tourney">
-        <div class="homes-toureny__introduction">
-            <img src="" class="homes-tourney__header"/>
+        <div class="homes-tourney__introduction">
+            <div class="homes-tourney__logo">
+                <img src="https://assets.ppy.sh/medals/web/osu-skill-fc-5.png" class="homes-tourney__image--logo"/>
+            </div>
             <pre class="homes-tourney__description"> 
                 You always wanted to have a fancy overview of
                 the tournament matches you've played?
+
                 You don't want to go through your google docs and find Match X?
+
                 osu!tourney allows you to <span class="highlight">save</span> your matches
                 you've played in a tournament
                 and make it even easier to have an overview of all tournaments
             </pre>
             <div class="buttons">
-                <%= link_to 'Save A Tourney', new_user_tourney_path(@user, @tourney) %>
-                <%= link_to 'View Profile', user_path(current_user) %>
+                <% if logged_in? %>
+                    <%= link_to 'Save A Tourney', new_user_tourney_path(@user, @tourney), class: 'button' %>
+                    <%= link_to 'View Profile', user_path(current_user), class: 'button' %>
+                <% else %>
+                    <%= link_to 'Login via osu!', login_path, method: :get, class: 'button buttons__login buttons__login--dark' %>
+                <% end %>
             </div>
         </div>
-        <div class="homes-tourney__image">
-            <img src="https://cdn.discordapp.com/attachments/849604504613945364/904385120251809802/XOhIzgk.png" class="homes-tourney__logo"/> <!-- Image_tag -->
+        <div class="homes-tourney__osu">
+            <img src="https://cdn.discordapp.com/attachments/849604504613945364/904385120251809802/XOhIzgk.png" class="homes-tourney__image" data-tilt data-tilt-scale="0.9" data-tilt-speed="700"/> <!-- Image_tag -->
         </div>
     </div>
     <div class="homes-info">

@@ -145,8 +145,12 @@ body {
     }
 }
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    //font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    //font-family: 'Roboto', 'sans-serif';
     font-size: 20px;
     width: 200px;
     height: 55px;
@@ -157,7 +161,7 @@ body {
     cursor: pointer;
     transition: border 100ms ease-out;
     text-shadow: 1px 3px 4px black;
-
+    text-decoration: none;
     &:hover {    
         border: 2px solid white;
     }
@@ -295,5 +299,33 @@ label {
     box-shadow: 0px 0px 10px 5px black;
     &__welcome {
         padding: 30px;
+    }
+}
+
+.homes-tourney {
+    display: flex;
+    justify-content: space-between;
+    &__introduction {
+        
+    }
+    &__logo {
+        white-space: pre;
+    }
+    &__image {
+        
+        height: 500px;
+        margin-right: 50px;
+
+        &--logo {
+            height: 100px;
+        }
+    }
+    &__osu {
+        white-space: pre;
+    }
+    &__description {
+        color: #ffffffa6;
+        margin-bottom: 130px;
+        font-size: 20px;
     }
 }

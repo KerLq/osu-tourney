@@ -26,7 +26,7 @@ class OauthController < ApplicationController
     #session[:user_jwt] = {value: player, httponly: true}
     user = User.create_from_oauth(player)
     session[:user_id] = user.id
-    redirect_to user_path(user)
+    redirect_to root_path # last visited page
   end
 
   def logout
