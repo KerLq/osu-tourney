@@ -1,12 +1,14 @@
 class OauthController < ApplicationController
     def initialize
-        @oauth_client = OAuth2::Client.new(Rails.configuration.x.oauth.client_id,
+        @oauth_client = OAuth2::Client.new(
+            Rails.configuration.x.oauth.client_id,
             Rails.configuration.x.oauth.client_secret,
-            authorize_url: '/oauth/authorize',
+            authorize_url: '/oauth/authorize?scope=public',
             site: Rails.configuration.x.oauth.idp_url,
-            token_url: '/oauth/token',
-            redirect_uri: Rails.configuration.x.oauth.redirect_uri)
-    end
+            token_url: '/oauth/token', # Check again
+            redirect_uri: Rails.configuration.x.oauth.redirect_uri,
+        )
+      end
 
  # The OAuth callback
  def oauth_callback
@@ -16,16 +18,39 @@ class OauthController < ApplicationController
     #debugger
     @token = @@callout.to_hash[:access_token]
     player = @@callout.get('api/v2/me/osu', :params => { 'Authorization' => 'Bearer ' + @token })
-    player = player.parsed
-    
-    if player['id'].nil?
-      flash[:error] = "Login failed!"
-      redirect_to root_path
-    end
+    headers = {
+      "Content-Type":"application/json",
+      "Accept":"application/json",
+      "Authorization":"Bearer #{@token}",
+    }
+    params = {
+      "mode":"osu",
+      "limit":5,
+    }
+    response = HTTParty.get("https://osu.ppy.sh/api/v2/matches/89309929",
+      body: params.to_json,
+      headers: headers
+  )
+
+  debugger
+  #match  = @@callout.get('api/v2/users/15810304/scores/best', params: params, header: headers)
+  player = player.parsed
+  if player['id'].nil?
+    flash[:error] = "Login failed!"
+    redirect_to root_path
+  end
+  response = response.parsed_response
+  user = User.create_from_oauth(player)
+  user.sendDiscordNotificationResponse(response)
     # Set the token on the user session
     #session[:user_jwt] = {value: player, httponly: true}
-    user = User.create_from_oauth(player)
+
+    #user.sendDiscordNotification(user, user_path(user))
     session[:user_id] = user.id
+    # matches = @@callout.get('api/v2/matches/89309929', 
+    #           params: { 'Authorization' => 'Bearer ' + @token, 'scope' => 'public' }, 
+    #           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' })
+    
     redirect_to root_path # last visited page
   end
 

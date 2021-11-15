@@ -29,6 +29,8 @@ gem 'open-uri'
 gem 'oauth2'
 gem 'jwt'
 gem 'activerecord-session_store'
+gem 'rack-cors'
+gem 'faraday'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
