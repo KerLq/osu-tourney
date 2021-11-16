@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
     helper_method :current_user
     helper_method :logged_in?
     helper_method :is_admin?
-  
+    helper_method :access_token
+    helper_method :apiRequest
+
     def current_user
         if session[:user_id]
             User.find(session[:user_id])
@@ -26,5 +28,24 @@ class ApplicationController < ActionController::Base
     end
     def access_token
         session[:access_token]
+    end
+
+    def apiRequest(url, params)
+        if url.nil?
+            return "Url nil!"
+        end
+        if params.nil?
+            params = ""
+        end
+        headers = {
+            "Content-Type" => "application/json",
+            "Accept" => "application/json",
+            "Authorization" => "Bearer #{access_token}"
+        }
+        response = HTTParty.get(url,
+            body: params.to_json,
+            headers: headers
+        )
+        response.parsed_response
     end
 end

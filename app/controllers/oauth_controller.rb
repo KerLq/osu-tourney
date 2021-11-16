@@ -17,27 +17,16 @@ class OauthController < ApplicationController
     # Extract the access token from the response
     #debugger
     @token = @@callout.to_hash[:access_token]
-    player = @@callout.get('api/v2/me/osu', :params => { 'Authorization' => 'Bearer ' + @token })
-    headers = {
-      "Content-Type":"application/json",
-      "Accept":"application/json",
-      "Authorization":"Bearer #{@token}",
-    }
-    params = {
-      "mode":"osu",
-      "limit":5,
-    }
-    response = HTTParty.get("https://osu.ppy.sh/api/v2/matches/89309929",
-      body: params.to_json,
-      headers: headers
-  )
+    
+    debugger
+    player = @@callout.get('api/v2/me/osu')
 
-  player = player.parsed
+
+    player = player.parsed
     if player['id'].nil?
       flash[:error] = "Login failed!"
       redirect_to root_path
     end
-    response = response.parsed_response
     user = User.create_from_oauth(player)
 
     session[:user_id] = user.id

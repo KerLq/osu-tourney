@@ -1,13 +1,10 @@
 <div class="form">
-    <%=form_with(url: parse_path, scope: :parse, local: true, class: 'form__register', remote: true) do |f| %>
-        <%= f.label :id, 'Match Link:', class: 'form__label' %> 
-        <%= f.text_field :id, class: 'form__textfield' %> <br>
-        <div class="form__submit-wrapper">
-            <%= f.submit 'Send', class: 'button form__submit'%>
-        </div>
-    <% end %>
+    <%= form_with model: @user, local: true parse_path do |f| %>
+        <%= text_field_tag :name %>
+        <%= submit_tag %>
+    <% end%>
 </div>
 
-<div class="test">
-    <%= link_to 'Send', parse_path, remote: true, class: 'parse' %>
-</div>
+<!-- <div class="test">
+    #<%= link_to 'Send', parse_path, class: 'parse' %>
+</div> -->

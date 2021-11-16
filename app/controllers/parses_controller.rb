@@ -4,35 +4,24 @@ class ParsesController < ApplicationController
         
     end
 
+    def matchRequest
+        debugger
+        url = params[:url]
+        params = ""
+        response = apiRequest(url, params)
+    end
+
     def parse
         #url = "https://osu.ppy.sh/community/matches/#{params[:parse][:id]}"
-        url = []
-        unparsed_page = []
-        parsed_page = []
-        @json = []
-        temp_parsed_page = 0
-        k = 0
-        # loop do
-        #     if k >= 10
-        #         url.push("https://osu.ppy.sh/community/matches/8930#{k}00")
-        #     else
-        #         url.push("https://osu.ppy.sh/community/matches/8930#{k}000")
-        #     end
-        #     unparsed_page.push(HTTParty.get(url[k]))
-        #     temp_parsed_page = Nokogiri::HTML(unparsed_page[k])
-        #     parsed_page.push(temp_parsed_page.css('script')[11])
-        #     #@json.push(JSON.parse(parsed_page[k]))
-        #     k = k + 1
-        #     break if k == 99
-        # end
-        # for l in parsed_page
-        #     @json.push(JSON.parse(l))
-        # end
+        url = params[:url]
+        # unparsed_apge = 
         # parsed_page = Nokogiri::HTML(unparsed_page)
         # parsed_page = parsed_page.css('script')[11]
-        #@parsed_json = ActiveSupport::JSON.decode(@parsed_page)
-        #parsed_page.gsub!(/\"/, '\'')
-        #@json = JSON.parse(parsed_page)
+        # @parsed_json = ActiveSupport::JSON.decode(@parsed_page)
+        # parsed_page.gsub!(/\"/, '\'')
+        # @json = JSON.parse(parsed_page)
+
+        #Stehen lassen!
         # i = 0 
         # loop do 
         #     i+=1
@@ -66,5 +55,4 @@ class ParsesController < ApplicationController
         # score = @json['events'][i]
                                                             #@json['events'][42]['game']['scores'][0]['score']
         #debugger
-
 end
