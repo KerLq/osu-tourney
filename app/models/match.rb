@@ -1,6 +1,8 @@
 class Match < ApplicationRecord
     #attr_accessible :mp_link, :warmup, :matchcost, :average_score
     belongs_to :tourney
+    before_create :randomize_id
+
     def self.calculate_matchcost
 
     end
@@ -11,6 +13,14 @@ class Match < ApplicationRecord
             average_score += i;
         end
         average_score = average_score / scores.count
+    end
+    
+    def randomize_id
+        begin
+            number = SecureRandom.random_number
+            number = number.to_s.gsub(/\./mi, '')
+            self.id = number
+        end while Match.where(id: self.id).exists?
     end
 
     def filter_match(user, json)
@@ -31,6 +41,9 @@ class Match < ApplicationRecord
                     end
                 end
             end
+        end
+        if scores.nil?
+            "ERROR"
         end
         scores
     end

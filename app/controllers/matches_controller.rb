@@ -1,6 +1,5 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show edit update destroy ]
-
   # GET /matches or /matches.json
   def index
     @matches = Match.all
@@ -24,19 +23,28 @@ class MatchesController < ApplicationController
   # POST /matches or /matches.json
   def create
     url = params[:match][:mp_link]
-    response = apiRequest(url)
-    @user = User.find(params[:user_id])
-    @tourney = @user.tourneys.find(params[:tourney_id])
-    @match = @tourney.matches.create(match_params)
-    scores = @match.filter_match(@user, response) # GET everything needed
-    average_score = @match.calculate_average_score(scores)
-
-    @match.update_attribute(
-      :average_score, average_score
-    )
-    debugger
-
-    redirect_to user_tourney_match_path(@user, @tourney, @match)    
+    if url =~ URI::regexp
+      # Correct URL
+      response = apiRequest(url)
+      @user = User.find(params[:user_id])
+      @tourney = @user.tourneys.find(params[:tourney_id])
+      @match = @tourney.matches.create(match_params)
+      scores = @match.filter_match(@user, response) # GET everything needed
+      if scores == "ERROR"
+        flash['error'] = "error"
+        redirect_to user_path(@user)
+      end
+      average_score = @match.calculate_average_score(scores)
+      
+      @match.update_attribute(
+        :average_score, average_score
+      )
+      
+      redirect_to user_tourney_match_path(@user, @tourney, @match)    
+    else
+      flash['error'] = "Invalid URL!"
+      redirect_to user_path(@user)
+    end
 
   end
 
