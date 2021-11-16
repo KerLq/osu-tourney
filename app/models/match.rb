@@ -5,14 +5,12 @@ class Match < ApplicationRecord
 
     end
 
-    def self.calculate_average_score(scores)
+    def calculate_average_score(scores)
         average_score = 0
         for i in scores
             average_score += i;
         end
-        self.update(
-            average_score = average_score / scores.count
-        )
+        average_score = average_score / scores.count
     end
 
     def filter_match(user, json)
@@ -21,7 +19,6 @@ class Match < ApplicationRecord
         x = 0
         y = 0
         z = 0
-        score = 0
         for h in json['events'] do
             if h.has_key? 'game'
                 x += 1
@@ -35,9 +32,6 @@ class Match < ApplicationRecord
                 end
             end
         end
-        for k in scores do
-            score += k
-        end
-        score = score / scores.count
+        scores
     end
 end

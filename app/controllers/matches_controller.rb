@@ -28,9 +28,11 @@ class MatchesController < ApplicationController
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.find(params[:tourney_id])
     @match = @tourney.matches.create(match_params)
-    @scores = @match.filter_match(@user, response)
+    scores = @match.filter_match(@user, response) # GET everything needed
+    average_score = @match.calculate_average_score(scores)
+
     @match.update_attribute(
-      :average_score, @scores
+      :average_score, average_score
     )
     debugger
 
