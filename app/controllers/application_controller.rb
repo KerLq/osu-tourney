@@ -24,4 +24,7 @@ class ApplicationController < ActionController::Base
             sesssion[:access_token] = token
         end
     end
+    def access_token
+        session[:access_token]
+    end
 end
