@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
         session[:access_token]
     end
 
-    def apiRequest(url, params)
+    def apiRequest(url, params = "")
         if url.nil?
             return "Url nil!"
         end
