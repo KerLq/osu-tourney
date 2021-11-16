@@ -80,4 +80,5 @@ Rails.application.configure do
   config.x.oauth.redirect_uri = "http://localhost:3000/oauth2-callback"
   #config.x.oauth.redirect_uri = "http://092e-88-64-140-39.ngrok.io/oauth2-callback"
   config.x.oauth.hmac = "ENV['HMAC_SECRET']"
+  a
 end
