@@ -18,7 +18,6 @@ class OauthController < ApplicationController
     #debugger
     @token = @@callout.to_hash[:access_token]
     
-    debugger
     player = @@callout.get('api/v2/me/osu')
 
 

@@ -25,20 +25,16 @@ class MatchesController < ApplicationController
   def create
     url = params[:match][:mp_link]
     response = apiRequest(url)
-    debugger
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.find(params[:tourney_id])
-    @match = @tourney.matches.new(match_params)
+    @match = @tourney.matches.create(match_params)
+    @scores = @match.filter_match(@user, response)
+    @match.update_attribute(
+      :average_score, @scores
+    )
+    debugger
 
-    if @match.save
-      redirect_to user_tourney_path(@user, @tourney)
-
-    else
-
-      redirect_to root_path
-    end
-    
-
+    redirect_to user_tourney_match_path(@user, @tourney, @match)    
 
   end
 
