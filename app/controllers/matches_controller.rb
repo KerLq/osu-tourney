@@ -24,10 +24,22 @@ class MatchesController < ApplicationController
   # POST /matches or /matches.json
   def create
     url = params[:match][:mp_link]
-
-    response = apiRequest(url, params="")
+    response = apiRequest(url)
     debugger
-    @match = Match.new
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:tourney_id])
+    @match = @tourney.matches.new(match_params)
+
+    if @match.save
+      redirect_to user_tourney_path(@user, @tourney)
+
+    else
+
+      redirect_to root_path
+    end
+    
+
+
   end
 
   # PATCH/PUT /matches/1 or /matches/1.json

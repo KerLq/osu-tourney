@@ -5,10 +5,7 @@ class ParsesController < ApplicationController
     end
 
     def matchRequest
-        debugger
-        url = params[:url]
-        params = ""
-        response = apiRequest(url, params)
+        
     end
 
     def parse
@@ -34,19 +31,19 @@ class ParsesController < ApplicationController
         # total_maps_played = []
         # @scores = []
         # @average_score = 0
-        # for h in @json['events'] do
-        #     if h.has_key? 'game'
-        #         x += 1
-        #         total_maps_played.append(h)
-        #         for i in h['game']['scores']
-        #             y += 1
-        #             # if i.values.include? params[:user_id] --> z.B. 9146098
-        #                # z += 1
-        #                # @scores.append(i) # Scores werden hinzugefügt
-        #             # end
-        #         end
-        #     end
-        # end
+        for h in @json['events'] do
+            if h.has_key? 'game'
+                x += 1
+                total_maps_played.append(h)
+                for i in h['game']['scores']
+                    y += 1
+                    # if i.values.include? params[:user_id] --> z.B. 9146098
+                       # z += 1
+                       # @scores.append(i) # Scores werden hinzugefügt
+                    # end
+                end
+            end
+        end
         #Match.calculate_average_score(Match.find(params[:id], @scores))
     
     end
