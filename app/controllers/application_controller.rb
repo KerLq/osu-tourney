@@ -18,4 +18,10 @@ class ApplicationController < ActionController::Base
     def is_admin?
         logged_in? ? current_user.admin? : false
     end
+
+    def access_token(token)
+        if session[:user_id]
+            sesssion[:access_token] = token
+        end
+    end
 end

@@ -32,25 +32,16 @@ class OauthController < ApplicationController
       headers: headers
   )
 
-  debugger
-  #match  = @@callout.get('api/v2/users/15810304/scores/best', params: params, header: headers)
   player = player.parsed
-  if player['id'].nil?
-    flash[:error] = "Login failed!"
-    redirect_to root_path
-  end
-  response = response.parsed_response
-  user = User.create_from_oauth(player)
-  user.sendDiscordNotificationResponse(response)
-    # Set the token on the user session
-    #session[:user_jwt] = {value: player, httponly: true}
+    if player['id'].nil?
+      flash[:error] = "Login failed!"
+      redirect_to root_path
+    end
+    response = response.parsed_response
+    user = User.create_from_oauth(player)
 
-    #user.sendDiscordNotification(user, user_path(user))
     session[:user_id] = user.id
-    # matches = @@callout.get('api/v2/matches/89309929', 
-    #           params: { 'Authorization' => 'Bearer ' + @token, 'scope' => 'public' }, 
-    #           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' })
-    
+
     redirect_to root_path # last visited page
   end
 
