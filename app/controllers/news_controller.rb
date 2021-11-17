@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-    before_action :check_if_admin?, :only => [:new, :update, :destroy]
+    before_action :check_if_admin?, :only => [:new, :edit, :update, :destroy]
 
     def index
         @news = News.all
