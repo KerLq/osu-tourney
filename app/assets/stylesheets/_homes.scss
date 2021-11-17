@@ -178,7 +178,7 @@ body {
     display: -webkit-inline-box;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     &__signup {
         margin-right: 15px;
     }
@@ -322,7 +322,7 @@ label {
         height: 500px;
         margin-right: 50px;
         margin-top: 30px;
-        
+
         &--logo {
             height: 100px;
         }
