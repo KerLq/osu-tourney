@@ -5,20 +5,24 @@ class NewsController < ApplicationController
         @news = News.all
     end
     def show
-        @news = News.find(id: params[:id])
+        @news = News.find(params[:id])
     end
 
     def update
-        @news = News.find(id: params[:id])
+        @news = News.find(params[:id])
 
         @news.update(news_params)
     end
-    
+
     def new
         @news = News.new
     end
 
-
+    def create
+        @news = News.create(news_params)
+        redirect_to news_path(@news)
+        
+    end
     def destroy
 
     end
@@ -28,10 +32,10 @@ class NewsController < ApplicationController
     end
 
     def news_params
-        params.permit(:news).require(
+        params.require(:news).permit(
+            :cover_image,
             :title,
-            :description,
-            :cover_image
+            :description
         )
     end
 end
