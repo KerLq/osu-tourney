@@ -14,5 +14,6 @@ ActiveStorage.start()
 
 import "packs/form"
 import "packs/parse"
-
+require("trix")
+require("@rails/actiontext")
 // LINK ::    https://osu.ppy.sh/community/matches/89309929

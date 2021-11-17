@@ -13,9 +13,12 @@ class NewsController < ApplicationController
 
         @news.update(news_params)
     end
+    
     def new
         @news = News.new
     end
+
+
     def destroy
 
     end
