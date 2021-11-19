@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   after_action :save_my_previous_url
-  before_action :check_if_user_exist, only: [:show]
-  before_action :require_permission, only: [:edit, :update, :destroy]
+  #before_action :require_permission, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users or /users.json
@@ -68,13 +67,13 @@ class UsersController < ApplicationController
     end
     def check_if_user_exist
       if !User.exists?(params[:id])
-        redirect_to session[:my_previous_url]
+        redirect_to root_path
       end
     end
     def require_permission
       if current_user != User.find(params[:id])
         flash[:error] = "Permission Denied!"
-        redirect_to session[:my_previous_url]
+        redirect_to root_path
       end
     end
     def save_my_previous_url

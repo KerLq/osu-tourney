@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
     helper_method :access_token
     helper_method :apiRequest
 
+    rescue_from ActiveRecord::RecordNotFound,    with: :render_404
+    rescue_from ActionController::RoutingError,  with: :render_404
+    rescue_from ActionController::UnknownFormat, with: :render_404
+
+    def render_404
+        debugger
+    end
+
     def current_user
         if session[:user_id]
             User.find(session[:user_id])
