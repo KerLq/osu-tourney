@@ -2,7 +2,8 @@
     margin: 0 auto;
     width: 70%;
     box-shadow: 0px 0px 10px 5px black;
-    height: 700px;
+    min-height: 700px;
+    height: auto;
     //filter: drop-shadow(-5px, -5px 3px, black);
     &__info {
         background: #202020;
