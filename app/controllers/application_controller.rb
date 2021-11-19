@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownFormat, with: :render_404
 
     def render_404
-        debugger
+        render :file => "#{Rails.root}/public/404"
     end
 
     def current_user

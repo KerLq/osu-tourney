@@ -19,7 +19,7 @@
       <div class="tourney-card">
         <div class="tourney-card__color"></div>
         <ul class="tourney-stats">
-          <li class="tourney-stats__item"> <%= t.title %></li>
+          <li class="tourney-stats__item"> <%= link_to t.title, user_tourney_path(@user, t) %> </li>
           <li class="tourney-stats__item"> 3x </li>
           <li class="tourney-stats__item"> 950x</li>
           <li class="tourney-stats__item"> 3.3</li>
