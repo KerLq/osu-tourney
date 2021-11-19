@@ -28,8 +28,9 @@ class TourneysController < ApplicationController
     @tourney = @user.tourneys.create(tourney_params)
 
       if @tourney.save
-        flash[:success] = "Tournament was successfully created."
-        redirect_to user_tourney_path(@user, @tourney)
+        respond_to do |format|
+          format.js
+        end
       else
         
       end
