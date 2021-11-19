@@ -26,14 +26,13 @@ class TourneysController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.create(tourney_params)
-
+    
+    respond_to do |format|
       if @tourney.save
-        respond_to do |format|
-          format.js
-        end
-      else
-        
+        format.js
+        format.html { redirect_to @user }
       end
+    end
   end
 
   # PATCH/PUT /tourneys/1 or /tourneys/1.json
@@ -51,10 +50,14 @@ class TourneysController < ApplicationController
 
   # DELETE /tourneys/1 or /tourneys/1.json
   def destroy
-    @tourney.destroy
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:id])
+
     respond_to do |format|
-      format.html { redirect_to tourneys_url, notice: "Tourney was successfully destroyed." }
-      format.json { head :no_content }
+      if @tourney.destroy
+        format.html { redirect_to @user, notice: "Tourney was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -70,10 +73,12 @@ class TourneysController < ApplicationController
         redirect_to session[:my_previous_url]
       end
     end
+
     def save_my_previous_url
       # session[:previous_url] is a Rails built-in variable to save last url.
       session[:my_previous_url] = request.fullpath
     end
+
     # Only allow a list of trusted parameters through.
     def tourney_params
       params.require(:tourney).permit(:title, :spreadsheet)
