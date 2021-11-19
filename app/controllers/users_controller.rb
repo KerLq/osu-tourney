@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @tourneys = @user.tourneys.all
+    @tourneys = @tourneys.order('created_at ASC')
   end
 
   # GET /users/new
