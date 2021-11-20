@@ -25,7 +25,10 @@
     &__item {
         &:first-child {
             //margin-right: 500px;
-            width: 500px;
+            width: 200px;
+        }
+        &:last-child {
+            margin: 0;
         }
         margin-right: 80px;
     }

@@ -260,6 +260,8 @@ body {
 
         &--inverted {
             filter: invert(1);
+            border-radius: 0px;
+            height: 35px;
         }
     }
 }
