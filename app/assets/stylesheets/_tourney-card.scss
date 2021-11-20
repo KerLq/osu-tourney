@@ -26,6 +26,11 @@
         &:first-child {
             //margin-right: 500px;
             width: 200px;
+            font-size: large;
+            font-weight: 700;
+            a {
+                text-decoration: none;
+            }
         }
         &:last-child {
             margin: 0;
