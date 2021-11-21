@@ -35,12 +35,6 @@ class TourneysController < ApplicationController
     end
   end
 
-  def getforumpost
-    url = URI("https://osu.ppy.sh/api/v2/forums/topics/1453944")
-    response = apiRequest(url)
-    debugger
-  end
-
   # PATCH/PUT /tourneys/1 or /tourneys/1.json
   def update
     respond_to do |format|
