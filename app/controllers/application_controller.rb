@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownFormat, with: :render_404
 
     def render_404
-        render :file => "#{Rails.root}/public/404"
+        render :file => "#{Rails.root}/public/404.html"
     end
 
     def current_user
@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
         logged_in? ? current_user.admin? : false
     end
 
-    def access_token(token)
+    def set_access_token(token)
         if session[:user_id]
-            sesssion[:access_token] = token
+            session[:access_token] = token
         end
     end
     def access_token

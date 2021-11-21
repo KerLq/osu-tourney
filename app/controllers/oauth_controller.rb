@@ -29,7 +29,7 @@ class OauthController < ApplicationController
     user = User.create_from_oauth(player)
 
     session[:user_id] = user.id
-
+    set_access_token(@token)
     redirect_to root_path # last visited page
   end
 

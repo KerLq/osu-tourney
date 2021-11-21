@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # post '/logout', to: 'sessions#destroy'
   get '/parse', to: 'parses#index'
   post '/parse', to: 'parses#matchRequest'
+  get '/forumpost', to: 'tourneys#getforumpost'
+  post '/forumpost', to: 'tourneys#getforumpost'
 
   resources :users, :only => [:show] do
     resources :tourneys do
@@ -17,7 +19,6 @@ Rails.application.routes.draw do
     end
   end
   # resources :users
-
   get '/oauth2-callback', to: 'oauth#oauth_callback'
   get '/logout', to: 'oauth#logout'
   get '/login', to: 'oauth#login'
