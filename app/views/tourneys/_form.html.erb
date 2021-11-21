@@ -1,4 +1,6 @@
 <%= form_for [@user, @tourney], class: 'popup-form', remote: true do |f| %>
   <%= f.label :forumpost %>
+  <%= f.text_field :forumpost %>
+  <%= f.label :spreadsheet %>
   <%= f.text_field :spreadsheet %>
 <% end %>
