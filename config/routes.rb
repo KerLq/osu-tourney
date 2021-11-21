@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/parse', to: 'parses#index'
   post '/parse', to: 'parses#matchRequest'
 
+  get '/forumpost', to: 'tourneys#forumpost'
+
   resources :users, :only => [:show] do
     resources :tourneys do
       resources :matches

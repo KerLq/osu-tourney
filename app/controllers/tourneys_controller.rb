@@ -7,11 +7,20 @@ class TourneysController < ApplicationController
   def index
     @tourneys = Tourney.all
   end
-
+  
+  def forumpost
+    forumpost_id = params[:tourney][:forumpost]
+    forumpost_id = forumpost_id[/\d+/] 
+    url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
+    response = apiRequest(url)
+    title = response['topic']['title']
+    title
+  end
+  
   # GET /tourneys/1 or /tourneys/1.json
   def show
   end
-
+  
   # GET /tourneys/new
   def new
     @user = User.find(params[:user_id])
@@ -21,18 +30,22 @@ class TourneysController < ApplicationController
   # GET /tourneys/1/edit
   def edit
   end
-
+  
   # POST /tourneys or /tourneys.json
   def create
     @user = User.find(params[:user_id])
-    @tourney = @user.tourneys.create(tourney_params)
-    
+    @tourney = @user.tourneys.new(tourney_params)
+    #@tourney.update(title: title)
     respond_to do |format|
-      if @tourney.save
-        format.js
-        format.html { redirect_to @user }
+      if @user.save
+        title = forumpost
+        if @tourney.update(title: title)
+          format.js
+          format.html { redirect_to @user }
+        end
       end
     end
+      
   end
 
   # PATCH/PUT /tourneys/1 or /tourneys/1.json
@@ -81,6 +94,6 @@ class TourneysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tourney_params
-      params.require(:tourney).permit(:title, :spreadsheet)
+      params.require(:tourney).permit(:title, :forumpost, :spreadsheet)
     end
 end
