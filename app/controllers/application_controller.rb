@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     helper_method :is_admin?
     helper_method :access_token
     helper_method :apiRequest
+    helper_method :is_current_user
 
     rescue_from ActiveRecord::RecordNotFound,    with: :render_404
     rescue_from ActionController::RoutingError,  with: :render_404
@@ -20,7 +21,13 @@ class ApplicationController < ActionController::Base
             User.find(session[:user_id])
         end
     end
-  
+
+    def is_current_user(user)
+        if logged_in?
+            current_user == user ? true : false
+        end
+    end
+
     def logged_in?    
         !!current_user
     end

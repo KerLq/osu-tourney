@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show edit update destroy ]
+  before_action :check_if_admin?, only: %i[ show index]
   # GET /matches or /matches.json
   def index
     @user = User.find(params[:user_id])
@@ -84,7 +85,10 @@ class MatchesController < ApplicationController
     def set_match
       @match = Match.find(params[:id])
     end
-
+    private
+    def check_if_admin?  
+        redirect_to root_path if !is_admin?
+    end
     # Only allow a list of trusted parameters through.
     def match_params
       params.require(:match).permit(:mp_link, :warmup, :matchcost, :average_score)
