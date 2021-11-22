@@ -39,10 +39,9 @@ class TourneysController < ApplicationController
   # POST /tourneys or /tourneys.json
   def create
     @user = User.find(params[:user_id])
-    @tourney = @user.tourneys.new(tourney_params)
-    #@tourney.update(title: title)
-    debugger
-    respond_to do |format|
+    if @user.tourneys.find_by(forumpost: params[:tourney][:forumpost])
+      @tourney = @user.tourneys.new(tourney_params)
+      respond_to do |format|
       if @tourney.save
         title = forumpost[0]
         if @tourney.update(title: title)
@@ -51,7 +50,14 @@ class TourneysController < ApplicationController
         end
       end
     end
-      
+    
+    else
+      respond_to do |format|
+        flash['error'] = "Tourney with this forumpost is already existing!"  
+        format.html { redirect_to @user }
+      end
+    end
+    
   end
 
   # PATCH/PUT /tourneys/1 or /tourneys/1.json
