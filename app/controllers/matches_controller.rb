@@ -2,7 +2,10 @@ class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show edit update destroy ]
   # GET /matches or /matches.json
   def index
-    @matches = Match.all
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:tourney_id])
+    @matches = @tourney.matches.all
+
   end
 
   # GET /matches/1 or /matches/1.json
@@ -39,8 +42,10 @@ class MatchesController < ApplicationController
       @match.update_attribute(
         :average_score, average_score
       )
-      
-      redirect_to user_tourney_match_path(@user, @tourney, @match)    
+      respond_to do |format| 
+        format.js
+        format.html { redirect_to @user }    
+      end
     else
       flash['error'] = "Invalid URL!"
       redirect_to user_path(@user)
@@ -63,9 +68,13 @@ class MatchesController < ApplicationController
 
   # DELETE /matches/1 or /matches/1.json
   def destroy
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:tourney_id])
+    @match = @tourney.matches.find(params[:id])
+
     @match.destroy
     respond_to do |format|
-      format.html { redirect_to matches_url, notice: "Match was successfully destroyed." }
+      format.html { redirect_to user_tourney_matches_path(@user, @tourney), notice: "Match was successfully destroyed." }
       format.json { head :no_content }
     end
   end

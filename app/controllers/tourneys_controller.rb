@@ -25,6 +25,9 @@ class TourneysController < ApplicationController
   
   # GET /tourneys/1 or /tourneys/1.json
   def show
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:id])
+    @matches = @tourney.matches.all
   end
   
   # GET /tourneys/new

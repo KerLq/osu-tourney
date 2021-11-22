@@ -20,14 +20,10 @@
         <td><%= match.warmup %></td>
         <td><%= match.matchcost %></td>
         <td><%= match.average_score %></td>
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', user_tourney_match_path(@user, @tourney, match), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Match', new_match_path %>
