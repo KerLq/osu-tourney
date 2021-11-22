@@ -14,7 +14,12 @@ class TourneysController < ApplicationController
     url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
     response = apiRequest(url)
     title = response['topic']['title']
-    title
+    timestamp = response['topic']['created_at']
+    timestamp = timestamp[0..9]
+    year = timestamp[0..3]
+    month = timestamp[5..6]
+
+    return title, year, month
   end
   
   # GET /tourneys/1 or /tourneys/1.json
@@ -36,9 +41,10 @@ class TourneysController < ApplicationController
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.new(tourney_params)
     #@tourney.update(title: title)
+    debugger
     respond_to do |format|
-      if @user.save
-        title = forumpost
+      if @tourney.save
+        title = forumpost[0]
         if @tourney.update(title: title)
           format.js
           format.html { redirect_to @user }
