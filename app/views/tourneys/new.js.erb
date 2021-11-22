@@ -1,4 +1,4 @@
 //$('.user-data__lel a').hide().parent().append("<%= j render 'form', tourney: @tourney %>");
-$('.user-page').append("<div class='tourney-popup'> </div>");
+$('body').append("<div class='tourney-popup'> </div>");
 $('.tourney-popup').append("<div class='tourney-popup__content'> </div>");
 $('.tourney-popup__content').append("<%= j render 'form', tourney: @tourney %>");
