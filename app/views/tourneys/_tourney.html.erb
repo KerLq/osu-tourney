@@ -14,7 +14,7 @@
         </ul>
         <ul class="matches">
         <% tourney.matches.each do |match| %>
-            <%= render match %>
+            <%= render partial: 'matches/match', locals: {match: match, tourney: tourney} %>
         <% end%>
     </ul>
 </div>
