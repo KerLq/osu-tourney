@@ -1,0 +1,4 @@
+//$('.user-data__lel a').hide().parent().append("<%= j render 'form', match: @match %>");
+$('body').append("<div class='match-popup'> </div>");
+$('.tourney-popup').append("<div class='match-popup__content'> </div>");
+$('.tourney-popup__content').append("<%= j render 'form', match: @match %>");

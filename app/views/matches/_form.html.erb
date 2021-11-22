@@ -1,17 +1,8 @@
-<div class="form">
-  <%= form_for [@user, @tourney, @match], :html => {class: 'popup-form'} do |form| %>
-    <div class="field">
-      <%= form.label :mp_link %>
-      <%= form.text_field :mp_link %>
-    </div>
+<%= form_for [@user, @tourney, @match], :html => {class: 'popup-form'}, remote: true do |form| %>
+  <%= form.label :mp_link %>
+  <%= form.text_field :mp_link %>
+  <%= form.label :warmup %>
+  <%= form.text_field :warmup %>
+  <%= form.submit %>
+<% end %>
 
-    <div class="field">
-      <%= form.label :warmup %>
-      <%= form.text_field :warmup %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-</div>

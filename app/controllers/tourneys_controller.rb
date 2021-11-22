@@ -14,12 +14,13 @@ class TourneysController < ApplicationController
     url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
     response = apiRequest(url)
     title = response['topic']['title']
+    id = response['topic']['id']
     timestamp = response['topic']['created_at']
     timestamp = timestamp[0..9]
     year = timestamp[0..3]
     month = timestamp[5..6]
-
-    return title, year, month
+    
+    return title, year, month, id
   end
   
   # GET /tourneys/1 or /tourneys/1.json
@@ -39,17 +40,19 @@ class TourneysController < ApplicationController
   # POST /tourneys or /tourneys.json
   def create
     @user = User.find(params[:user_id])
-    if @user.tourneys.find_by(forumpost: params[:tourney][:forumpost])
+    data = forumpost
+    title = data[0]
+    forumpost_id = data[3]
+    if !@user.tourneys.find_by(forumpost_id: forumpost_id)
       @tourney = @user.tourneys.new(tourney_params)
       respond_to do |format|
-      if @tourney.save
-        title = forumpost[0]
-        if @tourney.update(title: title)
-          format.js
-          format.html { redirect_to @user }
+        if @tourney.save
+          if @tourney.update(title: title, forumpost_id: forumpost_id)
+            format.js
+            format.html { redirect_to @user }
+          end
         end
       end
-    end
     
     else
       respond_to do |format|
@@ -106,6 +109,6 @@ class TourneysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tourney_params
-      params.require(:tourney).permit(:title, :forumpost, :spreadsheet)
+      params.require(:tourney).permit(:title, :forumpost, :spreadsheet, :forumpost_id)
     end
 end

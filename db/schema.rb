@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_125910) do
+ActiveRecord::Schema.define(version: 2021_11_22_111747) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_125910) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.text "forumpost"
+    t.bigint "forumpost_id"
     t.index ["match_id"], name: "index_tourneys_on_match_id"
   end
 
