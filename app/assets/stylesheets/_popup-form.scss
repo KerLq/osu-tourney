@@ -22,6 +22,7 @@
 }
 
 .popup-form {
+   padding: 30px;
    background: #080808;
    border: 1px solid cyan;
    height: 100%;
@@ -30,9 +31,17 @@
    align-items: center;
    justify-content: space-evenly;
    label {
+      font-size: 1.3em;
       color: white;
    }
-   button {
-      //color: black;
+   &__button {
+      background: #121212;
+      margin: 1.5em 0 1.5em 0;
+   }
+   input {
+      border: 1px solid cyan;
+      font-size: 20px;
+      background: #181818;
+      
    }
 }
