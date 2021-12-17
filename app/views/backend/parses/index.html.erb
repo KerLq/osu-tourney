@@ -1,0 +1,10 @@
+<div class="form">
+    <%= form_with model: @user, local: true parse_path do |f| %>
+        <%= text_field_tag :name %>
+        <%= submit_tag %>
+    <% end%>
+</div>
+
+<!-- <div class="test">
+    #<%= link_to 'Send', parse_path, class: 'parse' %>
+</div> -->

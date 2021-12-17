@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mp link:</strong>
+  <%= link_to @match.mp_link, @match.mp_link, target: '_blank' %>
+</p>
+
+<p>
+  <strong>Warmup:</strong>
+  <%= @match.warmup %>
+</p>
+
+<p>
+  <strong>Matchcost:</strong>
+  <%= @match.matchcost %>
+</p>
+
+<p>
+  <strong>Average score:</strong>
+  <%= @match.average_score %>
+</p>
+

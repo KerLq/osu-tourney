@@ -30,7 +30,7 @@ class Frontend::OauthController < Frontend::FrontendController
 
     session[:user_id] = user.id
     set_access_token(@token)
-    redirect_to root_path # last visited page
+    redirect_to frontend_root_path # last visited page
   end
 
   def logout

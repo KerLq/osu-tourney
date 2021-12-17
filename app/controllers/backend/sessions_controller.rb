@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Backend::SessionsController < Backend::BackendController
     include SessionsHelper
 
     def login

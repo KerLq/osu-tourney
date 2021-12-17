@@ -1,5 +1,5 @@
-<!--<div class="background-image"></div>
-<div class ="header">
+<!--<div class="background-image"></div> -->
+<!-- <div class ="header">
     <div class="header__content">
         <h1 class="header__header">What is osu!tourney?</h1>
         <div class="header__text">
@@ -7,14 +7,14 @@
         </div>
         <% if current_user.nil? %>
             <div class="buttons">
-                <%= button_to 'Login via osu!', frontend_login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark' %>
+                <%= button_to 'Login via osu!', login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark' %>
             </div>
         <% end %>
     </div>
-    <div class="header__logo">
+    <!-- <div class="header__logo">
          <img src="assets/test.jpeg" class="header__img">
-    </div>
-</div> !-->
+    </div> !-->
+<!-- </div> -->
 
 <div class="homes">
     <div class="homes-tourney">
@@ -34,10 +34,10 @@
             </pre>
             <div class="buttons">
                 <% if logged_in? %>
-                    <%= link_to 'Save A Tourney', new_frontend_user_tourney_path(@user, @tourney), class: 'button' %>
-                    <%= link_to 'View Profile', frontend_user_path(current_user), class: 'button' %>
+                    <%= link_to 'Save A Tourney', new_user_tourney_path(@user, @tourney), class: 'button' %>
+                    <%= link_to 'View Profile', user_path(current_user), class: 'button' %>
                 <% else %>
-                    <%= link_to 'Login via osu!', frontend_login_path, method: :get, class: 'button buttons__login buttons__login--dark' %>
+                    <%= link_to 'Login via osu!', login_path, method: :get, class: 'button buttons__login buttons__login--dark' %>
                 <% end %>
             </div>
         </div>

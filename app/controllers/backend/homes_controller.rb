@@ -1,4 +1,4 @@
-class HomesController < ApplicationController
+class Backend::HomesController < Backend::BackendController
     def index
         @news = News.all
         if logged_in?

@@ -1,4 +1,4 @@
-class NewsController < ApplicationController
+class Backend::NewsController < Backend::BackendController
     before_action :check_if_admin?, :only => [:new, :edit, :update, :destroy]
 
     def index

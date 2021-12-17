@@ -1,4 +1,4 @@
-class ParsesController < ApplicationController 
+class Backend::ParsesController < Backend::BackendController 
 
     def index
         

@@ -1,4 +1,4 @@
-class MatchesController < ApplicationController
+class Backend::MatchesController < Backend::BackendController
   before_action :set_match, only: %i[ show edit update destroy ]
   before_action :check_if_admin?, only: %i[ show index]
   # GET /matches or /matches.json

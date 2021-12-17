@@ -1,4 +1,4 @@
-class OauthController < ApplicationController
+class Backend::OauthController < Backend::BackendController
     def initialize
         @oauth_client = OAuth2::Client.new(
             Rails.configuration.x.oauth.client_id,

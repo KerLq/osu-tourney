@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mp link</th>
+      <th>Warmup</th>
+      <th>Matchcost</th>
+      <th>Average score</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match.mp_link %></td>
+        <td><%= match.warmup %></td>
+        <td><%= match.matchcost %></td>
+        <td><%= match.average_score %></td>
+        <td><%= link_to 'Destroy', user_tourney_match_path(@user, @tourney, match), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

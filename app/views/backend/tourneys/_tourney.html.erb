@@ -1,0 +1,21 @@
+<div class="tourney-card">
+    <div class="tourney-card__color">
+    </div>
+    <ul class="tourney-stats">
+        <li class="tourney-stats__item"> <%= tourney.title %> </li>
+        <li class="tourney-stats__item"> 3x </li>
+        <li class="tourney-stats__item"> 950x</li>
+        <li class="tourney-stats__item"> 3.3</li>
+        
+        <% if is_current_user(@user) %>
+            <li class="tourney-stats__item"> <%= link_to 'Upload Match', new_user_tourney_match_path(@user, tourney), remote: true %></li>
+            <li class="tourney-stats__item"> <%= link_to 'Delete Tourney', user_tourney_path(@user, tourney), method: :delete %></li>
+        <% end %>
+        <li class="tourney-stats__item user-data__avatar"> <%= link_to image_tag("link.png", class: 'avatar__img avatar__img--inverted'), user_tourney_path(@user, tourney), target: '_blank' %> </li>
+        </ul>
+        <ul class="matches-card">
+        <% tourney.matches.each do |match| %>
+            <%= render partial: 'matches/match', locals: {match: match, tourney: tourney} %>
+        <% end %>
+    </ul>
+</div>

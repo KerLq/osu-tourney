@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Backend::UsersController < Backend::BackendController
   after_action :save_my_previous_url
   #before_action :require_permission, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy]

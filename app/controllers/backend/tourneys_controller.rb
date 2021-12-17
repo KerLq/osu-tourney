@@ -1,4 +1,4 @@
-class TourneysController < ApplicationController
+class Backend::TourneysController < Backend::BackendController
   before_action :set_tourney, only: %i[ show edit update destroy ]
   before_action :require_permission, only: [:new, :edit, :update, :destroy]
   after_action :save_my_previous_url

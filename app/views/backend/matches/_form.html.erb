@@ -1,4 +1,4 @@
-<%= form_for [:frontend, @user, @tourney, @match], :html => {class: 'popup-form'}, remote: true do |form| %>
+<%= form_for [@user, @tourney, @match], :html => {class: 'popup-form'}, remote: true do |form| %>
   <%= form.label :mp_link %>
   <%= form.text_field :mp_link %>
   <%= form.label :warmup %>

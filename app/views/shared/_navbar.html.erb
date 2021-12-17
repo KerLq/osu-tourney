@@ -1,15 +1,15 @@
 <nav class="nav">
-    <div class="nav__logo"> <%= link_to image_tag("logo.png", class: 'avatar__logo'), root_path %> </div>
+    <div class="nav__logo"> <%= link_to image_tag("logo.png", class: 'avatar__logo'), frontend_root_path %> </div>
     <ul class="navbar">
         <li class="navbar__items"> Home </li>
         <li class="navbar__items"> About Us </li>
         <li class="navbar__items"> Discord </li>
         <% if !current_user %>
-            <li class="navbar__items"> <%= link_to 'Login', login_path %> </li>
+            <li class="navbar__items"> <%= link_to 'Login', frontend_login_path %> </li>
         <% else %>
             <li class="navbar__items"> 
                 <div class="avatar">
-                    <%= link_to image_tag(current_user.avatar_url, class: 'avatar__img'), user_path(current_user) %>
+                    <%= link_to image_tag(current_user.avatar_url, class: 'avatar__img'), frontend_user_path(current_user) %>
                 </div>
             </li>
         <% end %>

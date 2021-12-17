@@ -1,0 +1,11 @@
+//$('.user-data__lel a').hide().parent().append("<%= j render 'form', match: @match %>");
+$('body').append("<div class='popup'> </div>");
+$('.popup').append("<div class='popup__content'> </div>");
+$('.popup__content').append("<%= j render 'form', match: @match %>");
+
+var container = $('.popup__content');
+$(document).mouseup(function(e) {
+    if (!container.is(e.target) && container.has(e.target).length == 0) {
+        $('.popup').remove();
+    }
+});

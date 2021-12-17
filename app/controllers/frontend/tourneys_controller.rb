@@ -12,7 +12,7 @@ class Frontend::TourneysController < Frontend::FrontendController
     !forumpost_id.match("\d+/").nil? ? true : false
   end
 
-  def forumpost
+  def forumpost ## WORK TO DO - GET IT WORK!
     @user = User.find(params[:user_id])
     forumpost_id = params[:tourney][:forumpost]
     url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
@@ -72,12 +72,12 @@ class Frontend::TourneysController < Frontend::FrontendController
           if @tourney.save
             if @tourney.update(title: title, forumpost_id: forumpost_id)
               format.js
-              format.html { redirect_to @user }
+              format.html { redirect_to [:frontend, @user] }
             end
           end
       else
         flash['error'] = "Tourney with this forumpost is already existing!"  
-        format.html { redirect_to @user }
+        format.html { redirect_to [:frontend, @user] }
       end
     end
       
@@ -103,7 +103,7 @@ class Frontend::TourneysController < Frontend::FrontendController
 
     respond_to do |format|
       if @tourney.destroy
-        format.html { redirect_to @user, notice: "Tourney was successfully destroyed." }
+        format.html { redirect_to [:frontend, @user], notice: "Tourney was successfully destroyed." }
         format.json { head :no_content }
       end
     end

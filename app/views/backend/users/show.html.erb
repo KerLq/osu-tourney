@@ -10,7 +10,7 @@
         <%= link_to 'Twitch Channel', '#', class: 'button__user-page'%>
         <% if is_current_user(@user) %>
           <div class="user-data__lel">
-            <%= link_to 'Upload Tourney', new_frontend_user_tourney_path(@user), class: 'button__user-page create_tourney', remote: true %>
+            <%= link_to 'Upload Tourney', new_user_tourney_path(@user), class: 'button__user-page create_tourney', remote: true %>
           </div>
         <% end %>
       </div>

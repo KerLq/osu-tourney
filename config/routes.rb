@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/parse', to: 'parses#matchRequest'
   
   get '/forumpost', to: 'tourneys#forumpost'
-  scope module: 'frontend' do
+  scope module: 'frontend', as: "frontend" do
     root 'homes#index'
     get '/oauth2-callback', to: 'oauth#oauth_callback'
     get '/logout', to: 'oauth#logout'
@@ -23,5 +23,14 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  scope module: 'backend', as: 'backend', path: 'backend' do
+    resources :users do
+      resources :tourneys do
+        resources :matches
+      end
+    end
+  end
+
   # resources :users
 end
