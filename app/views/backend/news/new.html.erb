@@ -1,5 +1,5 @@
 <div>
-    <%= form_for @news do |f| %>
+    <%= form_for [:backend, @news] do |f| %>
         <%= f.text_field :cover_image %>
         <%= f.text_field :title %>
         <%= f.rich_text_area :description %>

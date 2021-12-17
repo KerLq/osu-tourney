@@ -1,4 +1,4 @@
-class Backend::NewsController < Backend::BackendController
+class Backend::NewsController < Backend::BackendController 
 
     def index
         @news = News.all
@@ -19,15 +19,16 @@ class Backend::NewsController < Backend::BackendController
 
     def create
         @news = News.create(news_params)
-        redirect_to news_path(@news)
+        redirect_to backend_news_path(@news)
         
     end
+    
     def destroy
 
     end
     private
     def check_if_admin?  
-        redirect_to root_path if !is_admin?
+        redirect_to frontend_root_path if !is_admin?
     end
 
     def news_params
