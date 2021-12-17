@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: 'backend', as: 'backend', path: 'backend' do
+  scope module: 'backend', as: 'backend', path: 'admin' do
     resources :users do
       resources :tourneys do
         resources :matches
