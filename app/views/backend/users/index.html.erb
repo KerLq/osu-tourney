@@ -5,16 +5,16 @@
 <table style="display: flex; justify-content: center">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Username</th>
-      <th> ID </th>
     </tr>
   </thead>
 
   <tbody style="margin: 25px 10px 10px 20px">
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.username %></td>
-        <td><%= user.user_id %></td>
         <td><%= link_to 'Show', backend_user_path(user) %></td>
         <td><%= link_to 'Destroy', backend_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
