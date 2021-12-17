@@ -6,6 +6,7 @@ class Backend::UsersController < Backend::BackendController
   # GET /users or /users.json
   def index
     @users = User.all
+    @users = @users.order('username ASC')
   end
 
   # GET /users/1 or /users/1.json
