@@ -1,4 +1,4 @@
-class TourneysController < ApplicationController
+class Frontend::TourneysController < Frontend::FrontendController
   before_action :set_tourney, only: %i[ show edit update destroy ]
   before_action :require_permission, only: [:new, :edit, :update, :destroy]
   after_action :save_my_previous_url
@@ -8,19 +8,27 @@ class TourneysController < ApplicationController
     @tourneys = Tourney.all
   end
   
+  def is_forumpost_valid?(forumpost_id)
+    !forumpost_id.match("\d+/").nil? ? true : false
+  end
+
   def forumpost
+    @user = User.find(params[:user_id])
     forumpost_id = params[:tourney][:forumpost]
-    forumpost_id = forumpost_id[/\d+/] 
     url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
-    response = apiRequest(url)
-    title = response['topic']['title']
-    id = response['topic']['id']
-    timestamp = response['topic']['created_at']
-    timestamp = timestamp[0..9]
-    year = timestamp[0..3]
-    month = timestamp[5..6]
     
-    return title, year, month, id
+    if url =~ URI::regexp
+      response = apiRequest(url)
+      title = response['topic']['title']
+      id = response['topic']['id']
+      timestamp = response['topic']['created_at']
+      timestamp = timestamp[0..9]
+      year = timestamp[0..3]
+      month = timestamp[5..6]
+      
+      return title, year, month, id
+    end
+    return false
   end
   
   # GET /tourneys/1 or /tourneys/1.json
@@ -43,27 +51,36 @@ class TourneysController < ApplicationController
   # POST /tourneys or /tourneys.json
   def create
     @user = User.find(params[:user_id])
-    data = forumpost
-    title = data[0]
-    forumpost_id = data[3]
-    if !@user.tourneys.find_by(forumpost_id: forumpost_id)
-      @tourney = @user.tourneys.new(tourney_params)
-      respond_to do |format|
-        if @tourney.save
-          if @tourney.update(title: title, forumpost_id: forumpost_id)
-            format.js
-            format.html { redirect_to @user }
-          end
-        end
-      end
+    data = []
     
-    else
-      respond_to do |format|
+    respond_to do |format|
+      if is_forumpost_valid?(params[:tourney][:forumpost])
+        if !forumpost
+          data = forumpost
+        else
+          debugger
+          format.js { window.location } ## format.js WINDOW.LOCATION -> RELOAD
+        end
+      else
+        flash['error'] = "Invalid URL!"
+        format.html { redirect_to @user }
+      end
+      title = data[0]
+      forumpost_id = data[3]
+      if !@user.tourneys.find_by(forumpost_id: forumpost_id)
+        @tourney = @user.tourneys.new(tourney_params)
+          if @tourney.save
+            if @tourney.update(title: title, forumpost_id: forumpost_id)
+              format.js
+              format.html { redirect_to @user }
+            end
+          end
+      else
         flash['error'] = "Tourney with this forumpost is already existing!"  
         format.html { redirect_to @user }
       end
     end
-    
+      
   end
 
   # PATCH/PUT /tourneys/1 or /tourneys/1.json

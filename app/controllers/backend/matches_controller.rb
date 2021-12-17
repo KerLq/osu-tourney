@@ -4,7 +4,7 @@ class MatchesController < ApplicationController
   # GET /matches or /matches.json
   def index
     @user = User.find(params[:user_id])
-    @tourney = @user.tourneys.find(params[:tourney_id])
+    tourney = @user.tourneys.find(params[:tourney_id])
     @matches = @tourney.matches.all
 
   end

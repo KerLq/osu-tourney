@@ -16,7 +16,7 @@ class User < ApplicationRecord
         user.update(avatar_url: params['avatar_url']) if user.avatar_url != params['avatar_url']
         user.update(username: params['username']) if user.username != params['username']
         
-        user  
+        user
     end
 
     def sendDiscordNotification(user, user_path)
