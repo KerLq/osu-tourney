@@ -6,6 +6,7 @@ class Backend::TourneysController < Backend::BackendController
   # GET /tourneys or /tourneys.json
   def index
     @tourneys = Tourney.all
+    @user = User.find(params[:user_id])
   end
   
   def is_forumpost_valid?(forumpost_id)

@@ -16,14 +16,12 @@
       <tr>
         <td><%= tourney.title %></td>
         <td><%= tourney.spreadsheet %></td>
-        <td><%= link_to 'Show', tourney %></td>
-        <td><%= link_to 'Edit', edit_tourney_path(tourney) %></td>
-        <td><%= link_to 'Destroy', tourney, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', backend_user_tourney_path(@user, tourney) %></td>
+        <td><%= link_to 'Edit', edit_backend_user_tourney_path(@user, tourney) %></td>
+        <td><%= link_to 'Destroy', backend_user_tourney_path(@user, tourney), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Tourney', new_tourney_path %>
