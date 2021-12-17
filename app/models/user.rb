@@ -20,7 +20,7 @@ class User < ApplicationRecord
     end
 
     def sendDiscordNotification(user, user_path)
-        uri = "https://discord.com/api/webhooks/908382804646187058/jPQ25lL6c6eZmZZEMDmpEnNrqEcRiS3vDqGhDpjf9PWp2DqoJJSgwHRBL9QSjlwmEPmI"
+        uri = "https://discord.com/api/webhooks/921444813130313738/0LACQGT0M33nepHe5NGDWLqOgRg0t8mX7PTgB_8twOlDDfEUIeYGqeDB7Em_HeZsye4I"
 
         body = {
             "username":"osu!tourney",
@@ -28,12 +28,12 @@ class User < ApplicationRecord
             "embeds": [
                 {
                 "author": {
-                  "name":"Recent Logins",
+                  "name":"Admin Login",
                   "url":"https://localhost:3000#{user_path}",
                 },
                 "title":"#{user.username}",
                 "url":"https://localhost:3000#{user_path}",
-                "description":"User **#{user.username}** has logged in!",
+                "description":"User **#{user.username}** has logged into Admin-Panel!",
                 "image": {
                     "url":"#{user.avatar_url}"
                 },
@@ -50,7 +50,6 @@ class User < ApplicationRecord
             body: body.to_json,
             headers: {'Content-Type':'application/json'}
         )
-        user
     end
 
     def sendDiscordNotificationResponse(response)
