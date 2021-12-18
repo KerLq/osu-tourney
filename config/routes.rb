@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   end
 
   scope module: 'backend', as: 'backend', path: 'admin' do
+    root 'homes#index'
     resources :news
     resources :users do
       resources :tourneys do
