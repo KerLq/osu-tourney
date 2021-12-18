@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   scope module: 'backend', as: 'backend', path: 'admin' do
     root 'homes#index'
     resources :news
+    resources :tourneys, only: [:index]
     resources :users do
       resources :tourneys do
         resources :matches

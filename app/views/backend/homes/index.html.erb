@@ -1,14 +1,6 @@
 <!-- <div class="background-image"></div> -->
- <div class ="header">
-    <div class="header__content">
-        <h1 class="header__header">What is osu!tourney?</h1>
-        <div class="header__text">
-            <p class="header__description"> osu!tourney Allows You To <span class="highlight">Save</span> Your Tournament Matches And <span class="highlight">Creates</span> A History Of The Tournament You've Played <br> <br> Seems Interesting? Try It Out Now!</p>
-        </div>
-        <% if current_user.nil? %>
-            <div class="buttons">
-                <%= button_to 'Login via osu!', login_path, method: :get, class: 'button buttons--animation buttons__login buttons__login--dark' %>
-            </div>
-        <% end %>
-    </div>
+ <div class ="backend" style="text-align: center">
+    <h1> Welcome to Admin Panel <span style="color: cyan"> <%= current_user.username %> </span> </h1>
+    <%= link_to 'All Users', backend_users_path %> <br> <br>
+    <%= link_to 'All Tournaments', backend_tourneys_path %>
  </div>
