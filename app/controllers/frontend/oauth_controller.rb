@@ -22,7 +22,6 @@ class Frontend::OauthController < Frontend::FrontendController
 
 
     player = player.parsed
-    debugger
     if player['id'].nil?
       flash[:error] = "Login failed!"
       redirect_to root_path

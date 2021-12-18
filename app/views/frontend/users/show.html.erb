@@ -7,7 +7,7 @@
       </div>
       <div class="user-data__buttons">
         <%= link_to 'osu! Profile', "https://osu.ppy.sh/users/#{@user.user_id}", class: 'button__user-page', target: '_blank'%>
-        <%= link_to 'Twitch Channel', '#', class: 'button__user-page'%>
+        <%= link_to 'Twitter Account', "https://twitter.com/#{@user.twitter}", class: 'button__user-page', target: '_blank' %>
         <% if is_current_user(@user) %>
           <div class="user-data__lel">
             <%= link_to 'Upload Tourney', new_frontend_user_tourney_path(@user), class: 'button__user-page create_tourney', remote: true %>
