@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= page_title %></title>
+    <title><%= "Admin - #{page_title}" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="https://cdn.discordapp.com/attachments/849604504613945364/904385120251809802/XOhIzgk.png">
     <%= csrf_meta_tags %>
@@ -14,6 +14,8 @@
   <body>
     <%= render partial: "shared/beta_alert"%>
     <%= yield %>
+    <br> <br> <br>
+    <%= render partial: "shared/tourney-card-advanced" %>
     <%= render partial: "shared/footer"%>
   </body>
 </html>

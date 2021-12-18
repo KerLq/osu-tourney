@@ -15,6 +15,8 @@ ActiveStorage.start()
 
 import "packs/form"
 import "packs/parse"
+import "packs/tourney/tourney-card-advanced"
+
 require("trix")
 require("@rails/actiontext")
 // LINK ::    https://osu.ppy.sh/community/matches/89309929
