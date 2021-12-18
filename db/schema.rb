@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_134222) do
+ActiveRecord::Schema.define(version: 2021_11_22_111747) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 2021_12_18_134222) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "role", default: 0
-    t.string "twitch_channel"
     t.index ["tourney_id"], name: "index_users_on_tourney_id"
   end
 

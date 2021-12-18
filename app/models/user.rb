@@ -13,9 +13,11 @@ class User < ApplicationRecord
             u.username = params['username']
             u.avatar_url = params['avatar_url']
             u.user_id = params['id']
+            u.twitch_channel = params['twitch_channel']
         end
         user.update(avatar_url: params['avatar_url']) if user.avatar_url != params['avatar_url']
         user.update(username: params['username']) if user.username != params['username']
+        user.update(twitch_channel: params['twitch_channel']) if user.twitch_channel != params['twitch_channel']
         
         user
     end
