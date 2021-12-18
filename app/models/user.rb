@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
     def self.create_from_oauth(params)
         user = User.find_or_create_by(user_id: params['id']) do |u|
+            u.id = params['id']
             u.username = params['username']
             u.avatar_url = params['avatar_url']
             u.user_id = params['id']

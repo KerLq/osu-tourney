@@ -4,7 +4,7 @@
         <li class="navbar__items"> Home </li>
         <li class="navbar__items"> About Us </li>
         <li class="navbar__items"> Discord </li>
-        <% if !current_user %>
+        <% if !logged_in? %>
             <li class="navbar__items"> <%= link_to 'Login', frontend_login_path %> </li>
         <% else %>
             <li class="navbar__items"> 
