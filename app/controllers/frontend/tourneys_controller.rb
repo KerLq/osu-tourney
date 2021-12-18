@@ -46,7 +46,7 @@ class Frontend::TourneysController < Frontend::FrontendController
   end
   
   # POST /tourneys or /tourneys.json
-  def create
+  def create # Instead of 'find_by' use 'find_or_create_by'
     @user = User.find(params[:user_id])
     data = forumpost
     title = data[0]
