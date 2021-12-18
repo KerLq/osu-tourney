@@ -42,7 +42,7 @@ class Frontend::OauthController < Frontend::FrontendController
     #@oauth_client.request(:delete, 'api/v2/oauth/tokens/current')
     reset_session
 
-    redirect_to root_path
+    redirect_to frontend_root_path
   end
 
   def login
