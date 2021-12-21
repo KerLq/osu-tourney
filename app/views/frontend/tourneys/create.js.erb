@@ -1,3 +1,10 @@
 $('.popup').remove();
 
-$('.user-page__tourneys').append("<%= j render @tourney%>");
+$('.user-page__tourney-cards').append("<%= j render @tourney%>");
+$('.tourney-card-advanced').each(function() {
+    setPosition(this);
+});
+function setPosition(elem) {
+    const rect = elem.getBoundingClientRect()
+    $(elem).css({"top": rect.top, "left": rect.left })
+}

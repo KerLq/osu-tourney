@@ -22,10 +22,19 @@ class Frontend::TourneysController < Frontend::FrontendController
     id = response['topic']['id']
     timestamp = response['topic']['created_at']
     timestamp = timestamp[0..9]
+    cover_image = response['posts'][0]['body']['raw']
+    urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image, 2nd is spreadsheet
+    cover_image = urls[0]
+    spreadsheet = ""
+    urls.each do |url|
+      if url.include? "spreadsheets"
+        spreadsheet = url
+      end
+    end
     year = timestamp[0..3]
     month = timestamp[5..6]
     
-    return title, year, month, id
+    return title, year, month, id, spreadsheet, cover_image
   end
   
   # GET /tourneys/1 or /tourneys/1.json
@@ -46,21 +55,28 @@ class Frontend::TourneysController < Frontend::FrontendController
   end
   
   # POST /tourneys or /tourneys.json
-  def create # Instead of 'find_by' use 'find_or_create_by'
+  def create # Instead of 'find_by' use 'find_or_create_by' -- # Check if entry exists BEFORE doing apirequest
+    forumpost_id = params[:tourney][:forumpost]
+    forumpost_id = forumpost_id.match(/\d+/)[0]
     @user = User.find(params[:user_id])
-    data = forumpost
-    title = data[0]
-    forumpost_id = data[3]
-    respond_to do |format|
-      if !@user.tourneys.find_by(forumpost_id: forumpost_id)
+
+    if !@user.tourneys.find_by(forumpost_id: forumpost_id)
+      data = forumpost
+      title = data[0]
+      forumpost_id = data[3]
+      spreadsheet = data[4]
+      cover_image = data[5]
+      respond_to do |format|
         @tourney = @user.tourneys.new(tourney_params)
         if @tourney.save
-          if @tourney.update(title: title, forumpost_id: forumpost_id)
+          if @tourney.update(title: title, forumpost_id: forumpost_id, spreadsheet: spreadsheet, cover_image: cover_image)
             format.js
             format.html { redirect_to [:frontend, @user] }
           end
         end
       end
+    else
+      redirect_to frontend_user_path(@user), notice: "Error!"
     end
     # respond_to do |format|
     #   if is_forumpost_valid?(params[:tourney][:forumpost])

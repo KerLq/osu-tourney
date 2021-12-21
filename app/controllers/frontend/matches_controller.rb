@@ -33,7 +33,7 @@ class Frontend::MatchesController < Frontend::FrontendController
       @user = User.find(params[:user_id])
       @tourney = @user.tourneys.find(params[:tourney_id])
       @match = @tourney.matches.create(match_params)
-      scores = @match.filter_match(@user, response) # GET everything needed
+      scores = @match.filter_match(@user, response) # returns everything needed
       if scores == "ERROR"
         flash['error'] = "error"
         redirect_to user_path(@user)

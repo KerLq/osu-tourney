@@ -73,12 +73,16 @@ body {
 }
 ::-webkit-scrollbar {
     height: 12px;
-    width: 12px;
+    width: 15px;
     background: #080808;
 }
 
 ::-webkit-scrollbar-thumb {
+    border: 3px solid transparent;
+    border-radius: 9px;
     background: #353535;
+    background-clip: content-box;
+
 }
 // div {
 //     //border: 2px solid white;

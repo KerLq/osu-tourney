@@ -1,7 +1,5 @@
 <%= form_for [:frontend, @user, @tourney], remote: true, html: { class: 'popup-form' } do |f| %>
   <%= f.label :forumpost %>
   <%= f.text_field :forumpost %>
-  <%= f.label :spreadsheet %>
-  <%= f.text_field :spreadsheet %>
   <%= f.button "Submit", class: "button popup-form__button" %>
 <% end %>
