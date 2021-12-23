@@ -1,26 +1,15 @@
 .tourney-card-advanced {
-    
-    margin: 15px 15px 0px 0px;
     width: 300px;
     height: 200px;
     border: 1px solid cyan;
     box-shadow: 0px 0px 5px 3px black;
     background: #131313;
-    //transition: transform 0.3s ease;
-    margin-top: 30px;
-    margin-bottom: 50px;
+    transition: transform 0.4s ease;
+    will-change: transform;
+    margin: 30px 20px 50px 0px;
     &:hover {
         transform: translateY(-10px);
     }
-    &--active {
-        transform: translateY(0px) !important;
-        margin: 0;
-    }
-}
-
-.animatetransition {
-    transition: all 0.7s ease;
-    will-change: all;
 }
 .tourney-card-advanced.fullScreen {
     z-index: 9999;

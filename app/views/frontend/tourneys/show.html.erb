@@ -1,11 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @tourney.title %>
-</p>
 
-<p>
-  <strong>Spreadsheet:</strong>
-  <%= @tourney.spreadsheet %>
-</p>
+<div class="tourney-info">
+  <div class="tourney-info__title"> <strong> <%= @tourney.title %> </strong> </div>
+</div>
+    
+
+<div class="tourney">
+  <div class="tourney__header">
+    <div class="tourney__player"> All Matches - Player: <strong> <%= @user.username %> </strong> </div>
+      <%= link_to 'Upload Match', new_frontend_user_tourney_match_path(@user, @tourney), class: 'button__user-page' %>
+  </div>
+  <div class="tourney__stats">
+    <%= render @matches %>
+  </div>
+</div>

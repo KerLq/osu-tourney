@@ -1,0 +1,29 @@
+.tourney-info {
+    margin-bottom: 50px;
+    text-align: center;
+    background: #282828;
+    padding: 50px;
+    font-size: 1.6em;
+}
+
+.tourney {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+    margin: 0 auto;
+    width: 70%;
+    //border: 1px solid cyan;
+    &__player {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 1.5em;
+    }
+
+    &__stats {
+        display: inline-block;
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: 0px 0px 5px 3px black;
+        min-height: 300px;
+    }
+}

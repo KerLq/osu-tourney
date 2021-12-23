@@ -1,9 +1,20 @@
 $('.popup').remove();
 
-$('.user-page__tourney-cards').append("<%= j render @tourney%>");
+if ($('.alert').length) {
+    $('.alert').remove();
+}
+
+var $div = $("<div>", {"class": "alert"});
+$($div).insertAfter('.beta');
+var $div_message = $("<div>", {"class": "alert__notice"});
+$div_message.text("<%= flash[:notice] %>")
+$($div).append($div_message);
+
+$('.user-page__tourney-cards').append("<%= j render @tourney, user: @user if !@tourney.nil? %>");
 $('.tourney-card-advanced').each(function() {
     setPosition(this);
 });
+
 function setPosition(elem) {
     const rect = elem.getBoundingClientRect()
     $(elem).css({"top": rect.top, "left": rect.left })

@@ -1,6 +1,6 @@
 class Frontend::MatchesController < Frontend::FrontendController
   before_action :set_match, only: %i[ show edit update destroy ]
-  before_action :check_if_admin?, only: %i[ show index]
+  # before_action :check_if_admin?, only: %i[ show index]
   # GET /matches or /matches.json
   def index
     @user = User.find(params[:user_id])
@@ -11,6 +11,9 @@ class Frontend::MatchesController < Frontend::FrontendController
 
   # GET /matches/1 or /matches/1.json
   def show
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:id])
+    @matches = @tourney.matches.all
   end
 
   # GET /matches/new
@@ -43,13 +46,14 @@ class Frontend::MatchesController < Frontend::FrontendController
       @match.update_attribute(
         :average_score, average_score
       )
-      respond_to do |format| 
-        format.js
-        format.html { redirect_to @user }    
-      end
+      # respond_to do |format| 
+      #  format.js
+      #  format.html { redirect_to @user }    
+      # end
+      redirect_to frontend_user_tourney_path(@user, @tourney)
     else
       flash['error'] = "Invalid URL!"
-      redirect_to user_path(@user)
+      redirect_to frontend_user_tourney_path(@user, @tourney)
     end
 
   end
@@ -86,9 +90,6 @@ class Frontend::MatchesController < Frontend::FrontendController
       @match = Match.find(params[:id])
     end
     private
-    def check_if_admin?  
-        redirect_to root_path if !is_admin?
-    end
     # Only allow a list of trusted parameters through.
     def match_params
       params.require(:match).permit(:mp_link, :warmup, :matchcost, :average_score)
