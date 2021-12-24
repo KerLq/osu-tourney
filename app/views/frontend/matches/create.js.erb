@@ -1,0 +1,13 @@
+if ($('.alert').length) {
+    $('.alert').remove();
+}
+
+var $div = $("<div>", {"class": "alert"});
+$($div).insertAfter('.beta');
+var $div_message = $("<div>", {"class": "alert__notice"});
+$div_message.text("<%= flash[:notice] %>")
+$($div).append($div_message);
+
+$('.popup').remove();
+
+$('.tourney__stats').append("<%= j render @match if !@match.nil? %>");

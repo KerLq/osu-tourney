@@ -1,17 +1,18 @@
 .tourney-info {
-    margin-bottom: 50px;
     text-align: center;
     background: #282828;
     padding: 50px;
     font-size: 1.6em;
+    box-shadow: 0px 0px 10px 3px black;
 }
 
 .tourney {
+
     &__header {
         display: flex;
         justify-content: space-between;
     }
-    margin: 0 auto;
+    margin: 50px auto;
     width: 70%;
     //border: 1px solid cyan;
     &__player {

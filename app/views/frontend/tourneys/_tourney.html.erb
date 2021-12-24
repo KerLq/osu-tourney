@@ -1,8 +1,6 @@
 <div class="tourney-card-advanced animatetransition">
-    <div class="tourney-card-advanced__title"> <%= tourney.title %> </div> <br>
-    <div class="tourney-card-advanced__spreadsheet"> <%= link_to 'Spreadsheet', tourney.spreadsheet, target: '_blank' %> </div>
-    <div class="tourney-card-advanced__created_at"> </div>
-    <div class="tourney-card-advanced__link"> <%= link_to 'Tourney Page', frontend_user_tourney_path(user, tourney) %> </div>
-    <% image_tag(tourney.cover_image) if !tourney.cover_image.nil? %>
-    
+    <%= link_to image_tag(tourney.cover_image, class: 'tourney-card-advanced__cover-image'), frontend_user_tourney_path(user, tourney) if !tourney.cover_image.nil? %>
+    <div class="tourney-card-advanced__title">
+        <span class="tourney-card-advanced__text"> <%= tourney.title %> </span>    
+    </div>
 </div>

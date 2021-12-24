@@ -30,32 +30,40 @@ class Frontend::MatchesController < Frontend::FrontendController
   # POST /matches or /matches.json
   def create
     url = params[:match][:mp_link]
-    if url =~ URI::regexp
+    respond_to do |format| 
+      if url =~ URI::regexp
       # Correct URL
-      response = apiRequest(url)
-      @user = User.find(params[:user_id])
-      @tourney = @user.tourneys.find(params[:tourney_id])
-      @match = @tourney.matches.create(match_params)
-      scores = @match.filter_match(@user, response) # returns everything needed
-      if scores == "ERROR"
-        flash['error'] = "error"
-        redirect_to user_path(@user)
+        response = apiRequest(url)
+        @user = User.find(params[:user_id])
+        @tourney = @user.tourneys.find(params[:tourney_id])
+        @match = @tourney.matches.new(match_params)
+        scores = @match.filter_match(@user, response) # returns everything needed
+        if scores.empty?
+          @match = ""
+          flash.now[:notice] = "Invalid MP-Link!"
+          format.js
+          format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+        else
+          average_score = @match.calculate_average_score(scores)
+          if @match.save
+            @match.update_attribute(
+              :average_score, average_score
+            )
+            flash.now[:notice] = "Match has been successfully uploaded"
+            format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+            format.js
+          else
+            flash.now[:notice] = "Match has not been uploaded!"
+            format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+            format.js
+          end
+        end
+      else
+        flash.now[:notice] = "Invalid URL!"
+        format.html { render :new }
+        format.js
       end
-      average_score = @match.calculate_average_score(scores)
-      
-      @match.update_attribute(
-        :average_score, average_score
-      )
-      # respond_to do |format| 
-      #  format.js
-      #  format.html { redirect_to @user }    
-      # end
-      redirect_to frontend_user_tourney_path(@user, @tourney)
-    else
-      flash['error'] = "Invalid URL!"
-      redirect_to frontend_user_tourney_path(@user, @tourney)
     end
-
   end
 
   # PATCH/PUT /matches/1 or /matches/1.json

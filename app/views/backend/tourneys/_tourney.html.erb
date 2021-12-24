@@ -14,8 +14,5 @@
         <li class="tourney-stats__item user-data__avatar"> <%= link_to image_tag("link.png", class: 'avatar__img avatar__img--inverted'), backend_user_tourney_path(@user, tourney), target: '_blank' %> </li>
         </ul>
         <ul class="matches-card">
-        <% tourney.matches.each do |match| %>
-            <%= render partial: 'matches/match', locals: {match: match, tourney: tourney} %>
-        <% end %>
     </ul>
 </div>

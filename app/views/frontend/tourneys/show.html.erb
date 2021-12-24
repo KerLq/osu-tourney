@@ -8,7 +8,7 @@
 <div class="tourney">
   <div class="tourney__header">
     <div class="tourney__player"> All Matches - Player: <strong> <%= @user.username %> </strong> </div>
-      <%= link_to 'Upload Match', new_frontend_user_tourney_match_path(@user, @tourney), class: 'button__user-page' %>
+      <%= link_to 'Upload Match', new_frontend_user_tourney_match_path(@user, @tourney), class: 'button__user-page', remote: true %>
   </div>
   <div class="tourney__stats">
     <%= render @matches %>

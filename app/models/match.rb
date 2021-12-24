@@ -2,7 +2,8 @@ class Match < ApplicationRecord
     #attr_accessible :mp_link, :warmup, :matchcost, :average_score
     belongs_to :tourney
     before_create :randomize_id
-
+    #validate_presence_of :mp_link
+    #validates_numericality_of :warmup, greater_than: -1, less_than: 3
     def self.calculate_matchcost
 
     end
@@ -12,7 +13,7 @@ class Match < ApplicationRecord
         for i in scores
             average_score += i;
         end
-        average_score = average_score / scores.count
+        average_score = average_score / scores.count if scores.count != 0
     end
     
     def randomize_id
@@ -41,9 +42,6 @@ class Match < ApplicationRecord
                     end
                 end
             end
-        end
-        if scores.nil?
-            "ERROR"
         end
         scores
     end

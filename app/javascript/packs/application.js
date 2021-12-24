@@ -11,8 +11,6 @@ import "jquery"
 Rails.start()
 ActiveStorage.start()
 
-import "packs/form"
-import "packs/parse"
 import "packs/tourney/tourney-card-advanced"
 
 require("trix")
