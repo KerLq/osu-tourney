@@ -12,35 +12,35 @@ class Frontend::TourneysController < Frontend::FrontendController
     !forumpost_id.match("\d+/").nil? ? true : false
   end
 
-  def forumpost ## WORK TO DO - GET IT WORK!
-    @user = User.find(params[:user_id])
-    forumpost_id = params[:tourney][:forumpost]
-    forumpost_id = forumpost_id.match(/\d+/)[0]
-    url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
-    response = apiRequest(url)
-    title = response['topic']['title']
-    id = response['topic']['id']
-    timestamp = response['topic']['created_at']
-    timestamp = timestamp[0..9]
-    cover_image = response['posts'][0]['body']['raw']
-    urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
-    cover_image = urls[0]
+  # def forumpost ## WORK TO DO - GET IT WORK!
+  #   @user = User.find(params[:user_id])
+  #   forumpost_id = params[:tourney][:forumpost]
+  #   forumpost_id = forumpost_id.match(/\d+/)[0]
+  #   url = URI("https://osu.ppy.sh/api/v2/forums/topics/#{forumpost_id}")
+  #   response = apiRequest(url)
+  #   title = response['topic']['title']
+  #   id = response['topic']['id']
+  #   timestamp = response['topic']['created_at']
+  #   timestamp = timestamp[0..9]
+  #   cover_image = response['posts'][0]['body']['raw']
+  #   urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
+  #   cover_image = urls[0]
 
-    spreadsheet = ""
-    urls.each do |url|
-      if url.include? "spreadsheets"
-        spreadsheet = url
-      end
-    end
+  #   spreadsheet = ""
+  #   urls.each do |url|
+  #     if url.include? "spreadsheets"
+  #       spreadsheet = url
+  #     end
+  #   end
 
-    year = timestamp[0..3]
-    month = timestamp[5..6]
-    day = timestamp[8..9]
+  #   year = timestamp[0..3]
+  #   month = timestamp[5..6]
+  #   day = timestamp[8..9]
 
-    created_at = "#{day}.#{month}.#{year}"
+  #   created_at = "#{day}.#{month}.#{year}"
 
-    return title, year, month, id, spreadsheet, cover_image, created_at
-  end
+  #   return title, year, month, id, spreadsheet, cover_image, created_at
+  # end
   
   # GET /tourneys/1 or /tourneys/1.json
   def show
@@ -62,17 +62,19 @@ class Frontend::TourneysController < Frontend::FrontendController
   # POST /tourneys or /tourneys.json
   def create # Instead of 'find_by' use 'find_or_create_by' -- # Check if entry exists BEFORE doing apirequest
     forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
+    
     debugger
-    #osuApi.getForumpost(forumpost_id)
+    response = osuApi.getForumpost(forumpost_id)
     @user = User.find(params[:user_id])
 
     respond_to do |format|
       if !@user.tourneys.exists?(forumpost_id: forumpost_id)
-        data = forumpost
-        title = data[0]
-        forumpost_id = data[3]
-        spreadsheet = data[4]
-        cover_image = data[5]
+        fetchedData = Tourney.fetchData(response)
+        debugger
+        title = fetchedData[0]
+        forumpost_id = fetchedData[3]
+        spreadsheet = fetchedData[4]
+        cover_image = fetchedData[5]
         @tourney = @user.tourneys.new(
           title: title,
           forumpost_id: forumpost_id,

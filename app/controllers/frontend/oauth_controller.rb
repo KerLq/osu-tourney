@@ -17,14 +17,13 @@ class Frontend::OauthController < Frontend::FrontendController
       Rails.configuration.x.oauth.client_secret,
       Rails.configuration.x.oauth.redirect_uri
     )
-    setOsuApi(@osuApi)
-      
-  end
-
- # The OAuth callback
- def oauth_callback
-    # Make a call to exchange the authorization_code for an access_token
     
+  end
+  
+  # The OAuth callback
+  def oauth_callback
+    # Make a call to exchange the authorization_code for an access_token
+    setOsuApi(@osuApi)
     #@@callout = @oauth_client.auth_code.get_token(params[:code])
     osuApi.setToken(params[:code])
     #@oauth_client.setAccessToken
@@ -46,7 +45,6 @@ class Frontend::OauthController < Frontend::FrontendController
     user = User.create_from_oauth(player)
 
     session[:user_id] = user.id
-    session[:access_token] = osuApi.getAccessToken
     
     #set_access_token(@token)
     redirect_to frontend_root_path # last visited page
