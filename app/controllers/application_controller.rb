@@ -60,10 +60,12 @@ class ApplicationController < ActionController::Base
             "Accept" => "application/json",
             "Authorization" => "Bearer #{access_token}"
         }
+       
         response = HTTParty.get(url,
             body: params.to_json,
             headers: headers
         )
+        #response = HTTParty.get(url)
         response.parsed_response
     end
 end

@@ -26,11 +26,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'httparty'
 gem 'open-uri'
-gem 'oauth2'
+#gem 'oauth2'
 gem 'jwt'
 gem 'activerecord-session_store'
 gem 'rack-cors'
 gem 'faraday'
+gem 'osu-api', '0.2.0', :path => '~/osu-api/'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

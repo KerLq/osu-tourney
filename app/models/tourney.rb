@@ -2,7 +2,7 @@ class Tourney < ApplicationRecord
     belongs_to :user
     has_many :matches
     before_create :randomize_id
-
+    validates :user, presence: true
 
     private
     def randomize_id

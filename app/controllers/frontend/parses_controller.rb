@@ -9,14 +9,14 @@ class Frontend::ParsesController < Frontend::FrontendController
     end
 
     def parse
-        #url = "https://osu.ppy.sh/community/matches/#{params[:parse][:id]}"
+        url = "https://osu.ppy.sh/community/matches/#{params[:parse][:id]}"
         url = params[:url]
-        # unparsed_apge = 
-        # parsed_page = Nokogiri::HTML(unparsed_page)
-        # parsed_page = parsed_page.css('script')[11]
-        # @parsed_json = ActiveSupport::JSON.decode(@parsed_page)
-        # parsed_page.gsub!(/\"/, '\'')
-        # @json = JSON.parse(parsed_page)
+        unparsed_apge = 
+        parsed_page = Nokogiri::HTML(unparsed_page)
+        parsed_page = parsed_page.css('script')[11]
+        @parsed_json = ActiveSupport::JSON.decode(@parsed_page)
+        parsed_page.gsub!(/\"/, '\'')
+        @json = JSON.parse(parsed_page)
 
         #Stehen lassen!
         # i = 0 

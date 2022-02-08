@@ -1,3 +1,9 @@
+PATH
+  remote: ../osu-api
+  specs:
+    osu-api (0.2.0)
+      oauth2 (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -263,8 +269,8 @@ DEPENDENCIES
   jwt
   listen (~> 3.3)
   nokogiri (~> 1.6, >= 1.6.8)
-  oauth2
   open-uri
+  osu-api (= 0.2.0)!
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.4)

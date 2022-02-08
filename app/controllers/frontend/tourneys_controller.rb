@@ -1,6 +1,6 @@
 class Frontend::TourneysController < Frontend::FrontendController
   before_action :set_tourney, only: %i[ show edit update destroy ]
-  before_action :require_permission, only: [:new, :edit, :update, :destroy]
+  before_action :require_permission, only: [:new, :edit, :update, :destroy, :create]
   after_action :save_my_previous_url
 
   # GET /tourneys or /tourneys.json
@@ -61,10 +61,10 @@ class Frontend::TourneysController < Frontend::FrontendController
   
   # POST /tourneys or /tourneys.json
   def create # Instead of 'find_by' use 'find_or_create_by' -- # Check if entry exists BEFORE doing apirequest
-    forumpost_id = params[:tourney][:forumpost]
-    forumpost_id = forumpost_id.match(/\d+/)[0]
+    forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
+    debugger
+    #osuApi.getForumpost(forumpost_id)
     @user = User.find(params[:user_id])
-    @successful = false
 
     respond_to do |format|
       if !@user.tourneys.exists?(forumpost_id: forumpost_id)
@@ -86,12 +86,14 @@ class Frontend::TourneysController < Frontend::FrontendController
             format.js
           else
             flash.now[:notice] = "Failed!"
-            format.html { render :new }
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @tourney.errors, status: :unprocessable_entity }
             format.js
           end
       else
         flash.now[:notice] = "Failed!"
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: "error", status: :unprocessable_entity }
         format.js
       end
     end
@@ -131,8 +133,7 @@ class Frontend::TourneysController < Frontend::FrontendController
 
     def require_permission
       if current_user != User.find(params[:user_id])
-        flash[:error] = "Permission Denied!"
-        redirect_to session[:my_previous_url]
+        redirect_to frontend_user_path(current_user), notice: "Permission Denied!"
       end
     end
 

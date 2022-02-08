@@ -33,7 +33,8 @@ class Frontend::MatchesController < Frontend::FrontendController
     respond_to do |format| 
       if url =~ URI::regexp
       # Correct URL
-        response = apiRequest(url)
+        match_id = url.match(/\d+/)[0]
+        response = osuApi.getMatch(match_id)
         @user = User.find(params[:user_id])
         @tourney = @user.tourneys.find(params[:tourney_id])
         @match = @tourney.matches.new(match_params)

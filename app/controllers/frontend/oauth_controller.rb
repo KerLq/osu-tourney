@@ -1,27 +1,44 @@
 class Frontend::OauthController < Frontend::FrontendController
-    def initialize
-        @oauth_client = OAuth2::Client.new(
-            Rails.configuration.x.oauth.client_id,
-            Rails.configuration.x.oauth.client_secret,
-            authorize_url: '/oauth/authorize?scope=public',
-            site: Rails.configuration.x.oauth.idp_url,
-            token_url: '/oauth/token', # Check again
-            redirect_uri: Rails.configuration.x.oauth.redirect_uri,
-        )
-      end
+  def initialize
+    #@oauth_client = OAuth2::Client.new(
+    #debugger
+    #Osu::Oauth::OsuOauth.new
+    # @oauth_client = OAuth2::Client.new(
+    #   Rails.configuration.x.oauth.client_id,
+    #   Rails.configuration.x.oauth.client_secret,
+    #   authorize_url: '/oauth/authorize?scope=public',
+    #   site: Rails.configuration.x.oauth.idp_url,
+    #   token_url: '/oauth/token', # Check again
+    #   redirect_uri: Rails.configuration.x.oauth.redirect_uri,
+    # )
+    
+    @osuApi = Osu::Api::OAuth.new(
+      Rails.configuration.x.oauth.client_id,
+      Rails.configuration.x.oauth.client_secret,
+      Rails.configuration.x.oauth.redirect_uri
+    )
+    setOsuApi(@osuApi)
+      
+  end
 
  # The OAuth callback
  def oauth_callback
     # Make a call to exchange the authorization_code for an access_token
-    @@callout = @oauth_client.auth_code.get_token(params[:code])
+    
+    #@@callout = @oauth_client.auth_code.get_token(params[:code])
+    osuApi.setToken(params[:code])
+    #@oauth_client.setAccessToken
+    
+    #@oauth_client.
     # Extract the access token from the response
     #debugger
-    @token = @@callout.to_hash[:access_token]
+    #@token = @@callout.to_hash[:access_token]
     
-    player = @@callout.get('api/v2/me/osu')
-
-
-    player = player.parsed
+    #player = @@callout.get('api/v2/me/osu')
+    player = osuApi.getOwnData
+    debugger
+    #player = player.parsed
+    
     if player['id'].nil?
       flash[:error] = "Login failed!"
       redirect_to root_path
@@ -29,7 +46,9 @@ class Frontend::OauthController < Frontend::FrontendController
     user = User.create_from_oauth(player)
 
     session[:user_id] = user.id
-    set_access_token(@token)
+    session[:access_token] = osuApi.getAccessToken
+    
+    #set_access_token(@token)
     redirect_to frontend_root_path # last visited page
   end
 
@@ -46,6 +65,6 @@ class Frontend::OauthController < Frontend::FrontendController
   end
 
   def login
-    redirect_to @oauth_client.auth_code.authorize_url
+    redirect_to @osuApi.auth_code.authorize_url
   end
 end
