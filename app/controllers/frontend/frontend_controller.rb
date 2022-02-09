@@ -1,15 +1,15 @@
 class Frontend::FrontendController < ApplicationController
-    
+
     @@osuApi = nil
 
-    def setOsuApi(oauth)
-        @@osuApi = oauth
-        if !oauth.nil?
-            session[:access_token] = oauth
-        end
-    end
+    # def setApi
+    #     if session[:access_token] && @@osuApi.nil?
+    #         @@osuApi = Osu::Api::Api.new(session[:access_token])
+    #     end
+    #     debugger
+    # end
 
     def osuApi
-        session[:access_token]
+        @@osuApi ||= Osu::Api::Api.new(session[:access_token]) if session[:access_token]
     end
 end
