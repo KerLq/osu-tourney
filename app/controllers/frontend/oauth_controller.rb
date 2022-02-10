@@ -12,7 +12,7 @@ class Frontend::OauthController < Frontend::FrontendController
     #   redirect_uri: Rails.configuration.x.oauth.redirect_uri,
     # )
     
-    @@osuOAuth = Osu::Api::OAuth.new(
+    @@OAuthOsu = Osu::Api::OAuth.new(
       Rails.configuration.x.oauth.client_id,
       Rails.configuration.x.oauth.client_secret,
       Rails.configuration.x.oauth.redirect_uri
@@ -22,22 +22,10 @@ class Frontend::OauthController < Frontend::FrontendController
   
   # The OAuth callback
   def oauth_callback
-    # Make a call to exchange the authorization_code for an access_token
-    #setOsuApi(@osuApi)
-    #cookies[:api] = @osuApi
-    #@@callout = @oauth_client.auth_code.get_token(params[:code])
-    @@osuOAuth.setToken(params[:code])
-    #@oauth_client.setAccessToken
-    
-    #@oauth_client.
-    # Extract the access token from the response
-    #debugger
-    #@token = @@callout.to_hash[:access_token]
-    
-    #player = @@callout.get('api/v2/me/osu')
-    player = @@osuOAuth.getOwnData
-    #debugger
-    #player = player.parsed
+
+    @@OAuthOsu.setToken(params[:code])
+
+    player = @@OAuthOsu.getOwnData
     
     if player['id'].nil?
       flash[:error] = "Login failed!"
@@ -46,8 +34,7 @@ class Frontend::OauthController < Frontend::FrontendController
     user = User.create_from_oauth(player)
 
     session[:user_id] = user.id
-    session[:access_token] = @@osuOAuth.getAccessToken
-    #set_access_token(@token)
+    session[:access_token] = @@OAuthOsu.getAccessToken
     redirect_to frontend_root_path # last visited page
   end
 
@@ -64,6 +51,6 @@ class Frontend::OauthController < Frontend::FrontendController
   end
 
   def login
-    redirect_to @@osuOAuth.auth_code.authorize_url
+    redirect_to @@OAuthOsu.auth_code.authorize_url
   end
 end
