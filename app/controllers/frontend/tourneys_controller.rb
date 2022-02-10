@@ -64,7 +64,7 @@ class Frontend::TourneysController < Frontend::FrontendController
     forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
     
     debugger
-    #response = osuApi.getForumpost(forumpost_id)
+    response = osuApi.getForumpost(forumpost_id)
     @user = User.find(params[:user_id])
 
     respond_to do |format|

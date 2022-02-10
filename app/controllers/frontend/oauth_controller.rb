@@ -15,7 +15,8 @@ class Frontend::OauthController < Frontend::FrontendController
     @@OAuthOsu = Osu::Api::OAuth.new(
       Rails.configuration.x.oauth.client_id,
       Rails.configuration.x.oauth.client_secret,
-      Rails.configuration.x.oauth.redirect_uri
+      Rails.configuration.x.oauth.redirect_uri,
+      scope: 'public'
     )
     
   end
