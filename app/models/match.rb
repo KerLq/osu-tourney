@@ -4,6 +4,16 @@ class Match < ApplicationRecord
     before_create :randomize_id
     #validate_presence_of :mp_link
     #validates_numericality_of :warmup, greater_than: -1, less_than: 3
+
+    after_create_commit {
+        broadcast_append_to(
+            tourney, 
+            partial: "frontend/matches/match", 
+            locals: {match: self},
+            target: "tourneys"
+        )
+    }
+    after_destroy_commit { broadcast_remove_to "matches" }
     def self.calculate_matchcost
 
     end

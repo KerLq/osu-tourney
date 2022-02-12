@@ -4,9 +4,12 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
+import { Turbo } from "@hotwired/turbo-rails"
+Turbo.session.drive = false
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
+import "../controllers"
 
 Rails.start()
 ActiveStorage.start()

@@ -85,12 +85,12 @@ class Frontend::TourneysController < Frontend::FrontendController
           if @tourney.save
             flash.now[:notice] = "Successful!"
             format.html { redirect_to frontend_user_path(@user) }
-            format.js
+            #format.js
           else
             flash.now[:notice] = "Failed!"
             format.html { render :new, status: :unprocessable_entity }
             format.json { render json: @tourney.errors, status: :unprocessable_entity }
-            format.js
+            #format.js
           end
       else
         flash.now[:notice] = "Failed!"

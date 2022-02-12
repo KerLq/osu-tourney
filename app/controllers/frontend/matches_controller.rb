@@ -42,8 +42,8 @@ class Frontend::MatchesController < Frontend::FrontendController
         if scores.empty?
           @match = ""
           flash.now[:notice] = "Invalid MP-Link!"
-          format.js
           format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+          format.js
         else
           average_score = @match.calculate_average_score(scores)
           if @match.save
@@ -51,18 +51,19 @@ class Frontend::MatchesController < Frontend::FrontendController
               :average_score, average_score
             )
             flash.now[:notice] = "Match has been successfully uploaded"
-            format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+            #format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+            #format.turbo_stream { turbo_stream.prepend('.tourney__stats', "frontend/matches/match") }
             format.js
           else
             flash.now[:notice] = "Match has not been uploaded!"
             format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
-            format.js
+            #format.js
           end
         end
       else
         flash.now[:notice] = "Invalid URL!"
         format.html { render :new }
-        format.js
+        #format.js
       end
     end
   end

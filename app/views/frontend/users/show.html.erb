@@ -21,11 +21,9 @@
   <div class="user-page__stats">
 
   </div>
-
-  <div class="user-page__tourney-cards">
-    <%= render partial: 'frontend/tourneys/tourney', collection: @tourneys, locals: {user: @user} %>
-  </div>
-
+    <div class="user-page__tourney-cards">
+      <%= render partial: 'frontend/tourneys/tourney', collection: @tourneys, locals: {user: @user} %>
+    </div>
 
 </div>
 
