@@ -47,6 +47,8 @@ class Frontend::TourneysController < Frontend::FrontendController
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.find(params[:id])
     @matches = @tourney.matches.all
+    @matches = @matches.order("created_at ASC")
+
   end
   
   # GET /tourneys/new

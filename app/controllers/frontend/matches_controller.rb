@@ -6,6 +6,7 @@ class Frontend::MatchesController < Frontend::FrontendController
     @user = User.find(params[:user_id])
     tourney = @user.tourneys.find(params[:tourney_id])
     @matches = @tourney.matches.all
+    @matches = @matches.order("created_at ASC")
 
   end
 
@@ -14,6 +15,7 @@ class Frontend::MatchesController < Frontend::FrontendController
     @user = User.find(params[:user_id])
     @tourney = @user.tourneys.find(params[:id])
     @matches = @tourney.matches.all
+    @matches = @matches.order("created_at ASC")
   end
 
   # GET /matches/new
@@ -29,56 +31,72 @@ class Frontend::MatchesController < Frontend::FrontendController
 
   # POST /matches or /matches.json
   def create
-    url = params[:match][:mp_link]
-    respond_to do |format| 
-      if url =~ URI::regexp
-      # Correct URL
-        match_id = url.match(/\d+/)[0]
-        response = osuApi.getMatch(match_id)
-        @user = User.find(params[:user_id])
-        @tourney = @user.tourneys.find(params[:tourney_id])
-        @match = @tourney.matches.new(match_params)
-        scores = @match.filter_match(@user, response) # returns everything needed
-        if scores.empty?
-          @match = ""
-          flash.now[:notice] = "Invalid MP-Link!"
-          format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
-          format.js
-        else
-          average_score = @match.calculate_average_score(scores)
-          if @match.save
-            @match.update_attribute(
-              :average_score, average_score
-            )
-            flash.now[:notice] = "Match has been successfully uploaded"
-            #format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
-            #format.turbo_stream { turbo_stream.prepend('.tourney__stats', "frontend/matches/match") }
-            format.js
-          else
-            flash.now[:notice] = "Match has not been uploaded!"
-            format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
-            #format.js
-          end
-        end
-      else
-        flash.now[:notice] = "Invalid URL!"
-        format.html { render :new }
-        #format.js
-      end
-    end
-  end
 
-  # PATCH/PUT /matches/1 or /matches/1.json
-  def update
-    respond_to do |format|
-      if @match.update(match_params)
-        format.html { redirect_to @match, notice: "Match was successfully updated." }
-        format.json { render :show, status: :ok, location: @match }
+    match_id = params[:match][:mp_link].match(/\d+/)[0]
+    response = osuApi.getMatch(match_id)
+    @user = User.find(params[:user_id])
+    @tourney = @user.tourneys.find(params[:tourney_id])
+    @match = @tourney.matches.new(match_params)
+    data = @match.filter_match(@user, response)
+    respond_to do |format| 
+      if @match.save
+        format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+        format.js
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
+        format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+        format.js
       end
     end
+  #   url = params[:match][:mp_link]
+  #   respond_to do |format| 
+  #     if url =~ URI::regexp
+  #     # Correct URL
+  #       match_id = url.match(/\d+/)[0]
+  #       response = osuApi.getMatch(match_id)
+  #       @user = User.find(params[:user_id])
+  #       @tourney = @user.tourneys.find(params[:tourney_id])
+  #       @match = @tourney.matches.new(match_params)
+  #       scores = @match.filter_match(@user, response) # returns everything needed
+  #       if scores.empty?
+  #         @match = ""
+  #         flash.now[:notice] = "Invalid MP-Link!"
+  #         format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+  #         format.js
+  #       else
+  #         average_score = @match.calculate_average_score(scores)
+  #         if @match.save
+  #           @match.update_attribute(
+  #             :average_score, average_score
+  #           )
+  #           flash.now[:notice] = "Match has been successfully uploaded"
+  #           #format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+  #           #format.turbo_stream { turbo_stream.prepend('.tourney__stats', "frontend/matches/match") }
+  #           format.js
+  #         else
+  #           flash.now[:notice] = "Match has not been uploaded!"
+  #           format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+  #           #format.js
+  #         end
+  #       end
+  #     else
+  #       flash.now[:notice] = "Invalid URL!"
+  #       format.html { render :new }
+  #       #format.js
+  #     end
+  #   end
+  # end
+
+  # # PATCH/PUT /matches/1 or /matches/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @match.update(match_params)
+  #       format.html { redirect_to @match, notice: "Match was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @match }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @match.errors, status: :unprocessable_entity }
+  #     end
+  #   end
   end
 
   # DELETE /matches/1 or /matches/1.json

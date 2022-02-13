@@ -13,8 +13,9 @@ class Match < ApplicationRecord
             target: "tourneys"
         )
     }
-    after_destroy_commit { broadcast_remove_to "matches" }
-    def self.calculate_matchcost
+after_destroy_commit { broadcast_remove_to "matches", target: "match_#{id}" }
+    
+    def calculate_matchcost
 
     end
 
@@ -35,6 +36,9 @@ class Match < ApplicationRecord
     end
 
     def filter_match(user, json)
+        team_color = "none"
+        blue = 0
+        red = 0
         scores = []
         total_maps_played = []
         x = 0
@@ -45,14 +49,25 @@ class Match < ApplicationRecord
                 x += 1
                 total_maps_played.append(h)
                 for i in h['game']['scores']
+                    if i.values[14]['team'] == 'blue'
+                        blue = blue + i.values[4]
+                    elsif i.values[14]['team'] == 'red'
+                        red = red + i.values[4]
+                    end
                     y += 1
                     if i.values.include? user.user_id # --> z.B. 9146098
                         z += 1
+                        team_color = i.values[14]['team']
                         scores.append(i['score']) # Scores werden hinzugefügt
                     end
                 end
             end
         end
-        scores
+        won = false
+        if team_color == blue && blue > red || team_color == red && red > blue
+            won = true
+        end
+        debugger
+        return scores, won
     end
 end
