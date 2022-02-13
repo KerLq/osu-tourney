@@ -15,6 +15,7 @@ Rails.start()
 ActiveStorage.start()
 
 import "packs/tourney/tourney-card-advanced"
+import "packs/navbar"
 
 require("trix")
 require("@rails/actiontext")

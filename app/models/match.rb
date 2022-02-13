@@ -67,7 +67,7 @@ after_destroy_commit { broadcast_remove_to "matches", target: "match_#{id}" }
         if team_color == blue && blue > red || team_color == red && red > blue
             won = true
         end
-        debugger
+        
         return scores, won
     end
 end

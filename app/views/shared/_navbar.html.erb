@@ -1,9 +1,16 @@
-<nav class="nav">
-    <div class="nav__logo"> <%= link_to image_tag("logo.png", class: 'avatar__logo'), frontend_root_path %> </div>
-    <ul class="navbar">
-        <li class="navbar__items"> Home </li>
-        <li class="navbar__items"> About Us </li>
-        <li class="navbar__items"> Discord </li>
+<nav class="navbar">
+    <div class="navbar__logo"> <%= link_to image_tag("https://osu.ppy.sh/assets/images/osu-logo-white.59d385da.svg", class: 'avatar__logo'), frontend_root_path %> </div>
+    <div class="navbar__hamburger-div">
+        <a href="#" class="navbar__hamburger">
+            <span class="navbar__items--hamburger"></span>
+            <span class="navbar__items--hamburger"></span>
+            <span class="navbar__items--hamburger"></span>
+        </a>
+    </div>
+    <ul class="navbar__links">
+        <li class="navbar__items"> <%= link_to 'Home', frontend_root_path, class: 'navbar__home' %> </li>
+        <li class="navbar__items"> <%= link_to 'About', frontend_root_path, class: 'navbar__about' %> </li>
+        <li class="navbar__items"> <%= link_to 'Discord', frontend_root_path, class: 'navbar__discord' %> </li>
         <% if !logged_in? %>
             <li class="navbar__items"> <%= link_to 'Login', frontend_login_path %> </li>
         <% else %>

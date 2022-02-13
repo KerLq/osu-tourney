@@ -31,7 +31,7 @@ gem 'jwt'
 gem 'activerecord-session_store'
 gem 'rack-cors'
 gem 'faraday'
-gem 'osu-api', '0.2.6', :path => '~/osu-api/'
+gem 'osu-api', '0.2.7', :path => '~/osu-api/'
 gem 'hotwire-rails'
 
 # Reduces boot times through caching; required in config/boot.rb

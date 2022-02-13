@@ -1,7 +1,7 @@
 PATH
   remote: ../osu-api
   specs:
-    osu-api (0.2.6)
+    osu-api (0.2.7)
       httparty
       oauth2 (~> 1.2)
 
@@ -282,7 +282,7 @@ DEPENDENCIES
   listen (~> 3.3)
   nokogiri (~> 1.6, >= 1.6.8)
   open-uri
-  osu-api (= 0.2.6)!
+  osu-api (= 0.2.7)!
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.4)
