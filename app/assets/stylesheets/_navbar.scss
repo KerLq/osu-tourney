@@ -9,25 +9,32 @@
     width: 100%;
     @media (max-width: 580px) {
         background: #101010;
-        margin: 0;
         max-width: 100%;
         flex-direction: column;
         align-items: flex-start;
+        display: block;
     }
+
+    &__logo {
+        @media (max-width: 580px) {
+            margin-left: 10px;
+        }
+    }
+
     &__links {
         display: flex;
-        margin: 0;
         padding: 0;
         align-items: center;
+                
         @media (max-width: 580px) {
             display: none;
             flex-direction: column;
-            width: 100%;
+            width: 100%; 
         }
         &--active {
             display: flex;
         }
-
+        
     }
     &__items {
         list-style: none;
@@ -44,11 +51,15 @@
             text-decoration: none;
         }
         @media (max-width: 580px) {
+            //background: #131313;
             text-align: center;
-        }
-        &:hover {
-            background: #232323;
-            transition: background 100ms linear;
+            &:nth-child(2n+1) {
+                background: #131313;
+            }
+            &:hover {
+                background: #232323;
+                transition: background 100ms linear;
+            }
         }
     }
     &__hamburger {
@@ -60,28 +71,33 @@
         justify-content: space-between;
         width: 30px;
         height: 21px;
+
+        &--animation {
+            animation: spin 0.3s forwards;
+        }
+        &--reverse-animation {
+            animation: reverse-spin 0.3s forwards;
+        }
+
         @media (max-width: 580px) {
             display: flex;
         }
         
     }
 }
-
-// &__items {
-//     //opacity: 0;
-//     font-size: 22px;
-//     //animation: fadeIn 1s forwards 3s ease-in-out;
-//     cursor: pointer;
-//     margin-left: 40px;
-//     transition: color 150ms ease-in-out;
-//     &:first-child {
-//         justify-content: flex-start;
-//     }
-//     &:hover {
-//         color: cyan;
-//     }
-//     a {
-//         text-decoration: none;
-//         color: white;
-//     }
-// }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+@keyframes reverse-spin {
+    0% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}

@@ -7,6 +7,6 @@
     z-index: 9999;
     &__text {
         text-align: justify;
-        font-size: clamp(9px, 1vw, 20px);
+        font-size: clamp(9px, 0.9vw, 18px);
     }
 }
