@@ -38,11 +38,18 @@ class Frontend::MatchesController < Frontend::FrontendController
     @tourney = @user.tourneys.find(params[:tourney_id])
     @match = @tourney.matches.new(match_params)
     data = @match.filter_match(@user, response)
-    respond_to do |format| 
+    respond_to do |format|
+      if data.nil?
+        
+        format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
+        format.js
+      end
       if @match.save
+        flash.now[:notice] = "Match has been successfully uploaded"
         format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
         format.js
       else
+        flash.now[:notice] = "Match has been successfully uploaded"
         format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
         format.js
       end

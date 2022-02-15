@@ -1,45 +1,45 @@
-.tourney-card {
-    display: flex;
-    //border: 1px solid;
-    width: 100%;
-    height: 70px;
-    background: #101010;
+// .tourney-card {
+//     display: flex;
+//     //border: 1px solid;
+//     width: 100%;
+//     height: 70px;
+//     background: #101010;
     
-    &__color {
-        height: 100%;
-        width: 5px;
-        background: cyan;
-    }
-    &__info {
-        width: 300px;
-        margin-top: 10px;
-        margin-left: 20px;
-    }
-}
+//     &__color {
+//         height: 100%;
+//         width: 5px;
+//         background: cyan;
+//     }
+//     &__info {
+//         width: 300px;
+//         margin-top: 10px;
+//         margin-left: 20px;
+//     }
+// }
 
-.tourney-stats {
-    display: flex;
-    list-style: none;
-    margin-top: 10px;
-    margin-right: 20px;
-    align-items: center;
-    &__item {
-        margin-right: 80px;
-        &:first-child {
-            //margin-right: 500px;
-            width: 400px;
-            max-width: 400px;
-            font-size: large;
-            font-weight: 700;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            a {
-                text-decoration: none;
-            }
-        }
-        &:last-child {
-            margin: 0;
-        }
-    }
-}
+// .tourney-stats {
+//     display: flex;
+//     list-style: none;
+//     margin-top: 10px;
+//     margin-right: 20px;
+//     align-items: center;
+//     &__item {
+//         margin-right: 80px;
+//         &:first-child {
+//             //margin-right: 500px;
+//             width: 400px;
+//             max-width: 400px;
+//             font-size: large;
+//             font-weight: 700;
+//             white-space: nowrap;
+//             overflow: hidden;
+//             text-overflow: ellipsis;
+//             a {
+//                 text-decoration: none;
+//             }
+//         }
+//         &:last-child {
+//             margin: 0;
+//         }
+//     }
+// }

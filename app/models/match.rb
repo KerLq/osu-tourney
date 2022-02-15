@@ -13,7 +13,7 @@ class Match < ApplicationRecord
             target: "tourneys"
         )
     }
-after_destroy_commit { broadcast_remove_to "matches", target: "match_#{id}" }
+    after_destroy_commit { broadcast_remove_to "matches", target: "match_#{id}" }
     
     def calculate_matchcost
 
@@ -36,6 +36,10 @@ after_destroy_commit { broadcast_remove_to "matches", target: "match_#{id}" }
     end
 
     def filter_match(user, json)
+        if !json.to_s.include?("#{user.id}")
+            #return "User has not participated in this Match!"
+            return nil
+        end
         team_color = "none"
         blue = 0
         red = 0
