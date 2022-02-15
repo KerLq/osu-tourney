@@ -13,6 +13,9 @@ class Tourney < ApplicationRecord
         urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
         cover_image = urls[0]
 
+        if cover_image.include?("?")
+            cover_image = cover_image.split("?")[0]
+        end
         spreadsheet = ""
         urls.each do |url|
             if url.include? "spreadsheets"
