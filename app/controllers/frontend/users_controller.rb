@@ -1,6 +1,5 @@
 class Frontend::UsersController < Frontend::FrontendController
   after_action :save_my_previous_url
-  #before_action :require_permission, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users or /users.json
@@ -67,17 +66,7 @@ class Frontend::UsersController < Frontend::FrontendController
         redirect_to @last_page
       end
     end
-    def check_if_user_exist
-      if !User.exists?(params[:id])
-        redirect_to root_path
-      end
-    end
-    def require_permission
-      if current_user != User.find(params[:id])
-        flash[:error] = "Permission Denied!"
-        redirect_to root_path
-      end
-    end
+
     def save_my_previous_url
       # session[:previous_url] is a Rails built-in variable to save last url.
       session[:my_previous_url] = request.fullpath

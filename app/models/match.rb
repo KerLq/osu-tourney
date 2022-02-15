@@ -36,10 +36,9 @@ class Match < ApplicationRecord
     end
 
     def filter_match(user, json)
-        if !json.to_s.include?("#{user.id}")
-            #return "User has not participated in this Match!"
-            return nil
-        end
+        return nil if !json.to_s.include?("#{user.id}")
+        
+        won = false
         team_color = "none"
         blue = 0
         red = 0
@@ -53,13 +52,10 @@ class Match < ApplicationRecord
                 x += 1
                 total_maps_played.append(h)
                 for i in h['game']['scores']
-                    if i.values[14]['team'] == 'blue'
-                        blue = blue + i.values[4]
-                    elsif i.values[14]['team'] == 'red'
-                        red = red + i.values[4]
-                    end
+                    blue = blue + i.values if i.vlaues[14]['team'] == blue
+                    red = red + i.values[4] if i.values[14]['team'] == red
                     y += 1
-                    if i.values.include? user.user_id # --> z.B. 9146098
+                    if i.values.include?(user.user_id) # --> z.B. 9146098
                         z += 1
                         team_color = i.values[14]['team']
                         scores.append(i['score']) # Scores werden hinzugefügt
@@ -67,7 +63,6 @@ class Match < ApplicationRecord
                 end
             end
         end
-        won = false
         if team_color == blue && blue > red || team_color == red && red > blue
             won = true
         end

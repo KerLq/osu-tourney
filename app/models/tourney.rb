@@ -12,15 +12,11 @@ class Tourney < ApplicationRecord
         cover_image = response['posts'][0]['body']['raw']
         urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
         cover_image = urls[0]
+        cover_image = cover_image.split("?")[0] if cover_image.include?("?")
 
-        if cover_image.include?("?")
-            cover_image = cover_image.split("?")[0]
-        end
         spreadsheet = ""
         urls.each do |url|
-            if url.include? "spreadsheets"
-                spreadsheet = url
-            end
+            spreadsheet = url if url.include?("spreadsheets")
         end
 
         year = timestamp[0..3]
