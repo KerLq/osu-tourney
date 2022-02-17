@@ -32,41 +32,37 @@ class Match < ApplicationRecord
             number = SecureRandom.random_number
             number = number.to_s.gsub(/\./mi, '')
             self.id = number
-        end while Match.where(id: self.id).exists?
+        end while Match.exists?(id: self.id)
     end
 
-    def filter_match(user, json)
-        return nil if !json.to_s.include?("#{user.id}")
+    def filter_match(user, response)
+        return nil if response.to_s.exclude?("#{user.id}") || response['events'].to_s.exclude?('"game"=>') || response.has_key?("error")
         
         won = false
         team_color = "none"
         blue = 0
         red = 0
-        scores = []
+        total_score = []
         total_maps_played = []
         x = 0
         y = 0
         z = 0
-        for h in json['events'] do
-            if h.has_key? 'game'
-                x += 1
-                total_maps_played.append(h)
-                for i in h['game']['scores']
-                    blue = blue + i.values if i.vlaues[14]['team'] == blue
-                    red = red + i.values[4] if i.values[14]['team'] == red
-                    y += 1
-                    if i.values.include?(user.user_id) # --> z.B. 9146098
-                        z += 1
-                        team_color = i.values[14]['team']
-                        scores.append(i['score']) # Scores werden hinzugefügt
+
+        response['events'].each do |events|
+            if events.has_key?('game')
+                total_maps_played.append(events)
+                events['game']['scores'].each do |scores|
+                    blue = blue + scores['score'] if scores['match']['team'] == 'blue'
+                    red = red + scores['score'] if scores['match']['team'] == 'red'
+                    if scores.values.include?(user.user_id)
+                        team_color = scores['match']['team']
+                        total_score.append(scores['score'])
                     end
                 end
             end
         end
-        if team_color == blue && blue > red || team_color == red && red > blue
-            won = true
-        end
+        won = true if team_color == blue && blue > red || team_color == red && red > blue
         
-        return scores, won
+        return total_score, won
     end
 end

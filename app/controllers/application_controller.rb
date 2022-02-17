@@ -18,11 +18,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-        if session[:user_id]
-            if !User.where(id: session[:user_id]).empty?
-                User.find(session[:user_id])
-            end
-        end
+        User.find(session[:user_id]) if session[:user_id] && User.exists?(id: session[:user_id])
     end
 
     def is_current_user(user)
@@ -37,33 +33,7 @@ class ApplicationController < ActionController::Base
         logged_in? ? current_user.admin? : false
     end
 
-    def set_access_token(token)
-        if session[:user_id]
-            session[:access_token] = token
-        end
-    end
     def access_token
         session[:access_token]
-    end
-
-    def apiRequest(url, params = "")
-        if url.nil?
-            return "Url nil!"
-        end
-        if params.nil?
-            params = ""
-        end
-        headers = {
-            "Content-Type" => "application/json",
-            "Accept" => "application/json",
-            "Authorization" => "Bearer #{access_token}"
-        }
-       
-        response = HTTParty.get(url,
-            body: params.to_json,
-            headers: headers
-        )
-        #response = HTTParty.get(url)
-        response.parsed_response
     end
 end
