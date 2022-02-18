@@ -12,8 +12,3 @@
     background: url(test.png) repeat-y 0 / 100% auto;
     animation: ani 100000s linear infinite;
 }
-
-@keyframes ani{
-	0%{background-position: 0 0;}
-	100%{background-position: 0 -1vw;}
-}
