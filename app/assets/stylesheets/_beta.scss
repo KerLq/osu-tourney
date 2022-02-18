@@ -1,7 +1,7 @@
 .beta {
     position: sticky;
     top: 0;
-    background: #274a7e;
+    //background: #274a7e;
     padding: 24px;
     text-align: center;
     z-index: 9999;
@@ -9,4 +9,11 @@
         text-align: justify;
         font-size: clamp(9px, 0.9vw, 18px);
     }
+    background: url(test.png) repeat-y 0 / 100% auto;
+    animation: ani 100000s linear infinite;
+}
+
+@keyframes ani{
+	0%{background-position: 0 0;}
+	100%{background-position: 0 -1vw;}
 }
