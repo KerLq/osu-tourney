@@ -6,14 +6,13 @@ class Tourney < ApplicationRecord
 
     def self.fetchData(response)
         title = response['topic']['title']
-        id = response['topic']['id']
+        forumpost_id = response['topic']['id']
         timestamp = response['topic']['created_at']
         timestamp = timestamp[0..9]
         cover_image = response['posts'][0]['body']['raw']
         urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
         cover_image = urls[0]
         cover_image = cover_image.split("?")[0] if cover_image.include?("?")
-        debugger
         spreadsheet = ""
         urls.each do |url|
             spreadsheet = url if url.include?("spreadsheets")
@@ -25,7 +24,16 @@ class Tourney < ApplicationRecord
 
         created_at = "#{day}.#{month}.#{year}"
 
-        return title, year, month, id, spreadsheet, cover_image, created_at
+        data = Hash.new
+        data["title"] = title
+        data["year"] = year
+        data["month"] = month
+        data["forumpost_id"] = forumpost_id
+        data["spreadsheet"] = spreadsheet
+        data["cover_image"] = cover_image
+        data["created_at"] = created_at
+
+        data
     end
 
     private

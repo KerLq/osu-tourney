@@ -43,7 +43,7 @@ class Frontend::MatchesController < Frontend::FrontendController
         flash.now[:notice] = "Invalid MP-Link!"
         format.html { redirect_to frontend_user_tourney_path(@user, @tourney) }
         format.js
-        return
+        return false
       end
       if @match.save
         flash.now[:notice] = "Match has been successfully uploaded"

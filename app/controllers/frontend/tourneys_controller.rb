@@ -33,18 +33,38 @@ class Frontend::TourneysController < Frontend::FrontendController
   
   # POST /tourneys or /tourneys.json
   def create # Instead of 'find_by' use 'find_or_create_by' -- # Check if entry exists BEFORE doing apirequest
-    forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
-    
     @user = User.find(params[:user_id])
+    # redirect_to(frontend_user_path(@user), notice: "Invalid Forumpost!") if params[:tourney][:forumpost].count("0-9") == 0
     
+    # debugger 
+    
+  
     respond_to do |format|
+      
+      if params[:tourney][:forumpost].scan(/\d+/).empty? || !params[:tourney][:forumpost].starts_with?("https://osu.ppy.sh/community/forums/topics/")
+        flash.now[:notice] = "Invalid Forumpost!"
+        format.html { redirect_to frontend_user_path(@user) }
+        format.js
+        return false
+      end
+      forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
+      
       if !@user.tourneys.exists?(forumpost_id: forumpost_id)
         response = osuApi.getForumpost(forumpost_id)
-        fetchedData = Tourney.fetchData(response)
-        title = fetchedData[0]
-        forumpost_id = fetchedData[3]
-        spreadsheet = fetchedData[4]
-        cover_image = fetchedData[5]
+        data = Tourney.fetchData(response)
+
+        if data.nil?
+          flash.now[:notice] = "Invalid Forumpost!"
+          format.html { redirect_to frontend_user_path(@user) }
+          format.js
+          return false
+        end
+
+
+        title = data["title"]
+        forumpost_id = data["forumpost_id"]
+        spreadsheet = data["spreadsheet"]
+        cover_image = data["cover_image"]
         @tourney = @user.tourneys.new(
           title: title,
           forumpost_id: forumpost_id,
@@ -52,15 +72,15 @@ class Frontend::TourneysController < Frontend::FrontendController
           cover_image: cover_image,
           forumpost: params[:tourney][:forumpost]
         )
-          if @tourney.save
-            flash.now[:notice] = "Successful!"
-            format.html { redirect_to frontend_user_path(@user) }
-            format.js
-          else
-            flash.now[:notice] = "Failed!"
-            format.html { render :new, status: :unprocessable_entity }
-            format.js
-          end
+        if @tourney.save
+          flash.now[:notice] = "Successful!"
+          format.html { redirect_to frontend_user_path(@user) }
+          format.js
+        else
+          flash.now[:notice] = "Failed!"
+          format.html { render :new, status: :unprocessable_entity }
+          format.js
+        end
       else
         flash.now[:notice] = "Already exists!"
         format.html { render :new, status: :unprocessable_entity }
