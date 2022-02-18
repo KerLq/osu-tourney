@@ -14,5 +14,4 @@
  *= require_self
  */
 
-@import '_homes.scss';
 @import "./actiontext.scss";

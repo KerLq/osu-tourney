@@ -11,6 +11,8 @@
     &__header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        flex-flow: wrap;
     }
     margin: 50px auto;
     width: 60%;
@@ -21,7 +23,7 @@
         
         font-size: 1.5em;
     }
-
+    
     &__stats {
         display: inline-block;
         width: 100%;

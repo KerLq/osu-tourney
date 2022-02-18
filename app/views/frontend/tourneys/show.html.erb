@@ -7,11 +7,17 @@
 
 <div class="tourney">
   <div class="tourney__header">
-    <div class="tourney__player"> All Matches - Player: <strong> <%= @user.username %> </strong> </div>
-      <% if is_current_user(@user) %>
-        <%= link_to 'Upload Match', new_frontend_user_tourney_match_path(@user, @tourney), class: 'button__user-page', remote: true %>
-      <% end %>
+    <div class="tourney__player">
+      <p>
+        All Matches - Player: <strong> <%= @user.username %> </strong> 
+      </p> 
     </div>
+    <% if is_current_user(@user) %>
+      <div class="tourney__button">
+        <%= link_to 'Upload Match', new_frontend_user_tourney_match_path(@user, @tourney), class: 'button__user-page', remote: true %>
+      </div>
+    <% end %>
+  </div>
     <div id="tourneys" class="tourney__stats">
       <%= turbo_stream_from @tourney %>
       <%= turbo_frame_tag "matches" do %>
