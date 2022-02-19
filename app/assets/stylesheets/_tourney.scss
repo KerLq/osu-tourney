@@ -7,6 +7,10 @@
     font-size: clamp(1rem, 1.3vw, 4rem);
     background: url(test2.png) repeat-y 0 / 100% auto;
     animation: ani 100000s linear infinite;
+    @media (max-width: 580px) {
+        background-size: 200%;
+        animation: ani 50000s linear infinite;
+    } 
 }
 
 .tourney {
