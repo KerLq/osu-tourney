@@ -1,0 +1,47 @@
+.hero {
+    display: flex;
+    &__content {
+
+    }
+    &__header {
+        font-size: 80px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $accent-color;
+    }
+
+    &__description {
+        font-weight: 300;
+    }
+
+    &__buttons {
+        display: flex;
+        &--space {
+            margin-right: 65px;
+        }
+    }
+    &__image {
+        img {
+            height: 500px;
+            width: 500px;
+        }
+    }
+}
+
+.info {
+    &__carousel {
+
+    }
+    &__text {
+
+    }
+}
+
+.statistics {
+    &__list {
+
+    }
+    &__item {
+
+    }
+}
