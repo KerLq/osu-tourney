@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title= page_title
+    %meta(name="viewport" content="width=device-width,initial-scale=1")
+    %link(rel="icon" href="https://cdn.discordapp.com/attachments/849604504613945364/904385120251809802/XOhIzgk.png")
+    =csrf_meta_tags
+    =csp_meta_tag
+    =stylesheet_link_tag 'frontend', 'data-turbo-track': 'reload'
+    =javascript_pack_tag 'application', 'data-turbo-track': 'reload'
+
+  %body
+    =render partial: "shared/alert"
+    =render partial: "shared/navbar"
+    =yield
+    =render partial: "shared/footer"
+
