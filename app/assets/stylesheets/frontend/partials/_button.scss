@@ -35,8 +35,8 @@
 // }
 
 .button {
-    width: 174px;
-    height: 63px;
+    width: 177px;
+    height: 65px;
     border: 2px solid #58CDDD;
     filter: drop-shadow(0px 0px 20px #58CDDD);
     border-radius: 10px;
@@ -46,9 +46,18 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 100ms linear;
     // &:hover {
     //     border: 2px solid #70eeff;
     //     filter: drop-shadow(0px 0px 5px #58CDDD);
     // }
+    &--light {
+        width: 96px;
+        height: 35px;
+        font-size: 18px;
+        font-weight: 400;
+        background: #58CDDD;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        filter: drop-shadow(0px 0px 10px #58CDDD);
+        border-radius: 5px;  
+    }
 }

@@ -12,7 +12,7 @@ html {
 
 body {
     background: #181818;
-    margin: 0 auto;
+    margin: 0 214px;
     overflow-x: hidden;
     font-family: "Raleway", "sans-serif";
     font-weight: 400;
@@ -20,6 +20,12 @@ body {
 
 p, a, span, strong {
     color: white;
+    text-decoration: none;
+}
+a {
+    &:hover {
+        color: $accent-color;
+    }
 }
 input {
     background: #181818;

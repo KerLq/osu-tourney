@@ -1,22 +1,28 @@
 %section.hero
-    .hero__content
-        %p.hero__header Tourney Profile 
-        %p.hero__description
-            dadufsfhiodgfshugzudhafusjdgifhkojhzjdgisfaduzgasfhd
-            aiosjdfsajdgofhkjgpfgksdfjaihguasfhuijokpglpfdskoaj
-            dadufsfhiodgfshugzudhafusjdgifhkojhzjdgisfaduzgasfhd
-            aiosjdfsajdgofhkjgpfgksdfjaihguasfhuijokpglpfdskoaj
-            
-        .hero__buttons
-            =link_to "Try it Out!", frontend_login_path, class: "button hero__buttons--space"
-            =link_to "View Profiles", "#", class: "button"
-    .hero__image
-        =image_tag("test2.png")
+    .gradient_background.gradient_background--nav-included
+    .hero__section
+        .hero__content
+            %p.hero__header Tourney Profile 
+            %p.hero__description
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                sed diam nonumy eirmod tempor invidunt ut labore et
+                dolore magna aliquyam erat, sed diam voluptua. 
+                At vero eos et accusam et justo duo dolores et ea rebum. 
+                Stet clita kasd gubergren, no sea takimata sanctus est
+            .hero__buttons
+                =link_to "Try it Out", frontend_login_path, class: "button hero__buttons--space"
+                =link_to "View Profiles", "#", class: "button"
+        .hero__image
+            =image_tag("test2.png")
+    .hero__community
+        =image_tag("heart icon.svg")
+        %p Made for the osu!community, by the osu!community. Thanks to Hubz for helping out!
 %section.info
     .info__carousel
     .info__text
 
 %section.statistics
+    .gradient_background
     .statistics__list
         .statistics__item
         .statistics__item

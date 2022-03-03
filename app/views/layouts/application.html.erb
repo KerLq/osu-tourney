@@ -13,11 +13,9 @@
   </head>
 
   <body>
-    <%= render partial: "shared/beta_alert"%>
     <%= render partial: "shared/alert"%>
     <%= render partial: "shared/navbar"%>
     <%= yield %>
     <%= render partial: "shared/footer"%>
-    <%= javascript_pack_tag "vanilla-tilt" %>
   </body>
 </html>

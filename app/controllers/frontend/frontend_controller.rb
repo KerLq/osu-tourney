@@ -1,5 +1,5 @@
 class Frontend::FrontendController < ApplicationController
-
+    layout 'frontend'
     @@osuApi = nil
 
     def osuApi
