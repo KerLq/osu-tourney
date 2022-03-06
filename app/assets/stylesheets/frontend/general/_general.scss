@@ -1,21 +1,15 @@
-html {
+*, *::before, *::after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
-    -webkit-box-sizing: inherit;
-    -moz-box-sizing: inherit;
-    box-sizing: inherit;
-}
-
 body {
     background: #181818;
-    margin: 0 214px;
     overflow-x: hidden;
     font-family: "Raleway", "sans-serif";
     font-weight: 400;
+    margin: 0;
 }
 
 p, a, span, strong {
@@ -30,4 +24,23 @@ a {
 input {
     background: #181818;
     color: white;
+}
+// .container {
+//     display: flex;
+//     min-height: 100vh;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     margin: 0 214px;
+// }
+// .content {
+//     border: 2px solid magenta;
+// }
+.container {
+    margin-inline: auto;
+    width: MIN(90%, 93.25rem);
+}
+
+h1 {
+    font-weight: 700;
+    text-transform: uppercase;
 }

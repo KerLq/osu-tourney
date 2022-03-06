@@ -1,0 +1,8 @@
+.statistics-card
+    .statistics-card__content
+        - if defined?(bigger)
+            =image_tag(icon, class: "statistics-card__icon--user")
+        - else
+            =image_tag(icon, class: "statistics-card__icon")
+        %p.statistics-card__number
+            =number

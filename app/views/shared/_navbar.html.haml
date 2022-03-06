@@ -1,27 +1,47 @@
-%nav.navbar
-    %ul.navbar__left
-        %li.navbar__item.navbar__logo
+%header.main-header
+    %nav.main-navbar
+        .main-navbar__logo
             = link_to(image_tag("osu!logo.png"), frontend_root_path)
-        %li.navbar__item
-            = link_to "Home", frontend_root_path, class: "navbar__home"
-        %li.navbar__item
-            = link_to "About", frontend_root_path, class: "navbar__home"
-        %li.navbar__item
-            = link_to "Leaderboard", frontend_root_path, class: "navbar__home"
-        %li.navbar__item
-            = link_to "FAQ", frontend_root_path, class: "navbar__home"
-        %li.navbar__item.navbar__search
-            = link_to(image_tag("search icon.svg"))
-    %ul.navbar__right
-        %li.navbar__item--tight
-            = link_to(image_tag("discord icon.svg"))
-        %li.navbar__item--tight
-            = link_to(image_tag("twitter icon.svg"))
-        %li.navbar__item--tight
-            = link_to(image_tag("github icon.svg"))
-        %li.navbar__item
-            - if logged_in?
-                = link_to(image_tag(current_user.avatar_url, class: "avatar__img"), frontend_user_path(current_user))
-            - else
-                = link_to "Login!", frontend_login_path, class: "button button--light"
-                
+        %div.main-navbar__list
+            %ul.main-navbar-list
+                %li.main-navbar-list__item
+                    = link_to "Home", frontend_root_path, class: "navbar__home"
+                %li.main-navbar-list__item
+                    = link_to "About", frontend_root_path, class: "navbar__home"
+                %li.main-navbar-list__item
+                    = link_to "Leaderboard", frontend_root_path, class: "navbar__home"
+                %li.main-navbar-list__item
+                    = link_to "FAQ", frontend_root_path, class: "navbar__home"
+                %li.main-navbar-list__item.navbar__search
+                    = link_to(image_tag("search icon.svg"))
+            .main-navbar__mobile-buttons
+                .social-media__icons
+                    %ul.social-media
+                        %li.social-media__item
+                            = link_to(image_tag("discord icon.svg"))
+                        %li.social-media__item
+                            = link_to(image_tag("twitter icon.svg"))
+                        %li.social-media__item
+                            = link_to(image_tag("github icon.svg"))
+                    .social-media__login
+                        - if logged_in?
+                            = link_to(image_tag(current_user.avatar_url, class: "avatar__img avatar__img--mobile"), frontend_user_path(current_user))
+                        - else
+                            = link_to "Login!", frontend_login_path, class: "button button--light button--mobile"
+        .main-navbar__buttons
+            %ul.social-media
+                %li.social-media__item
+                    = link_to(image_tag("discord icon.svg"))
+                %li.social-media__item
+                    = link_to(image_tag("twitter icon.svg"))
+                %li.social-media__item
+                    = link_to(image_tag("github icon.svg"))
+                %li.social-media__item
+                    - if logged_in?
+                        = link_to(image_tag(current_user.avatar_url, class: "avatar__img"), frontend_user_path(current_user))
+                    - else
+                        = link_to "Login!", frontend_login_path, class: "button button--light"
+        .main-navbar__burger-menu
+            %span
+            %span
+            %span

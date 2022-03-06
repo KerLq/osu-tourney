@@ -8,14 +8,16 @@
     &__img {
         border-radius: 20px;
         border: 3px solid transparent;
-        max-height: 80px;
         height: 80px;
-        max-width: 100px;
 
         &--inverted {
             filter: invert(1);
             border-radius: 0px;
             height: 35px;
+        }
+
+        &--mobile {
+            height: 60px
         }
     }
 }

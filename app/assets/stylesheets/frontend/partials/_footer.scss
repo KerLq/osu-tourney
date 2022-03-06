@@ -1,6 +1,10 @@
 .footer {
+    display: flex;
     border-top: 1px solid #4E4E4E;
-
+    justify-content: space-between;
+    line-height: 6;
+    padding: 2em 1em;
+    margin: 0 214px;
     &__text {
         line-height: 25px;
         margin-left: 23px;

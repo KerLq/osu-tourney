@@ -119,28 +119,272 @@
 //     }
 // }
 
-.navbar {
+// .navbar {
+//     padding: 3rem 0;
+//     //margin: 25px 214px;
+//     margin-inline: auto;
+//     width: MIN(90%, 93.25rem);
+//     &__main {
+//         display: flex;
+//         justify-content: space-between;
+//     }
+//     &__left {
+//         display: flex;
+//         align-items: center;
+//         flex: auto;
+//     }
+//     &__right {
+//         display: flex;
+//         align-items: center;
+//     }
+//     &__item {
+//         font-size: 16px;
+//         margin-right: 59px;
+//         transition: color 0.1s ease;
+//         &--tight {
+//             margin-right: 35px;
+//         }
+//         &--hamburger {
+//             height: 4px;
+//             width: 100%;
+//             background-color: white;
+//             border-radius: 15px;
+//         }
+//         &:last-child {
+//             margin-right: 0;
+//         }
+//     }
+    
+//     &__hamburger {
+//         position: absolute;
+//         display: none;
+//         flex-direction: column;
+//         justify-content: space-between;
+//         top: 2.4rem;
+//         right: 2rem;
+//         width: 30px;
+//         height: 21px;
+
+//         @media (max-width: 64.375rem) {
+//             display: flex;
+//             position: absolute;
+//         }
+        
+//     }
+// }
+
+// @media (max-width: 64.375rem) {
+//     .navbar {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         padding: 0;
+        
+//         &__left {
+//             display: none;
+//             &--active {
+//                 display: block;
+//                 width: 100%;
+//             }
+//         }
+//         &__right {
+//             display: none;
+//         }
+//         &__item {
+//             //background: #131313;
+//             text-align: center;
+//             padding: 0;
+//             margin-right: 0;
+//             &:nth-child(2n+1) {
+//                 background: #131313;
+//             }
+//             &:hover:not(&:first-child) {
+//                 background: #232323;
+//                 transition: background 100ms linear;
+//             }
+//             a {
+//                 display: block;
+//                 width: inherit;
+//                 padding: 1em;
+//                 text-align: -webkit-center;
+//                 text-align: -moz-center;
+//             }
+//         }
+//     }
+    
+// }
+
+
+.main-header {
+    &--active {
+        margin-bottom: 28rem;
+    }
+    @media (min-width: 62rem) {
+        margin-bottom: 0;
+    }
+}
+
+.main-navbar {
+    padding: 2rem 0;
+    margin-inline: auto;
+    width: MIN(90%, 93.25rem);
+
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 113px;
-    &__left {
+
+    &__logo {
+        margin-right: 3.75rem;
+    }
+
+    &__mobile-buttons {
+        display: none;
+    }
+    &__list {
         display: flex;
         align-items: center;
-    }
-    &__right {
-        display: flex;
-        align-items: center;
-    }
-    &__item {
-        font-size: 16px;
-        margin-right: 59px;
-        transition: color 0.1s ease;
-        &--tight {
-            margin-right: 35px;
+        &--active {
+            display: flex !important;
+            justify-content: center;
         }
+    }
+    &__buttons {
+        display: flex;
+        margin-left: auto;
+    }
+    &__burger-menu {
+        display: none;
+        flex-direction: column;
+        flex-flow: column;
+        justify-content: space-between;
+        width: 35px;
+        height: 24px;
+
+        &--animation {
+            animation: spin 0.3s forwards;
+        }
+        &--reverse-animation {
+            animation: reverse-spin 0.3s forwards;
+        }
+    }
+}
+
+.main-navbar-list {
+    display: flex;
+    width: 100%;
+
+    &__item {
+        margin-right: 3.75rem;
         &:last-child {
             margin-right: 0;
         }
+    }
+    a {
+        width: inherit;
+        display: block;
+    }
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+    &__item {
+        margin-right: 1rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media (max-width: 62rem) {
+    .main-navbar {
+        justify-content: space-between;
+        align-items: center;
+        &__list {
+            display: none;
+            position: absolute;
+            width: MIN(90%, 93.25rem);
+            top: 7rem;
+            flex-flow: column;
+        }
+        &__buttons {
+            display: none;
+        }
+        &__burger-menu {
+            display: flex;
+            span {
+                height: 4px;
+                width: 100%;
+                background: white;
+                border-radius: 15px;
+            }
+        }
+        &__mobile-buttons {
+            display: flex;
+            //flex-flow: column;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+    .main-navbar-list {
+        display: flex;
+        flex-flow: column;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+
+        &__item {
+            line-height: 4;
+            margin-right: 0;
+            &:last-child {
+                margin: 1rem 0 2rem 0;
+            }
+        }
+    }
+    .social-media {
+        display: flex;
+        justify-content: center;
+        &__item {
+            margin-right: 1rem;
+            img {
+                height: 35px;
+                width: 35px;
+            }
+        }
+        
+        &__icons {
+            width: inherit;
+            display: flex;
+            flex-flow: column;
+            a {
+                margin: 24px 0 24px 0;
+            }
+        }
+        &__login {
+            width: inherit;
+            display: flex;
+            justify-content: center;
+            text-align: -webkit-center;
+            text-align: -moz-center;
+
+            a {
+                width: inherit;
+                display: block;
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
+@keyframes reverse-spin {
+    0% {
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }

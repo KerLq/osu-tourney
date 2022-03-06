@@ -1,29 +1,49 @@
 %section.hero
-    .gradient_background.gradient_background--nav-included
-    .hero__section
-        .hero__content
-            %p.hero__header Tourney Profile 
-            %p.hero__description
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                sed diam nonumy eirmod tempor invidunt ut labore et
-                dolore magna aliquyam erat, sed diam voluptua. 
-                At vero eos et accusam et justo duo dolores et ea rebum. 
-                Stet clita kasd gubergren, no sea takimata sanctus est
-            .hero__buttons
-                =link_to "Try it Out", frontend_login_path, class: "button hero__buttons--space"
-                =link_to "View Profiles", "#", class: "button"
-        .hero__image
-            =image_tag("test2.png")
-    .hero__community
-        =image_tag("heart icon.svg")
-        %p Made for the osu!community, by the osu!community. Thanks to Hubz for helping out!
+    .gradient-background.gradient-background--nav-included
+    .container
+        .hero__section
+            .hero__content
+                %h1.hero__header Tourney Profile 
+                %p.hero__description
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                    sed diam nonumy eirmod tempor invidunt ut labore et
+                    dolore magna aliquyam erat, sed diam voluptua. 
+                    At vero eos et accusam et justo duo dolores et ea rebum. 
+                    Stet clita kasd gubergren, no sea takimata sanctus est
+                .hero__buttons
+                    - if !logged_in?
+                        =link_to "Try it Out", frontend_login_path, class: "button hero__buttons--space"
+                    =link_to "View Profiles", "#", class: "button"
+            .hero__image
+                =image_tag("test2.png")
+        .hero__community
+            =image_tag("heart icon.svg", class: "hero__icon")
+            %p Made for the osu!community, by the osu!community
+        .gradient_background.gradient_background--nav-included
 %section.info
-    .info__carousel
-    .info__text
+    .container
+        .info__content
+            .info__carousel
+                .info__image
+                    =image_tag("test2.png")
+                .info__paginate
+            .info__text
+                %p
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
+                    sed diam nonumy eirmod tempor invidunt ut labore et dolore At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
 
 %section.statistics
-    .gradient_background
-    .statistics__list
-        .statistics__item
-        .statistics__item
-        .statistics__item
+    .container
+        %ul.statistics__list
+            %li.statistics__item
+                %p.statistics__text
+                    Registered Users
+                = render partial: "shared/statistics-card", locals: {icon: "user icon.svg", number: User.count, bigger: true}
+            %li.statistics__item
+                %p.statistics__text
+                    Uploaded Tournaments
+                = render partial: "shared/statistics-card", locals: {icon: "tournament icon.svg", number: Tourney.count}
+            %li.statistics__item
+                %p.statistics__text
+                    Uploaded Matches
+                = render partial: "shared/statistics-card", locals: {icon: "match icon.svg", number: Match.count}

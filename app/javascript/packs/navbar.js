@@ -6,22 +6,23 @@ window.onload = function() {
     // button.addEventListener("click", () => {
     //     div.classList.toggle("active");
     // });
-    $burger = $(".navbar__hamburger");
-    $links = $(".navbar__links");
-    $(".navbar__hamburger").click(function() {
-        $links.toggleClass("navbar__links--active");
-
-        if ($burger.hasClass("navbar__hamburger--animation") && !$burger.hasClass("navbar__hamburger--reverse-animation")) {
-            $burger.toggleClass("navbar__hamburger--animation");
-            $burger.addClass("navbar__hamburger--reverse-animation");
+    $header = $(".main-header");
+    $burger = $(".main-navbar__burger-menu");
+    $list = $(".main-navbar__list");
+    $(".main-navbar__burger-menu").click(function() {
+        $list.toggleClass("main-navbar__list--active");
+        $header.toggleClass("main-header--active");
+        if ($burger.hasClass("main-navbar__burger-menu--animation") && !$burger.hasClass("main-navbar__burger-menu--reverse-animation")) {
+            $burger.toggleClass("main-navbar__burger-menu--animation");
+            $burger.addClass("main-navbar__burger-menu--reverse-animation");
             return;
-        } else if ($burger.hasClass("navbar__hamburger--reverse-animation")) {
-            $burger.toggleClass("navbar__hamburger--reverse-animation");
-            $burger.addClass("navbar__hamburger--animation");
+        } else if ($burger.hasClass("main-navbar__burger-menu--reverse-animation")) {
+            $burger.toggleClass("main-navbar__burger-menu--reverse-animation");
+            $burger.addClass("main-navbar__burger-menu--animation");
 
             return;
         }
-        $burger.toggleClass("navbar__hamburger--animation");
+        $burger.toggleClass("main-navbar__burger-menu--animation");
 
         
     });
