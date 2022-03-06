@@ -1,0 +1,12 @@
+.user-content
+    %h4.user-content__header
+        All Participated Tournaments
+    .user-content__tournaments
+        .user-content__buttons
+            .user-content__filter-button
+            .user-content__upload-buttons
+                =link_to "Upload Spreadsheet", "#", class: "button"
+                =link_to "Upload Tournament", "#", class: "button"
+        .tournaments
+            %ul.tournaments__list
+                .tournaments__item
