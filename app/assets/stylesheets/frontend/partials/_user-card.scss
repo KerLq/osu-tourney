@@ -1,0 +1,114 @@
+.user-card {
+    padding: 2rem 0rem;
+    background: #101010;
+    margin-bottom: 2.5rem;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__info {
+        display: flex;
+        align-items: center;
+    }
+    &__avatar {
+
+    }
+    &__username {
+        font-size: 2.625rem;
+        font-weight: 400;
+    }
+    &__tag {
+        background: #242424;
+        border-radius: 35px;
+        margin-top: 1rem;
+        width: fit-content;
+        padding: 0.8rem;
+        border: double 2px transparent;
+        background-image: linear-gradient( #141414, #141414), radial-gradient(circle at top left, #6f16c2, #2081ff);        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-size: 300% 300%;
+        animation: shine 5s ease-in-out infinite;
+    }
+    &__tag-status {
+        --angle: 0deg;
+        background: linear-gradient(45deg, rgba(2, 242, 114, 1) 0%, rgba(140, 0, 255, 1) 100%);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-backgroud-fill: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: shine 5s linear infinite;
+    }
+    &__wrapper {
+        margin-left: 2rem;
+    }
+    &__additional {
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+    }
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+
+    }
+    &__description {
+        font-size: 1.125rem;
+        font-weight: 200;
+        text-align: right;
+        margin-top: 1rem;
+    }
+    &__twitter {
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width: 62rem) {
+    .user-card {
+        &__content {
+            flex-flow: column;
+        }
+        &__info {
+            flex-flow: column;
+        }
+        &__wrapper {
+            margin-left: 0;
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+
+        &__username {
+            text-align: center;
+            margin: 1rem 0 1.5rem 0;
+        }
+        &__buttons {
+            justify-content: space-around;
+        }
+        &__description {
+            margin: 2rem 0 2rem 0;
+            text-align: center;
+        }
+        &__additional {
+            align-items: center;
+        }
+        &__twitter, &__osuprofile {
+            width: 9.375rem;
+        }
+        &__tag {
+            margin-top: 0;
+        }
+    }
+        
+}
+
+@keyframes shine {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+  }

@@ -1,18 +1,101 @@
+// .footer {
+//     display: flex;
+//     border-top: 1px solid #4E4E4E;
+//     justify-content: space-between;
+//     line-height: 6;
+//     padding: 2em 1em;
+//     margin: 0 214px;
+//     &__text {
+//         line-height: 25px;
+//         margin-left: 23px;
+//     }
+//     &__copyright {
+//         font-weight: 400;
+//     }
+//     &__item {
+//         font-weight: 200;
+//     }
+// }
+
 .footer {
-    display: flex;
-    border-top: 1px solid #4E4E4E;
-    justify-content: space-between;
-    line-height: 6;
-    padding: 2em 1em;
-    margin: 0 214px;
-    &__text {
-        line-height: 25px;
-        margin-left: 23px;
+    &__info {
+        line-height: 1.5;
+        flex-flow: wrap;
+    }
+    &__content {
+        margin-left: auto;
+    }
+    &__container {
+        display: flex;
+        align-items: center;
+        margin-inline: auto;
+        width: MIN(90%, 93.25rem);
+        padding: 1rem;
+        border-top: 1px solid #4E4E4E;
+        justify-content: center;
+        flex-flow: wrap;
+    }
+    &__info {
+        display: flex;
+        align-items: center;
+    }
+    &__logo {
+        margin-right: 1.5rem;
     }
     &__copyright {
         font-weight: 400;
     }
-    &__item {
+    &__description {
         font-weight: 200;
+    }
+}
+
+.footer-content-list {
+    display: flex;
+    justify-content: flex-end;
+    &__item {
+        margin-right: 1.5rem;
+        font-weight: 200;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media (max-width: 62rem) {
+    .footer {
+        &__content {
+            margin: 1rem 0 1rem 0;
+        }
+        &__logo {
+        }
+    }
+    .footer-content-list {
+        &__item {
+            margin-right: 5vw;
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+    
+}
+@media (max-width: 35.125rem) {
+    .footer {
+        &__info {
+            justify-content: center;
+            margin: 0;
+        }
+        &__information {
+            margin: 1rem 0 1rem 0;
+        }
+    }
+}
+
+@media (max-width: 35rem) { 
+    .footer {
+        &__info {
+            text-align: center;
+        }
     }
 }

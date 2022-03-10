@@ -1,0 +1,115 @@
+// .tourney-card {
+//     //max-width: 18.75rem;
+//     filter: drop-shadow(0px 0px 19px rgba(0, 0, 0, 0.3));
+//     transition: transform 0.4s ease;
+
+//     &__content {
+//         //display: flex;
+//         border: 2.2px solid rgba(180, 180, 180, 0.5);
+//     }
+//     &__options {
+//         position: absolute;
+//         left: 17.5rem;
+//         top: 1rem;
+//         background: rgba(46, 46, 46, 0.5);
+//         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+//         border-radius: 5px;
+//     }
+//     &__title {
+//         background: rgba(48, 48, 48, 0.5);
+//         border-bottom: 2px solid rgba(48, 48, 48, 0.5);
+//         border-left: 2px solid rgba(48, 48, 48, 0.5);
+//         border-right: 2px solid rgba(48, 48, 48, 0.5);
+//         border-radius: 0px 0px 10px 10px;
+//         padding: 1rem;
+//         max-height: 4rem;
+//     }
+//     &__text {
+//         text-overflow: ellipsis;
+//         white-space: nowrap;
+//         overflow: hidden;
+//         font-size: 1.125rem;
+//     }
+//     &__image {
+//          max-width: 100%;
+//         // height: 200px;
+//         img {
+//             object-fit: cover;
+//             width: 100%;
+//             height: 100%;
+            
+//         }
+//     }
+//     &:hover {
+//         transform: translateY(-10px);
+//     }    
+// }
+
+.tourney-card {
+
+    width: 100%;
+    max-width: 25rem;
+    filter: drop-shadow(0px 0px 19px rgba(0, 0, 0, 0.3));
+    display: inline-block;
+    
+    
+    &__content {
+        width: 100%;
+        height: 100%;
+    }
+    
+    &__image-container {
+        position: relative;
+        border: 2px solid rgba(180, 180, 180, 0.5);
+    }
+    
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.2s ease-in-out;
+        
+        &:hover {
+            opacity: 0.4;
+        }
+    }   
+    
+    &__settings {
+        position: absolute;
+        top: 0.7rem;
+        right: 0.7rem;
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+
+    &__options {
+        background: rgba(46, 46, 46, 1);
+        //border: 1px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25); 
+        padding: 0.3rem 0.3rem;
+        width: fit-content;
+    }
+
+    &__title {
+        left: 0px;
+        bottom: -52px;
+        padding: 1rem;
+        width: 100%;
+        background: rgba(48, 48, 48, 0.5);
+        border-bottom: 2px solid rgba(48, 48, 48, 0.5);
+        border-left: 2px solid rgba(48, 48, 48, 0.5);
+        border-right: 2px solid rgba(48, 48, 48, 0.5);
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    &__text {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: 1.125rem;
+    }
+    // &:hover {
+    //     transform: translateY(-10px);
+    // }  
+}

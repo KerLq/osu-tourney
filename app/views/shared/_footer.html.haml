@@ -1,21 +1,22 @@
 %footer.footer
-    %ul.navbar__left.footer__left
-        %li.footer__item
-            =link_to(image_tag("osu!logo.png"), frontend_root_path)
-        %li.footer__item
-            .footer__text
+    .footer__container
+        .footer__info
+            .footer__logo
+                =link_to(image_tag("osu!logo.png"), frontend_root_path)
+            .footer__information
                 %p.footer__copyright
                     Copyright © 2022 - Tourney Profile
                 %p.footer__description
                     This site is not officialy affiliated with the game osu!
-    %ul.navbar__right.footer__right
-        %li.navbar__item.footer__item
-            = link_to "Home", frontend_root_path, class: "footer__home"
-        %li.navbar__item.footer__item
-            = link_to "About", frontend_root_path, class: "footer__home"
-        %li.navbar__item.footer__item
-            = link_to "Leaderboard", frontend_root_path, class: "footer__home"
-        %li.navbar__item.footer__item
-            = link_to "FAQ", frontend_root_path, class: "footer__faq"
-        %li.navbar__item.footer__item
-            = link_to "GitHub", frontend_root_path, class: "footer__github"
+        .footer__content
+            %ul.footer-content-list
+                %li.footer-content-list__item
+                    = link_to "Home", frontend_root_path, class: "footer__home"
+                %li.footer-content-list__item
+                    = link_to "About", frontend_root_path, class: "footer__home"
+                %li.footer-content-list__item
+                    = link_to "Leaderboard", frontend_root_path, class: "footer__home"
+                %li.footer-content-list__item
+                    = link_to "FAQ", frontend_root_path, class: "footer__faq"
+                %li.footer-content-list__item
+                    = link_to "GitHub", frontend_root_path, class: "footer__github"

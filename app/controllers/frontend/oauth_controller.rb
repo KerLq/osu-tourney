@@ -23,6 +23,8 @@ class Frontend::OauthController < Frontend::FrontendController
   
   # The OAuth callback
   def oauth_callback
+    redirect_to(frontend_root_path) if params[:error].present?
+    return
 
     @@OAuthOsu.setToken(params[:code])
 

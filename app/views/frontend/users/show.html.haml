@@ -1,12 +1,61 @@
 .user-content
-    %h4.user-content__header
-        All Participated Tournaments
-    .user-content__tournaments
-        .user-content__buttons
-            .user-content__filter-button
-            .user-content__upload-buttons
-                =link_to "Upload Spreadsheet", "#", class: "button"
-                =link_to "Upload Tournament", "#", class: "button"
-        .tournaments
-            %ul.tournaments__list
-                .tournaments__item
+    =render partial: "shared/user-card"
+    .container
+        %h4.user-content__header 
+            All Participated Tournaments
+        .user-content__tournaments
+            .user-content__buttons
+                .user-content__filter-button
+                    =link_to "#", class: "button button--filter" do
+                        %span Filter
+                        =image_tag("chevron.svg")
+                    
+                .user-content__upload-buttons
+                    =link_to "Upload Spreadsheet", "#", class: "button user-content__upload-buttons--space"
+                    =link_to "Upload Tournament", "#", class: "button"
+            .tournaments
+                %ul.tournaments__list
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "atest.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "4th tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "atest.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "3rd tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "3rd tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "4th tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "atest.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "4th tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "atest.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "3rd tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "waffle tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "3rd tourney cover.png"}
+                    %li.tournaments__item
+                        =render partial: "shared/tourney-card.html.haml", locals: {img: "4th tourney cover.png"}

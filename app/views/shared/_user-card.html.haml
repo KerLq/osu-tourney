@@ -1,0 +1,18 @@
+.user-card
+    .container
+        .user-card__content
+            .user-card__info
+                .user-card__avatar
+                    =image_tag(@user.avatar_url, class: "avatar__img avatar__img--user-card")
+                .user-card__wrapper
+                    .user-card__username
+                        ="#{@user.username}'s Tournament Profile"
+                    .user-card__tag
+                        %p.user-card__tag-status
+                            Developer
+            .user-card__additional
+                .user-card__description
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, repellendus?
+                .user-card__buttons
+                    =link_to "Twitter", "https://twitter.com/#{@user.twitter}", class: "button button--dark-cyan user-card__twitter", target: "_blank" if @user.twitter.present?
+                    =link_to "osu!Profile", "https://osu.ppy.sh/u/#{@user.id}", class: "button button--dark-cyan user-card__osuprofile", target: "_blank"
