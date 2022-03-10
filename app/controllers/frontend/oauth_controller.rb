@@ -23,9 +23,11 @@ class Frontend::OauthController < Frontend::FrontendController
   
   # The OAuth callback
   def oauth_callback
-    redirect_to(frontend_root_path) if params[:error].present?
-    return
-
+    if params[:error].present?
+      redirect_to(frontend_root_path) 
+      return
+    end
+    
     @@OAuthOsu.setToken(params[:code])
 
     player = @@OAuthOsu.getOwnData
