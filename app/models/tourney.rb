@@ -9,15 +9,19 @@ class Tourney < ApplicationRecord
         forumpost_id = response['topic']['id']
         timestamp = response['topic']['created_at']
         timestamp = timestamp[0..9]
-        cover_image = response['posts'][0]['body']['raw']
-        urls = URI.extract(cover_image, ['http', 'https']) # first element is cover_image
-        cover_image = urls[0]
-        cover_image = cover_image.split("?")[0] if cover_image.include?("?")
-        spreadsheet = ""
+        #cover_image = response['posts'][0]['body']['raw']
+        all_urls = response['posts'][0]['body']['raw']
+        urls = URI.extract(all_urls, ['http', 'https']) # first element is cover_image
+        #cover_image = urls[0]
+        #cover_image = cover_image.split("?")[0] if cover_image.include?("?")
+        spreadsheet = nil
+        cover_image = nil
+    
         urls.each do |url|
+            cover_image ||= url.split("?")[0] if url[/\.(?:jpe?g|png|svg|gif|webp)$/]            
             spreadsheet = url if url.include?("spreadsheets")
         end
-
+        
         year = timestamp[0..3]
         month = timestamp[5..6]
         day = timestamp[8..9]

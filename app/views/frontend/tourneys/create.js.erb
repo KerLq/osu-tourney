@@ -10,4 +10,4 @@ var $div_message = $("<div>", {"class": "alert__notice"});
 $div_message.text("<%= flash[:notice] %>")
 $($div).append($div_message);
 
-$('.tournaments__list').append("<%= j render @tourney, user: @user if !@tourney.nil? %>");
+$('.tournaments__list').append('<li class="tournaments__item"> <%= j render @tourney, user: @user if !@tourney.nil? %> </li>');
