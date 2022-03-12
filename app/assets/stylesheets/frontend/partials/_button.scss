@@ -66,8 +66,9 @@
         width: 110px !important;
     }
     &--filter {
+        height: unset;
         width: 120px;
-        height: 45px;
+        padding: 1rem;
         background: #141414;
         border: 1px solid rgba(180, 180, 180, 0.5);
         filter: none;
