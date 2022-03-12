@@ -32,7 +32,6 @@ gem 'activerecord-session_store'
 gem 'rack-cors'
 gem 'faraday'
 gem 'osu-api', '0.2.7', :path => '~/osu-api/'
-gem 'hotwire-rails'
 gem 'haml'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

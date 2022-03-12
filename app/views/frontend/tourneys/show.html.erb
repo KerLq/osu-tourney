@@ -18,11 +18,7 @@
       </div>
     <% end %>
   </div>
-    <div id="tourneys" class="tourney__stats">
-      <%= turbo_stream_from @tourney %>
-      <%= turbo_frame_tag "matches" do %>
-      <%#= render partial: "frontend/matches/match", collection: @matches, formats: [:html], handlers: [:erb] %>
-          <%= render @matches %>
-      <% end %>
+    <div class="tourney__stats">
+        <%= render @matches %>
     </div>
 </div>
