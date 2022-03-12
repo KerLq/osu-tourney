@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get '/oauth2-callback', to: 'oauth#oauth_callback'
     get '/logout', to: 'oauth#logout'
     get '/login', to: 'oauth#login'
-    resources :users, :only => [:show] do
+    resources :users, :only => [:index, :show] do
       resources :tourneys do
         resources :matches
       end

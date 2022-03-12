@@ -13,7 +13,7 @@
                 .hero__buttons
                     - if !logged_in?
                         =link_to "Try it Out", frontend_login_path, class: "button hero__buttons--space"
-                    =link_to "View Profiles", "#", class: "button"
+                    =link_to "View Profiles", frontend_users_path, class: "button"
             .hero__image
                 =image_tag("test2.png")
         .hero__community

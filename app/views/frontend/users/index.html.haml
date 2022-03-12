@@ -1,0 +1,13 @@
+.users
+  %ul.users__list
+    %li.users__item
+      %table
+        %tr
+          %th Username
+          %th ID
+        %tbody
+        - @users.each do |user|
+          %tr
+            %td=user.username
+            %td=user.id
+            %td=link_to "Show", frontend_user_path(user)
