@@ -7,9 +7,11 @@
                 .user-card__wrapper
                     .user-card__username
                         ="#{@user.username}'s Tournament Profile"
-                    .user-card__tag
-                        %p.user-card__tag-status
-                            =@user.role
+                    .user-card__tags
+                        - @user.tags.each do |tag|
+                            .user-card__tag
+                                %p.user-card__tag-status
+                                    =tag.title
             .user-card__additional
                 .user-card__description
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, repellendus?

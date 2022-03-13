@@ -1,6 +1,8 @@
 class User < ApplicationRecord
+    after_create :assign_default_tag
     #attr_accessible :username, :avatar_url, :user_id
     has_many :tourneys
+    has_many :tags
 
     enum role: [
         :member,
@@ -21,5 +23,9 @@ class User < ApplicationRecord
         user.update(twitter: params['twitter']) if user.twitter != params['twitter']
         
         user
+    end
+
+    def assign_default_tag
+        self.tags.create(title: 0)
     end
 end

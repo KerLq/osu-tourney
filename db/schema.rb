@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_19_232814) do
+ActiveRecord::Schema.define(version: 2022_03_13_220921) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(version: 2021_12_19_232814) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.integer "title", default: 0
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tourneys", force: :cascade do |t|
     t.string "title"
     t.string "spreadsheet"
@@ -85,7 +92,7 @@ ActiveRecord::Schema.define(version: 2021_12_19_232814) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.text "forumpost"
-    t.bigint "forumpost_id"
+    t.integer "forumpost_id"
     t.string "cover_image"
     t.index ["match_id"], name: "index_tourneys_on_match_id"
   end

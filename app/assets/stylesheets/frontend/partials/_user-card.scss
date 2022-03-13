@@ -17,7 +17,11 @@
         font-size: 2.625rem;
         font-weight: 400;
     }
+    &__tags {
+        display: flex;
+    }
     &__tag {
+        margin-right: 0.5rem;
         background: #242424;
         border-radius: 35px;
         margin-top: 1rem;
@@ -28,6 +32,9 @@
         background-clip: padding-box, border-box;
         background-size: 300% 300%;
         animation: shine 5s ease-in-out infinite;
+        &:last-child {
+            margin-right: 0;
+        }
     }
     &__tag-status {
         --angle: 0deg;
