@@ -16,11 +16,11 @@ class Tourney < ApplicationRecord
         #cover_image = cover_image.split("?")[0] if cover_image.include?("?")
         spreadsheet = nil
         cover_image = nil
-    
         urls.each do |url|
-            cover_image ||= url.split("?")[0] if url[/\.(?:jpe?g|png|svg|gif|webp)$/]            
+            cover_image ||= url.split("?")[0] if url[/\.(?:jpe?g|png|svg|webp)$/]            
             spreadsheet = url if url.include?("spreadsheets")
         end
+        
         
         year = timestamp[0..3]
         month = timestamp[5..6]

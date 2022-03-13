@@ -3,6 +3,9 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+import Turbolinks from "turbolinks"
+Turbolinks.start()
+
 import Rails from "@rails/ujs"
 import { Turbo } from "@hotwired/turbo-rails"
 Turbo.session.drive = false

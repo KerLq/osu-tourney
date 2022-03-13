@@ -4,7 +4,8 @@ class User < ApplicationRecord
 
     enum role: [
         :member,
-        :admin
+        :admin,
+        :retard
     ]
 
     def self.create_from_oauth(params)

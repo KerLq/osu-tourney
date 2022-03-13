@@ -9,11 +9,11 @@
                     =link_to "#", class: "button button--filter" do
                         %span Filter
                         =image_tag("chevron.svg")
-                    
-                .user-content__upload-buttons
-                    =link_to "Upload Spreadsheet", "#", class: "button user-content__upload-buttons--space"
-                    =link_to "Upload Tournament", new_frontend_user_tourney_path(@user), class: "button", remote: true
-                    
+                -if is_current_user(@user) 
+                    .user-content__upload-buttons
+                        =link_to "Upload Spreadsheet", "#", class: "button user-content__upload-buttons--space"
+                        =link_to "Upload Tournament", new_frontend_user_tourney_path(@user), class: "button", remote: true
+                
             .tournaments
                 %ul.tournaments__list
                     -@tourneys.each do | tourney |
