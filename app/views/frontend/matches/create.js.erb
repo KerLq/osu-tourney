@@ -9,3 +9,4 @@ if ($('.alert').length) {
     $($div).append($div_message);
 <% end %>
 $('.popup').remove();
+$('.tourney__stats').append('<%= j render @match, user: @user if !@match.nil? %>');

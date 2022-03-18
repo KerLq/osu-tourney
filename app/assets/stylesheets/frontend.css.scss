@@ -52,7 +52,7 @@
     font-style: normal;
     font-weight: 900;
   }
-
+// Check better custom fonts solution (caching instead of loading it every time)
 @import "frontend/general/reset";
 @import "frontend/general/variables";
 @import "frontend/general/general";

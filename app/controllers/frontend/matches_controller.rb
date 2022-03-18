@@ -38,6 +38,7 @@ class Frontend::MatchesController < Frontend::FrontendController
     @tourney = @user.tourneys.find(params[:tourney_id])
     @match = @tourney.matches.new(match_params)
     data = @match.filter_match(@user, response)
+    
     respond_to do |format|
       if data.nil?
         flash.now[:notice] = "Invalid MP-Link!"

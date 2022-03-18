@@ -1,10 +1,8 @@
-<%= turbo_frame_tag dom_id(match) do %>
-    <div class="match-card">
-        <div class="match-card__color">
-        </div>
-        <ul class="match-stats">
-            <li class="tourney-stats__item"> <%= link_to 'MP-Link', match.mp_link, target: '_blank' %></li>
-            <li class="tourney-stats__item"> <%= match.warmup %> </li>
-        </ul>
+<div class="match-card">
+    <div class="match-card__color">
     </div>
-<% end %>
+    <ul class="match-stats">
+        <li class="tourney-stats__item"> <%= link_to 'MP-Link', match.mp_link, target: '_blank' %></li>
+        <li class="tourney-stats__item"> <%= match.warmup %> </li>
+    </ul>
+</div>

@@ -49,7 +49,7 @@ class Frontend::TourneysController < Frontend::FrontendController
       end
       forumpost_id = params[:tourney][:forumpost].match(/\d+/)[0]
       
-      if !@user.tourneys.exists?(forumpost_id: forumpost_id)
+      # if !@user.tourneys.exists?(forumpost_id: forumpost_id)
         response = osuApi.getForumpost(forumpost_id)
         data = Tourney.fetchData(response)
 
@@ -78,14 +78,14 @@ class Frontend::TourneysController < Frontend::FrontendController
           format.js
         else
           flash.now[:notice] = "Failed!"
-          format.html { render :new, status: :unprocessable_entity }
-          format.js
+          format.html {redirect_to frontend_user_path(@user), status: :unprocessable_entity }
+          # format.js
         end
-      else
-        flash.now[:notice] = "Already exists!"
-        format.html { render :new, status: :unprocessable_entity }
-        format.js
-      end
+      # else
+      #   flash.now[:notice] = "Already exists!"
+      #   format.html { render :new, status: :unprocessable_entity }
+      #   format.js
+      # end
     end
   end      
 

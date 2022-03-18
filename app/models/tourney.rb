@@ -2,7 +2,8 @@ class Tourney < ApplicationRecord
     belongs_to :user
     has_many :matches
     before_create :randomize_id
-    validates :user, presence: true
+    
+    validates :forumpost, presence: true, uniqueness: { scope: :user_id }
 
     def self.fetchData(response)
         title = response['topic']['title']
@@ -46,7 +47,7 @@ class Tourney < ApplicationRecord
             number = SecureRandom.random_number
             number = number.to_s.gsub(/\./mi, '')
             self.id = number
-        end while Tourney.where(id: self.id).exists?
+        end while Tourney.exists?(id: self.id)
     end
 
 end
