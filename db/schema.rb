@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2022_03_13_220921) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.text "forumpost"
-    t.integer "forumpost_id"
+    t.bigint "forumpost_id"
     t.string "cover_image"
     t.index ["match_id"], name: "index_tourneys_on_match_id"
   end
