@@ -18,33 +18,45 @@
   =render partial: "shared/user-card"
 .tourney
   .container
-    .tourney__header
+    .tourney__header.user-card__username.font__roboto.font__roboto--400
       %strong= sanitize @tourney.title.html_safe
       .tourney_button
         = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
     %ul.tournaments__list.tournaments__list--matches
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(10)
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(5)
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(8)
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(2)
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(10)
       %li.tournaments__item.tournaments__item--avoid-break
-        %div
-          %h1 Grand Finals
-          = render @matches
+        .tourney-info
+          .tourney-info__title
+            %strong Finals
+        .matches
+          = render Match.limit(4)
 =render partial: "shared/user-footer"

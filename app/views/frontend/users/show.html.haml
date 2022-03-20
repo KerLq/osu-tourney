@@ -14,9 +14,7 @@
                         =link_to "Upload Spreadsheet", "#", class: "button user-content__upload-buttons--space"
                         =link_to "Upload Tournament", new_frontend_user_tourney_path(@user), class: "button", remote: true
             .tournaments
-                %ul.tournaments__list 
-                    -# Replace with either pluck, select or map (in controller) -- Apply for everything
-                    -debugger
+                %ul.tournaments__list
                     -@tourneys.each do | tourney |
                         %li.tournaments__item
                             =render tourney
