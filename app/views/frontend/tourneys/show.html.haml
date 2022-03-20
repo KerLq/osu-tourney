@@ -1,0 +1,27 @@
+-# .tourney-info
+-#   .tourney-info__title
+-#     %strong
+-#       = sanitize @tourney.title.html_safe
+-# .tourney
+-#   .tourney__header
+-#     .tourney__player
+-#       %p 
+-#         All Matches - Player:
+-#         %strong= sanitize @user.username.html_safe
+      
+-#     - if is_current_user(@user)
+-#       .tourney__button
+-#         = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
+-#   .tourney__stats
+-#     = sanitize render @matches
+
+.user-content
+  =render partial: "shared/user-card"
+.tourney
+  .tourney__header
+    %strong= sanitize @tourney.title.html_safe
+    .tourney_button
+      = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
+  .tourney__stats
+    %ul
+      %li= sanitize render @matches

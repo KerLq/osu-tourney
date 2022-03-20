@@ -14,7 +14,7 @@
                                     =tag.title
             .user-card__additional
                 .user-card__description
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, repellendus?
+                    =sanitize "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, repellendus?"
                 .user-card__buttons
                     =link_to "Twitter", "https://twitter.com/#{@user.twitter}", class: "button button--dark-cyan user-card__twitter", target: "_blank" if @user.twitter.present?
                     =link_to "osu!Profile", "https://osu.ppy.sh/u/#{@user.id}", class: "button button--dark-cyan user-card__osuprofile", target: "_blank"

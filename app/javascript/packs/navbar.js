@@ -1,4 +1,4 @@
-window.onload = function() {
+$(document).on('turbolinks:load', function() {
 
     // const button = document.getElementsByClassName("navbar__hamburger")[0];
     // const div = document.getElementsByClassName("navbar__links")[0];
@@ -26,4 +26,4 @@ window.onload = function() {
 
         
     });
-}
+})

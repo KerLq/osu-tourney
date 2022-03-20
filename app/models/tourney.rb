@@ -22,6 +22,7 @@ class Tourney < ApplicationRecord
             spreadsheet = url if url.include?("spreadsheets")
         end
         
+        return nil if cover_image.nil?
         
         year = timestamp[0..3]
         month = timestamp[5..6]

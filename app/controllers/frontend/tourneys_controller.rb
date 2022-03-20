@@ -1,7 +1,6 @@
 class Frontend::TourneysController < Frontend::FrontendController
   before_action :set_tourney, only: %i[ show edit update destroy ]
   before_action :require_permission, only: [:new, :edit, :update, :destroy, :create]
-  after_action :save_my_previous_url
 
   # GET /tourneys or /tourneys.json
   def index
@@ -52,7 +51,6 @@ class Frontend::TourneysController < Frontend::FrontendController
       # if !@user.tourneys.exists?(forumpost_id: forumpost_id)
         response = osuApi.getForumpost(forumpost_id)
         data = Tourney.fetchData(response)
-
         if data.nil?
           flash.now[:notice] = "Invalid Forumpost!"
           format.html { redirect_to frontend_user_path(@user) }
@@ -125,11 +123,6 @@ class Frontend::TourneysController < Frontend::FrontendController
       if current_user != User.find(params[:user_id])
         redirect_to frontend_user_path(current_user), notice: "Permission Denied!"
       end
-    end
-
-    def save_my_previous_url
-      # session[:previous_url] is a Rails built-in variable to save last url.
-      session[:my_previous_url] = request.fullpath
     end
 
     # Only allow a list of trusted parameters through.
