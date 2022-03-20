@@ -14,14 +14,37 @@
 -#         = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
 -#   .tourney__stats
 -#     = sanitize render @matches
-
 .user-content
   =render partial: "shared/user-card"
 .tourney
-  .tourney__header
-    %strong= sanitize @tourney.title.html_safe
-    .tourney_button
-      = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
-  .tourney__stats
-    %ul
-      %li= sanitize render @matches
+  .container
+    .tourney__header
+      %strong= sanitize @tourney.title.html_safe
+      .tourney_button
+        = link_to "Upload Match", new_frontend_user_tourney_match_path(@user, @tourney), class: "button tourney__upload-button", remote: true
+    %ul.tournaments__list.tournaments__list--matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Finals
+          = render @matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Finals
+          = render @matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Finals
+          = render @matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Finals
+          = render @matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Finals
+          = render @matches
+      %li.tournaments__item.tournaments__item--avoid-break
+        %div
+          %h1 Grand Finals
+          = render @matches
+=render partial: "shared/user-footer"

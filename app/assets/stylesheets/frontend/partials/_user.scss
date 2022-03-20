@@ -44,10 +44,15 @@
         //grid-auto-rows: 325px;
         columns: 4 325px;
         text-align: -webkit-center;
-
+        &--matches {
+            columns: 3 325px; //Change pixel
+        }
     }
     &__item {
         margin-bottom: 1.5rem;
+        &--avoid-break {
+            break-inside: avoid-column;
+        }
     }
     margin-bottom: 4rem;
 }

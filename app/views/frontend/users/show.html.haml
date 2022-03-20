@@ -16,6 +16,7 @@
             .tournaments
                 %ul.tournaments__list 
                     -# Replace with either pluck, select or map (in controller) -- Apply for everything
+                    -debugger
                     -@tourneys.each do | tourney |
                         %li.tournaments__item
                             =render tourney
